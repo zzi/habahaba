@@ -1,0 +1,1875 @@
+{% load i18n %}
+{% load staticmedia %}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+	<title>{% trans '1' %}</title>
+	<link rel="shortcut icon" href="{% mediaurl "img/favicon.ico" %}" />
+	<link rel="stylesheet" href="{% mediaurl "css_1/style.css" %}" type="text/css" media="all" />
+	<script type="text/javascript" src="{% mediaurl "js/scripts.js" %}"></script>
+</head>
+
+<body>
+    {% comment %}
+	<!-- BEGIN JS DETECTION -->
+	<noscript>
+		<div class="lock">
+			<div id="nojs">
+				<div class="nojs-logo"></div>
+				<p><b>{% trans '2' %}</b></p>
+				<p style="margin-top: 30px;">{% trans '3' %}</p>
+				<p>&bull; {% trans '4' %}</p>
+				<p>&bull; {% trans '5' %}</p>
+			</div>
+		</div>
+	</noscript>
+	<!-- END JS DETECTION -->
+	
+	<!-- BEGIN ERROR BANNER -->
+	<div id="error" onclick="closeThisError();">
+		<!-- login errors -->
+			<p class="error-p error-9 notification">{% trans '9' %}</p>
+		
+		<!-- register errors -->
+			<p class="error-p error-5 notification">{% trans '10' %}</p>
+			<p class="error-p error-10 notification">{% trans '11' %}</p>
+			
+		<!-- connection errors -->
+			<p class="error-p error-6 notification">{% trans '12' %}</p>
+			<p class="error-p error-7 notification">{% trans '13' %}</p>
+			<p class="error-p error-8 notification">{% trans '14' %}</p>
+			<p class="error-p error-13 notification">{% trans '15' %}</p>
+			<p class="error-p error-17 notification">{% trans '16' %}</p>
+			<p class="error-p error-12 notification">{% trans '17' %}</p>
+			<p class="error-p error-18 notification">{% trans '18' %}</p>
+			<p class="error-p error-20 notification">{% trans '19' %}</p>
+			<p class="error-p error-17 notification">{% trans '20' %}</p>
+			<p class="error-p error-21 notification">{% trans '21' %}</p>
+			<p class="error-p error-14 notification">{% trans '22' %}</p>
+			<p class="error-p error-11 notification">{% trans '23' %}</p>
+			<p class="error-p error-22 notification">{% trans '24' %}</p>
+			<p class="error-p error-22 notification">{% trans '25' %}</p>
+		
+		<!-- system errors -->
+			<p class="error-p error-1 notification">{% trans '26' %}</p>
+			<p class="error-p error-4 notification">{% trans '27' %}</p>
+			<p class="error-p error-25 notification">{% trans '614' %}</p>
+		
+		<!-- favorites errors -->
+			<p class="error-p error-23 notification">{% trans '28' %}</p>
+			
+		<!-- groupchat errors -->
+			<p class="error-p error-26 notification">{% trans '666' %}</p>
+		
+		<!-- other errors -->
+			<p class="error-p error-2 notification">{% trans '29' %}</p>
+			<p class="error-p error-3 notification">{% trans '30' %}</p>
+	</div>
+	<!-- END ERROR BANNER -->
+	
+	<!-- BEGIN INFO BANNER -->
+	<div id="info" onclick="closeThisInfo();">
+		<!-- roster infos -->
+			<p class="info-p info-11 notification">{% trans '676' %}</p>
+		
+		<!-- options infos -->
+			<p class="info-p info-1 notification">{% trans '602' %}</p>
+			<p class="info-p info-2 notification">{% trans '603' %}</p>
+		
+		<!-- groupchat infos -->
+			<p class="info-p info-5 notification">{% trans '658' %}</p>
+			<p class="info-p info-6 notification">{% trans '665' %}</p>
+			<p class="info-p info-7 notification">{% trans '671' %}</p>
+			<p class="info-p info-8 notification">{% trans '673' %}</p>
+			<p class="info-p info-9 notification">{% trans '674' %}</p>
+			<p class="info-p info-10 notification">{% trans '675' %}</p>
+		
+		<!-- session infos -->
+			<p class="info-p info-3 notification">{% trans '606' %}</p>
+			<p class="info-p info-4 notification">{% trans '612' %}</p>
+	</div>
+	<!-- END INFO BANNER -->
+{% endcomment %}	
+	<!-- BEGIN HOMEPAGE -->
+	<div id="home" class="showable">
+		<!-- the tooltip to help the user completing forms -->
+			<div class="tooltip"></div>
+			
+		<!-- the topbar of jappix, with the logo and the login form -->
+			<div id="topbar">
+				<div class="logo"></div>
+		
+				<div class="connect">
+					<div class="left"></div>
+
+					<div class="right">
+						<form id="ajax-l-form" name="loginForm" onsubmit="return doLogin(this);" action="#">
+							<p class="maintitle">{% trans '32' %}</p>
+							<p class="l-jid" style="color: #959595; font-size: 16px;"><span class="jtitle1">{% trans '33' %}</span><input class="jadd resetable" type="text" id='l-jid' name="l-jid" title="{% trans '34' %}" /><span class="jaro">@</span><input class="jadd" type="text" id='l-server' name="l-server" title="{% trans '35' %}" value="{{ HOST_MAIN }}" /></p>
+							<p style="color: #959595; font-size: 16px;"><span class="jtitle2">{% trans '36' %}</span><input class="jpwd resetable" type="password" id='l-pass' name="l-pass" title="{% trans '37' %}" /><input class="jgo submit-button" type="submit" name="l-submit" value="Go !" title="{% trans '38' %}" /></p>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+		<!-- the main content of the page -->
+			<div id="contentcenter">
+				<!-- the leftcontent where users can register a new account -->
+					<div id="leftcontent">
+						<div id="leftbar">
+							<p class="maintitle">{% trans '39' %}</p>
+						
+							<form id="ajax-r-form" name="registerForm" onsubmit="return doRegister(this);" action="#">
+								<div style="margin-top: 15px;">
+									<div class="group"></div>
+
+									<div class="register">
+											<p style="color: #959595; font-size: 20px; margin-bottom: 5px;">{% trans '40' %}</p>
+											<input class="register-input registerStart resetable" type="text" id="r-nick" name="r-nick" title="{% trans '41' %}" />
+									</div>
+								</div>
+				
+								<div style="margin-top: 23px;">
+									<div class="group"></div>
+
+									<div class="register">
+											<p style="color: #959595; font-size: 20px; margin-bottom: 5px;">{% trans '42' %}</p>
+											<input class="register-input registerStart resetable" type="text" id="r-server" name="r-server" title="{% trans '43' %}" value="{{ HOST_MAIN }}" />
+									</div>
+								</div>
+				
+								<div style="margin-top: 23px;">
+									<div class="group"></div>
+
+									<div class="register">
+											<p style="color: #959595; font-size: 20px; margin-bottom: 5px;">{% trans '44' %}</p>
+											<input class="register-input registerStart resetable" type="password" id="r-pass" name="r-pass" title="{% trans '45' %}" />
+									</div>
+								</div>
+				
+								<div style="margin-top: 30px; font-size: 0.9em; border-top: 1px solid #c8c8c8;" id="ajax-r-result">
+									<p style="margin-top: 20px; margin-bottom: 20px; font-size: 13px; text-align: justify;">{% trans '46' %}</p>
+								</div>
+
+								<div style="padding-top: 15px; font-size: 0.9em; border-top: 1px solid #c8c8c8;">
+									<div style="float: right;">
+										<input type="submit" id="r-submit" name="r-submit" value="Continuer &raquo;" title="{% trans '47' %}" class="submit-button send" />
+									</div>
+								
+									<div style="display: none; float: right; margin: -2px 12px 0 0" class="register-wait wait-small"></div>
+								</div>
+							</form>
+						</div>
+						{% comment %}
+						<?php if(SSL == 'on') { ?>
+							<div id="sslbar">
+								<p class="sslicon">{% trans '48' %}</p>
+								<p>{% trans '49' %}</p>
+							</div>
+						<?php } ?>
+						{% endcomment %}
+					</div>
+					
+				<!-- the right content where the users are told what's really jappix -->
+					<div id="rightcontent">
+						<div id="rightmenu">
+							<ul>
+								<li style="margin-left: 20px;"><a class="selected whatsjappix" onclick="switchMenu('whatsjappix');">{% trans '50' %}</a></li>
+								<li style="margin-left: 10px;"><a class="advantages" onclick="switchMenu('advantages');">{% trans '51' %}</a></li>
+								<li style="margin-left: 10px;"><a class="yourprivatelife" onclick="switchMenu('yourprivatelife');">{% trans '52' %}</a></li>
+								<li style="margin-left: 10px;"><a class="theproject" onclick="switchMenu('theproject');">{% trans '53' %}</a></li>
+								<li style="margin-left: 10px;"><a class="abouth" onclick="switchMenu('abouth');">{% trans '54' %}</a></li>
+							</ul>
+						</div>
+
+						<div id="rightbar-text">
+							<div id="whatsjappix" class="rightbar-group">
+								<h2>{% trans '50' %}</h2>
+								<p>{% trans '55' %}</p>
+								<div class="whatsjappix"></div>
+								<p>{% trans '56' %}</p>
+								<p>{% trans '57' %}</p>
+								<p>{% trans '58' %}</p>
+								<p>{% trans '59' %}</p>
+								<p>{% trans '615' %}</p>
+								<p>{% trans '60' %}</p>
+							</div>
+				
+							<div id="advantages" class="rightbar-group">
+								<h2>{% trans '51' %}</h2>
+								<p>{% trans '61' %}</p>
+								<div class="advantages rb-image"></div>
+								<p>&bull; {% trans '63' %}</p>
+								<p>&bull; {% trans '65' %}</p>
+								<p>&bull; {% trans '66' %}</p>
+							</div>
+
+							<div id="yourprivatelife" class="rightbar-group">
+								<h2>{% trans '52' %}</h2>
+								<p>{% trans '67' %}</p>
+								<div class="yourprivatelife rb-image"></div>
+								<p>{% trans '68' %}</p>
+								<p>{% trans '69' %}</p>
+								<p>{% trans '71' %}</p>
+							</div>
+							
+							<div id="theproject" class="rightbar-group">
+								<h2>{% trans '53' %}</h2>
+								<p>{% trans '72' %}</p>
+								<div class="theproject rb-image"></div>
+								<p>{% trans '73' %}</p>
+								<p>{% trans '74' %}</p>
+								<p>{% trans '75' %}</p>
+								<p>{% trans '76' %}</p>
+							</div>
+
+							<div id="abouth" class="rightbar-group">
+								<h2>{% trans '54' %}</h2>
+								<p>{% trans '77' %}</p>
+								<div class="abouth rb-image"></div>
+								<p>{% trans '78' %}</p>
+								<p>{% trans '79' %}</p>
+								<p>{% trans '80' %}</p>
+								<p>{% trans '81' %}</p>
+								<p>{% trans '616' %}</p>
+							</div>
+						</div>
+			
+						<div id="rightbar-thumbs">
+							<a class="prevPage browse left"></a>
+		      				<div class="scrollable">
+								<div class="items">
+									<a href="./scr/img1.png" class="thumb thumbs-images e1" title="{% trans '82' %}"></a>
+									<a href="./scr/img2.png" class="thumb thumbs-images e2" title="{% trans '83' %}"></a>
+									<a href="./scr/img3.png" class="thumb thumbs-images e3" title="{% trans '84' %}"></a>
+									<a href="./scr/img4.png" class="thumb thumbs-images e4" title="{% trans '85' %}"></a>
+									<a href="./scr/img5.png" class="thumb thumbs-images e5" title="{% trans '613' %}"></a>
+									<a href="./scr/img6.png" class="thumb thumbs-images e6" title="{% trans '656' %}"></a>
+									<div class="thumb"></div>
+								</div>
+							</div>
+							<a class="nextPage browse right"></a>
+						</div>
+					</div>
+				
+				<!-- the copyright informations and so -->
+					<div id="bottombar">
+						<p>{% trans '90' %}  &bull; <b>In free software we trust</b>.</p>
+					</div>
+			</div>
+	</div>
+	<!-- END HOMEPAGE -->
+{% comment %}	
+	<!-- BEGIN TALKPAGE -->
+	<div id="talk" class="hidable">
+		<div id="top-content">
+			<!-- the beautiful logo of jappix -->
+				<div class="logo"></div>
+			
+			<!-- the tools we need to configurate our account and logout -->
+				<div class="tools">					
+					<a title="{% trans '510' %}" onclick="messagesOpen();">{% trans '511' %}</a> <div class="new-n-messages">✉</div> | <a title="{% trans '91' %}" onclick="vcardOpen();">{% trans '92' %}</a> | <a title="{% trans '93' %}" onclick="optionsOpen();">{% trans '94' %}</a> | <a title="{% trans '95' %}" onclick="normalQuit();">{% trans '96' %}</a>
+				</div>
+		</div>
+		
+		<div id="main-content">
+			<!-- the overall buddy-list configuration -->
+				<div id="buddy-conf-add" class="buddy-conf-item bubble">
+					<p class="buddy-conf-p" style="margin-bottom: 0;">{% trans '98' %}</p>
+					<p class="buddy-conf-close" title="{% trans '97' %}">X</p>
+					<input type="text" class="buddy-conf-input textAddContactJID resetable" /> @ <input type="text" class="buddy-conf-input textAddContactServer" value="{{ HOST_MAIN }}" />
+				</div>
+				
+				<div id="buddy-conf-groupchat" class="buddy-conf-item bubble">
+					<p class="buddy-conf-p">{% trans '103' %}</p>
+					<p class="buddy-conf-close" title="{% trans '97' %}">X</p>
+					
+					<select name="groupchat-join" class="buddy-conf-select buddy-conf-groupchat-select resetable">
+						<option value="none" class="gc-join-first-option">Sélectionnez un salon</option>
+					</select>
+					
+					<p class="buddy-conf-text">
+						&rarr;
+						<a class="buddy-conf-groupchat-edit">{% trans '104' %}</a>
+					</p>
+				</div>
+				
+				<div id="buddy-conf-more" class="buddy-conf-item bubble">
+					<p class="buddy-conf-p">{% trans '105' %}</p>
+					<p class="buddy-conf-close" title="{% trans '97' %}">X</p>
+					
+					<p class="buddy-conf-text">
+						&rarr;
+						<a class="buddy-conf-more-display-unavailable">{% trans '106' %}</a>
+						<a class="buddy-conf-more-display-available">{% trans '107' %}</a>
+					</p>
+					
+					<p class="buddy-conf-text">
+						&rarr;
+						<a class="buddy-conf-more-user-directory">{% trans '490' %}</a>
+					</p>
+					
+					<p class="buddy-conf-text">
+						&rarr;
+						<a class="buddy-conf-more-service-disco">{% trans '491' %}</a>
+					</p>
+					
+					<p class="buddy-conf-text">
+						&rarr;
+						<a class="buddy-conf-more-help-jappix">{% trans '108' %}</a>
+					</p>
+					
+					<p class="buddy-conf-text">
+						&rarr;
+						<a class="buddy-conf-more-about-jappix">{% trans '109' %}</a>
+					</p>
+				</div>
+				
+			<!-- the overall my-infos asks -->
+				<div id="my-infos-text-first" class="my-infos-text-item">
+					<p class="my-infos-text-p">{% trans '110' %}</p>
+					<p class="my-infos-text-close">X</p>
+					<input type="text" class="my-infos-text-input textPresence" />
+				</div>
+				
+				<div id="my-infos-text-second" class="my-infos-text-item">
+					<p class="my-infos-text-p">{% trans '111' %}</p>
+					<p class="my-infos-text-close">X</p>
+					<input type="text" class="my-infos-text-input textMood" />
+				</div>
+				
+				<div id="my-infos-text-third" class="my-infos-text-item">
+					<p class="my-infos-text-p">{% trans '112' %}</p>
+					<p class="my-infos-text-close">X</p>
+					<input type="text" class="my-infos-text-input textActivity" />
+				</div>
+			
+			<!-- the left sidebar with buddies and my-infos -->
+				<div id="left-content">
+					<div id="buddy-list">
+						<div class="title">
+							<p>{% trans '113' %}</p>
+						</div>
+						
+						<div class="content">
+							<div class="loadingRosterIcon showable wait-big" style="margin: 115px 0 0 67px;"></div>
+							<div class="no-buddy hidable">
+								<p>{% trans '114' %}</p>
+								<p style="margin-top: 10px;">{% trans '115' %}</p>
+								<p style="margin-top: 10px;">{% trans '116' %}</p>
+							</div>
+						</div>
+						
+						<div class="foot">
+							<div class="foot-elements">
+								<div class="add buddy-list-icon" title="{% trans '117' %}"></div>
+								<div class="edit buddy-list-icon" title="{% trans '118' %}"></div>
+								<div class="groupchat buddy-list-icon" title="{% trans '119' %}"></div>
+								<div class="more buddy-list-icon" title="{% trans '120' %}"></div>
+								<div class="invite buddy-list-icon" onclick="inviteFriendOpen();" title="{% trans '121' %}"></div>
+							</div>
+							
+							<div class="foot-edit-finish">
+								<a onclick="buddyEditFinish();">{% trans '681' %}</a>
+							</div>
+						</div>
+					</div>
+			
+					<div id="my-infos">
+						<div class="title">
+							<p>{% trans '122' %}</p>
+						</div>
+				
+						<div class="content">
+							<form id="ajax-t-form" method="post" action="#">
+								<div class="element">
+									<div class="icon">
+										<div class="icon-status status-available"></div>
+										<div class="icon-status status-chat"></div>
+										<div class="icon-status status-away"></div>
+										<div class="icon-status status-xa"></div>
+										<div class="icon-status status-dnd"></div>
+									</div>
+									
+									<div class="type">
+										<select name="statut" class="changePresence myInfosSelect resetable">
+											<option value="available">{% trans '123' %}</option>
+											<option value="chat">{% trans '124' %}</option>
+											<option value="away">{% trans '125' %}</option>
+											<option value="xa">{% trans '126' %}</option>
+											<option value="dnd">{% trans '127' %}</option>
+										</select>
+									</div>
+								</div>
+					
+								<div class="element">
+									<div class="icon">
+										<div class="icon-mood mood-one"></div>
+										<div class="icon-mood mood-two"></div>
+										<div class="icon-mood mood-three"></div>
+										<div class="icon-mood mood-four"></div>
+										<div class="icon-mood mood-five"></div>
+										<div class="icon-mood mood-six"></div>
+										<div class="icon-mood mood-seven"></div>
+										<div class="icon-mood mood-eight"></div>
+										<div class="icon-mood mood-nine"></div>
+									</div>
+						
+									<div class="type">
+										<select name="mood" class="changeMood myInfosSelect resetable">
+											<option value="none">{% trans '128' %}</option>
+											<option value="afraid">{% trans '129' %}</option>
+											<option value="amazed">{% trans '130' %}</option>
+											<option value="amorous">{% trans '131' %}</option>
+											<option value="angry">{% trans '132' %}</option>
+											<option value="annoyed">{% trans '133' %}</option>
+											<option value="anxious">{% trans '134' %}</option>
+											<option value="aroused">{% trans '135' %}</option>
+											<option value="ashamed">{% trans '136' %}</option>
+											<option value="bored">{% trans '137' %}</option>
+											<option value="brave">{% trans '138' %}</option>
+											<option value="calm">{% trans '139' %}</option>
+											<option value="cautious">{% trans '140' %}</option>
+											<option value="cold">{% trans '141' %}</option>
+											<option value="confident">{% trans '142' %}</option>
+											<option value="confused">{% trans '143' %}</option>
+											<option value="contemplative">{% trans '144' %}</option>
+											<option value="contented">{% trans '145' %}</option>
+											<option value="cranky">{% trans '146' %}</option>
+											<option value="crazy">{% trans '147' %}</option>
+											<option value="creative">{% trans '148' %}</option>
+											<option value="curious">{% trans '149' %}</option>
+											<option value="dejected">{% trans '150' %}</option>
+											<option value="depressed">{% trans '151' %}</option>
+											<option value="disappointed">{% trans '152' %}</option>
+											<option value="disgusted">{% trans '153' %}</option>
+											<option value="dismayed">{% trans '154' %}</option>
+											<option value="distracted">{% trans '155' %}</option>
+											<option value="embarrassed">{% trans '156' %}</option>
+											<option value="envious">{% trans '157' %}</option>
+											<option value="excited">{% trans '158' %}</option>
+											<option value="flirtatious">{% trans '159' %}</option>
+											<option value="frustrated">{% trans '160' %}</option>
+											<option value="grateful">{% trans '161' %}</option>
+											<option value="grieving">{% trans '162' %}</option>
+											<option value="grumpy">{% trans '163' %}</option>
+											<option value="guilty">{% trans '164' %}</option>
+											<option value="happy">{% trans '165' %}</option>
+											<option value="hopeful">{% trans '166' %}</option>
+											<option value="hot">{% trans '167' %}</option>
+											<option value="humbled">{% trans '168' %}</option>
+											<option value="humiliated">{% trans '169' %}</option>
+											<option value="hungry">{% trans '170' %}</option>
+											<option value="hurt">{% trans '171' %}</option>
+											<option value="impressed">{% trans '172' %}</option>
+											<option value="in_awe">{% trans '173' %}</option>
+											<option value="in_love">{% trans '174' %}</option>
+											<option value="indignant">{% trans '175' %}</option>
+											<option value="interested">{% trans '176' %}</option>
+											<option value="intoxicated">{% trans '177' %}</option>
+											<option value="invincible">{% trans '178' %}</option>
+											<option value="jealous">{% trans '179' %}</option>
+											<option value="lonely">{% trans '180' %}</option>
+											<option value="lost">{% trans '181' %}</option>
+											<option value="lucky">{% trans '182' %}</option>
+											<option value="mean">{% trans '183' %}</option>
+											<option value="moody">{% trans '184' %}</option>
+											<option value="nervous">{% trans '185' %}</option>
+											<option value="neutral">{% trans '186' %}</option>
+											<option value="offended">{% trans '187' %}</option>
+											<option value="outraged">{% trans '188' %}</option>
+											<option value="playful">{% trans '189' %}</option>
+											<option value="proud">{% trans '190' %}</option>
+											<option value="relaxed">{% trans '191' %}</option>
+											<option value="relieved">{% trans '192' %}</option>
+											<option value="remorseful">{% trans '193' %}</option>
+											<option value="restless">{% trans '194' %}</option>
+											<option value="sad">{% trans '195' %}</option>
+											<option value="sarcastic">{% trans '196' %}</option>
+											<option value="satisfied">{% trans '197' %}</option>
+											<option value="serious">{% trans '198' %}</option>
+											<option value="shocked">{% trans '199' %}</option>
+											<option value="shy">{% trans '200' %}</option>
+											<option value="sick">{% trans '201' %}</option>
+											<option value="sleepy">{% trans '202' %}</option>
+											<option value="spontaneous">{% trans '203' %}</option>
+											<option value="stressed">{% trans '204' %}</option>
+											<option value="strong">{% trans '205' %}</option>
+											<option value="surprised">{% trans '206' %}</option>
+											<option value="thankful">{% trans '207' %}</option>
+											<option value="thirsty">{% trans '208' %}</option>
+											<option value="tired">{% trans '209' %}</option>
+											<option value="undefined">{% trans '210' %}</option>
+											<option value="weak">{% trans '211' %}</option>
+											<option value="worried">{% trans '212' %}</option>
+										</select>
+									</div>
+								</div>
+					
+								<div class="element">
+									<div class="icon">
+										<div class="icon-activity activity-chores"></div>
+										<div class="icon-activity activity-drinking"></div>
+										<div class="icon-activity activity-eating"></div>
+										<div class="icon-activity activity-exercising"></div>
+										<div class="icon-activity activity-grooming"></div>
+										<div class="icon-activity activity-appointment"></div>
+										<div class="icon-activity activity-inactive"></div>
+										<div class="icon-activity activity-relaxing"></div>
+										<div class="icon-activity activity-talking"></div>
+										<div class="icon-activity activity-traveling"></div>
+										<div class="icon-activity activity-working"></div>
+									</div>
+						
+									<div class="type">
+										<select name="activity" class="changeActivity myInfosSelect resetable">
+											<option value="none">{% trans '213' %}</option>
+											
+											<optgroup label="Corvées">
+												<option value="doing_chores/other">{% trans '214' %}</option>
+												<option value="doing_chores/buying_groceries">{% trans '215' %}</option>
+												<option value="doing_chores/cleaning">{% trans '216' %}</option>
+												<option value="doing_chores/cooking">{% trans '217' %}</option>
+												<option value="doing_chores/doing_maintenance">{% trans '218' %}</option>
+												<option value="doing_chores/doing_the_dishes">{% trans '219' %}</option>
+												<option value="doing_chores/doing_the_laundry">{% trans '220' %}</option>
+												<option value="doing_chores/gardening">{% trans '221' %}</option>
+												<option value="doing_chores/running_an_errand">{% trans '222' %}</option>
+												<option value="doing_chores/walking_the_dog">{% trans '223' %}</option>
+											</optgroup>
+											
+											<optgroup label="Boissons">
+												<option value="drinking/v">{% trans '224' %}</option>
+												<option value="drinking/having_a_beer">{% trans '225' %}</option>
+												<option value="drinking/having_coffee">{% trans '226' %}</option>
+												<option value="drinking/having_tea">{% trans '227' %}</option>
+											</optgroup>
+											
+											<optgroup label="Nourriture">
+												<option value="eating/other">{% trans '228' %}</option>
+												<option value="eating/having_a_snack">{% trans '229' %}</option>
+												<option value="eating/having_a_snack">{% trans '230' %}</option>
+												<option value="eating/having_dinner">{% trans '231' %}</option>
+												<option value="eating/having_lunch">{% trans '232' %}</option>
+											</optgroup>
+											
+											<optgroup label="Exercice">
+												<option value="exercising/other">{% trans '233' %}</option>
+												<option value="exercising/cycling">{% trans '234' %}</option>
+												<option value="exercising/dancing">{% trans '235' %}</option>
+												<option value="exercising/hiking">{% trans '236' %}</option>
+												<option value="exercising/jogging">{% trans '237' %}</option>
+												<option value="exercising/playing_sports">{% trans '238' %}</option>
+												<option value="exercising/playing_sports">{% trans '239' %}</option>
+												<option value="exercising/skiing">{% trans '240' %}</option>
+												<option value="exercising/swimming">{% trans '241' %}</option>
+												<option value="exercising/working_out">{% trans '242' %}</option>
+											</optgroup>
+											
+											<optgroup label="Hygiène">
+												<option value="grooming/other">{% trans '243' %}</option>
+												<option value="grooming/at_the_spa">{% trans '244' %}</option>
+												<option value="grooming/brushing_teeth">{% trans '245' %}</option>
+												<option value="grooming/getting_a_haircut">{% trans '246' %}</option>
+												<option value="grooming/shaving">{% trans '247' %}</option>
+												<option value="grooming/taking_a_bath">{% trans '248' %}</option>
+												<option value="grooming/taking_a_shower">{% trans '249' %}</option>
+											</optgroup>
+											
+											<optgroup label="Rencontre">
+												<option value="having_appointment/other">{% trans '250' %}</option>
+											</optgroup>
+											
+											<optgroup label="Inactivité">
+												<option value="inactive/other">{% trans '251' %}</option>
+												<option value="inactive/day_off">{% trans '252' %}</option>
+												<option value="inactive/hanging_out">{% trans '253' %}</option>
+												<option value="inactive/hiding">{% trans '254' %}</option>
+												<option value="inactive/on_vacation">{% trans '255' %}</option>
+												<option value="inactive/praying">{% trans '256' %}</option>
+												<option value="inactive/scheduled_holiday">{% trans '257' %}</option>
+												<option value="inactive/sleeping">{% trans '258' %}</option>
+												<option value="inactive/thinking">{% trans '259' %}</option>
+											</optgroup>
+											
+											<optgroup label="Relaxation">
+												<option value="relaxing/other">{% trans '260' %}</option>
+												<option value="relaxing/fishing">{% trans '261' %}</option>
+												<option value="relaxing/gaming">{% trans '262' %}</option>
+												<option value="relaxing/going_out">{% trans '263' %}</option>
+												<option value="relaxing/partying">{% trans '264' %}</option>
+												<option value="relaxing/reading">{% trans '265' %}</option>
+												<option value="relaxing/rehearsing">{% trans '266' %}</option>
+												<option value="relaxing/shopping">{% trans '267' %}</option>
+												<option value="relaxing/smoking">{% trans '268' %}</option>
+												<option value="relaxing/socializing">{% trans '269' %}</option>
+												<option value="relaxing/sunbathing">{% trans '270' %}</option>
+												<option value="relaxing/watching_tv">{% trans '271' %}</option>
+												<option value="relaxing/watching_a_movie">{% trans '272' %}</option>
+											</optgroup>
+											
+											<optgroup label="Social">
+												<option value="talking/other">{% trans '273' %}</option>
+												<option value="talking/in_real_life">{% trans '274' %}</option>
+												<option value="talking/on_the_phone">{% trans '275' %}</option>
+												<option value="talking/on_video_phone">{% trans '276' %}</option>
+											</optgroup>
+											
+											<optgroup label="Voyage">
+												<option value="traveling/other">{% trans '277' %}</option>
+												<option value="traveling/commuting">{% trans '278' %}</option>
+												<option value="traveling/cycling">{% trans '279' %}</option>
+												<option value="traveling/driving">{% trans '280' %}</option>
+												<option value="traveling/in_a_car">{% trans '281' %}</option>
+												<option value="traveling/on_a_bus">{% trans '282' %}</option>
+												<option value="traveling/on_a_plane">{% trans '283' %}</option>
+												<option value="traveling/on_a_train">{% trans '284' %}</option>
+												<option value="traveling/on_a_trip">{% trans '285' %}</option>
+												<option value="traveling/walking">{% trans '286' %}</option>
+											</optgroup>
+											
+											<optgroup label="Boulot">
+												<option value="working/other">{% trans '287' %}</option>
+												<option value="working/coding">{% trans '288' %}</option>
+												<option value="working/in_a_meeting">{% trans '289' %}</option>
+												<option value="working/studying">{% trans '290' %}</option>
+												<option value="working/writing">{% trans '291' %}</option>
+											</optgroup>
+										</select>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			
+			<!-- the right content with all the things we need to chat -->
+				<div id="right-content">
+					<div id="chat-engine">
+						<div id="newchan" class="showable chat-engine-chan">
+							<div class="newchan-top">
+								{% trans '292' %}
+							</div>
+							
+							<div class="newchan-group">
+								<div class="newchan-title">
+									{% trans '293' %}
+								</div>
+							
+								<div class="newchan-chapo">
+									<p>{% trans '294' %}</p>
+								</div>
+							
+								<div class="newchan-forms">
+									<input type="text" name="sendToJID" class="newchan-pm-sendToJID resetable" /><span class="arobase">@</span><input type="text" value="{{ HOST_MAIN }}" name="sendToServer" class="newchan-pm-sendToServer" />
+								</div>
+							</div>
+						
+							<div class="newchan-group">
+								<div class="newchan-title">
+									{% trans '295' %}
+								</div>
+							
+								<div class="newchan-chapo">
+									<p>{% trans '296' %}</p>
+								</div>
+							
+								<div class="newchan-forms">
+									<input type="text" name="connectToRoom" class="newchan-muc-connectToRoom resetable" /><span class="arobase">@</span><input type="text" value="{{ HOST_MUC }}" name="connectToMUCServer" class="newchan-pm-connectToMUCServer" />
+									<div class="official-list" title="{% trans '512' %}" onclick="showOfficialMUC();"></div>
+									<div id="official-muc" class="bubble">
+										<p class="official-muc-p" style="margin-bottom: 0;">{% trans '513' %}</p>
+										<p class="official-muc-close" title="{% trans '97' %}" onclick="hideOfficialMUC();">X</p>
+										
+										<div class="official-muc-left">
+											<p class="official-muc-text">
+												&rarr;
+												<a onclick="joinOfficialMUC('cooking@muc.jappix.com');">Cooking</a>
+											</p>
+											
+											<p class="official-muc-text">
+												&rarr;
+												<a onclick="joinOfficialMUC('travels@muc.jappix.com');">Travels</a>
+											</p>
+											
+											<p class="official-muc-text">
+												&rarr;
+												<a onclick="joinOfficialMUC('meetings@muc.jappix.com');">Meetings</a>
+											</p>
+											
+											<p class="official-muc-text">
+												&rarr;
+												<a onclick="joinOfficialMUC('computing@muc.jappix.com');">Computing</a>
+											</p>
+											
+											<p class="official-muc-text">
+												&rarr;
+												<a onclick="joinOfficialMUC('politic@muc.jappix.com');">Politic</a>
+											</p>
+										</div>
+										
+										<div class="official-muc-right">
+											<p class="official-muc-text">
+												&rarr;
+												<a onclick="joinOfficialMUC('international@muc.jappix.com');">International</a>
+											</p>
+											
+											<p class="official-muc-text">
+												&rarr;
+												<a onclick="joinOfficialMUC('music@muc.jappix.com');">Music</a>
+											</p>
+											
+											<p class="official-muc-text">
+												&rarr;
+												<a onclick="joinOfficialMUC('games@muc.jappix.com');">Games</a>
+											</p>
+											
+											<p class="official-muc-text">
+												&rarr;
+												<a onclick="joinOfficialMUC('studies@muc.jappix.com');">Studies</a>
+											</p>
+											
+											<p class="official-muc-text">
+												&rarr;
+												<a onclick="joinOfficialMUC('sport@muc.jappix.com');">Sport</a>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+							<div class="newchan-alert">
+								<div class="newchan-alert-content">
+									<p style="margin-top: 2px;">{% trans '297' %}</p>
+									<p style="margin-top: 10px;">{% trans '298' %}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div id="chat-switch">
+						<div class="title">{% trans '299' %}</div>
+						<div class="content">
+							<div class="channels">
+								<div class="thisFalseChanIsForJQuery"></div>
+							</div>
+							
+							<div class="chan newchan switcher" onclick="switchChan('newchan');">
+								<div class="icon"></div>
+								<div class="name">
+									<a>{% trans '300' %}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	<!-- END TALKPAGE -->
+	
+	<!-- BEGIN VCARD POPUP -->
+	<div id="vcard" class="lock hidable">
+		<div class="popup">
+			<div class="popup-content">
+				<div class="top">
+					<a class="lap1" onclick="switchVCard(1);">{% trans '301' %}</a>
+					<a class="lap2" onclick="switchVCard(2);">{% trans '302' %}</a>
+					<a class="lap3" onclick="switchVCard(3);">{% trans '303' %}</a>
+				</div>
+				
+				<div class="content">
+					<div id="lap1" class="one-lap">
+						<form id="vCard-identity" action="#" method="post" enctype="multipart/form-data">
+							<div class="forms">
+								<fieldset>
+									<legend align="top">{% trans '304' %}</legend>
+									<label for="FN">{% trans '305' %}</label>
+									<input type="text" title="{% trans '306' %}" id="FN" class="resetable" /><br />
+									<label for="NICKNAME">{% trans '307' %}</label>
+									<input type="text" title="{% trans '308' %}" id="NICKNAME" class="resetable" /><br />
+									<label for="N-GIVEN">{% trans '309' %}</label>
+									<input type="text" title="{% trans '310' %}" id="N-GIVEN" class="resetable" /><br />
+									<label for="N-FAMILY">{% trans '311' %}</label>
+									<input type="text" title="{% trans '312' %}" id="N-FAMILY" class="resetable" /><br />
+									<label for="BDAY">{% trans '313' %}</label>
+									<input type="text" title="{% trans '314' %}" id="BDAY" class="resetable" />
+								</fieldset>
+							
+								<fieldset>
+									<legend align="top">{% trans '315' %}</legend>
+									<label for="EMAIL-USERID">{% trans '487' %}</label>
+									<input type="text" title="{% trans '316' %}" id="EMAIL-USERID" class="resetable" /><br />
+									<label for="TEL-NUMBER">{% trans '317' %}</label>
+									<input type="text" title="{% trans '318' %}" id="TEL-NUMBER" class="resetable" /><br />
+									<label for="URL">{% trans '319' %}</label>
+									<input type="text" title="{% trans '320' %}" id="URL" class="resetable" />
+								</fieldset>
+							</div>
+						</form>
+					</div>
+						
+					<div id="lap2" class="one-lap">
+						<form id="vCard-avatar" action="./php/vcard-avatar-base64encode.php" method="post" enctype="multipart/form-data">
+							<div class="forms">
+								<fieldset>
+									<legend align="top">{% trans '321' %}</legend>
+										<input type="hidden" id="PHOTO-TYPE" class="resetable" />
+										<input type="hidden" id="PHOTO-BINVAL" class="resetable" />
+										<input style="margin-left: 15px;" size="20" type="file" name="vCard-avatar" class="resetable" />
+										<input class="send" type="submit" name="vCard-avatar-submit" value="{% trans '322' %}" />
+								</fieldset>
+							
+								<fieldset>
+									<legend align="top">{% trans '323' %}</legend>
+									<div class="avatar-container"></div>
+									<div class="avatar-delete removable" title="{% trans '550' %}" onclick="deleteAvatar();"><p>{% trans '549' %}</p></div>
+									<div class="no-avatar">
+										<div class="no-avatar-content">
+											<p style="font-weight: bold; text-decoration: underline; margin-bottom: 5px;">{% trans '324' %}</p>
+											<p style="margin-bottom: 2px;">{% trans '325' %}</p>
+											<p>{% trans '326' %}</p>
+										</div>
+									</div>
+								</fieldset>
+							
+								<div class="thisFalseAvatarWaitIsForJQuery"></div>
+							</div>
+						</form>
+					</div>
+					
+					<div id="lap3" class="one-lap">
+						<form id="vCard-other" action="#" method="post" enctype="multipart/form-data">
+							<div class="forms">
+								<fieldset>
+									<legend align="top">{% trans '327' %}</legend>
+									<label for="ADR-STREET">{% trans '328' %}</label>
+									<input type="text" title="{% trans '329' %}" id="ADR-STREET" class="resetable" /><br />
+									<label for="ADR-LOCALITY">{% trans '330' %}</label>
+									<input type="text" title="{% trans '331' %}" id="ADR-LOCALITY" class="resetable" /><br />
+									<label for="ADR-PCODE">{% trans '332' %}</label>
+									<input type="text" title="{% trans '333' %}" id="ADR-PCODE" class="resetable" /><br />
+									<label for="ADR-CTRY">{% trans '334' %}</label>
+									<input type="text" title="{% trans '335' %}" id="ADR-CTRY" class="resetable" /><br />
+								</fieldset>
+							
+								<fieldset>
+									<legend align="top">{% trans '336' %}</legend>
+									<textarea id="DESC" rows="8" cols="60" class="resetable"></textarea>
+								</fieldset>
+							</div>
+						</form>
+					</div>
+					
+					<div class="infos">
+						<div class="infos-content">
+							<p><b>{% trans '337' %}</b></p>
+							<p>{% trans '338' %}</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bottom">
+					<div class="finish" onclick="return sendVCard();">{% trans '339' %}</div>
+					<div class="finish" onclick="return cancelVCard();">{% trans '340' %}</div>
+					<div class="wait wait-small"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END VCARD POPUP -->
+	
+	<!-- BEGIN OPTIONS POPUP -->
+	<div id="options" class="lock hidable">
+		<div class="popup">
+			<div class="popup-content">
+				<div class="top">
+					<p>{% trans '341' %}</p>
+				</div>
+				
+				<div class="content">
+					<div class="forms">
+						<fieldset>
+							<legend align="top">{% trans '342' %}</legend>
+							<label for="sounds">{% trans '343' %}</label>
+							<select id="sounds" name="sounds" class="sounds resetable">
+								<option value="sounds-on">{% trans '344' %}</option>
+								<option value="sounds-off">{% trans '345' %}</option>
+							</select>
+						</fieldset>
+						
+						<fieldset>
+							<legend align="top">{% trans '584' %}</legend>
+							<label for="geolocalisation">{% trans '585' %}</label>
+							<select id="geolocalisation" name="geolocalisation" class="geolocalisation resetable">
+								<option value="geolocalisation-on">{% trans '586' %}</option>
+								<option value="geolocalisation-off">{% trans '587' %}</option>
+							</select>
+						</fieldset>
+						
+						<fieldset>
+							<legend align="top">{% trans '346' %}</legend>
+							<label for="change-password">{% trans '347' %}</label>
+							<div class="account-button change-password" id="change-password">{% trans '348' %}</div>
+							<label for="delete-account">{% trans '349' %}</label>
+							<div class="account-button delete-account" id="delete-account">{% trans '350' %}</div>
+						</fieldset>
+						
+						<div class="sub-ask hidable">
+							<div class="sub-ask-pass sub-ask-element hidable">
+								<div class="sub-ask-top">
+									<div class="sub-ask-title">{% trans '352' %}</div>
+									<a class="sub-ask-close" title="Fermer cette bulle">X</a>
+								</div>
+							
+								<div class="sub-ask-content">
+									<p>{% trans '353' %} <input type="password" title="{% trans '354' %}" class="old resetable" />
+									{% trans '355' %} <input type="password" title="{% trans '356' %}" class="new1 resetable" />
+									<input type="password" title="{% trans '357' %}" class="new2 resetable" /></p>
+								</div>
+							
+								<a class="sub-ask-bottom" onclick="sendNewPassword();">{% trans '358' %} &raquo;</a>
+							</div>
+							
+							<div class="sub-ask-delete sub-ask-element hidable">
+								<div class="sub-ask-top">
+									<div class="sub-ask-title">{% trans '361' %}</div>
+									<a class="sub-ask-close" title="Fermer cette bulle">X</a>
+								</div>
+							
+								<div class="sub-ask-content">
+									{% trans '362' %} <input type="password" class="check-password" title="{% trans '363' %}" />
+								</div>
+							
+								<a class="sub-ask-bottom" onclick="deleteMyAccount();">{% trans '364' %} &raquo;</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bottom">
+					<div class="finish" onclick="return saveOptions();">{% trans '367' %}</div>
+					<div class="finish" onclick="return cancelOptions();">{% trans '368' %}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END OPTIONS POPUP -->
+	
+	<!-- BEGIN REGISTERED POPUP -->
+	<div id="registered" class="lock hidable">
+		<div class="popup">
+			<div class="popup-content">
+				<div class="content"></div>
+				<div class="bottom">
+					<div class="jabber-id"></div>
+					<div class="finish" onclick="registerClose();">{% trans '369' %} &raquo;</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END REGISTERED POPUP -->
+	
+	<!-- BEGIN GENERAL-WAIT POPUP -->
+	<div id="general-wait" class="hidable">
+		<div class="general-wait-content">
+			<div class="general-wait-icon wait-small"></div>
+			<div class="general-wait-text">{% trans '370' %}</div>
+		</div>
+	</div>
+	<!-- END GENERAL-WAIT POPUP -->
+	
+	<!-- BEGIN INVITE POPUP -->
+	<div id="invite" class="lock hidable">
+		<div class="popup">
+			<div class="popup-content">
+				<div class="top">
+					<p>{% trans '371' %}</p>
+				</div>
+				
+				<div class="content">
+					<p class="first">{% trans '372' %}</p>
+					<p class="second">{% trans '373' %}</p>
+					<div class="forms">
+						<form id="invite-email" action="./php/invite-email-send.php" method="post" enctype="multipart/form-data">
+							<fieldset style="height: 126px;">
+								<legend align="top">{% trans '374' %}</legend>
+								<div class="invite-icon mail-invite-icon"></div>
+								<label for="email-to">{% trans '375' %}</label>
+								<input type="text" name="email-to" id="email-to" />
+								<div class="invite-help">{% trans '376' %}</div>
+								
+								<label style="margin-left: 52px" for="email-to">{% trans '378' %}</label>
+								<input type="text" name="email-from" id="email-from" />
+								<div class="invite-help">{% trans '379' %}</div>
+								
+								<input type="hidden" name="email-jid" class="resetable" id="email-jid" />
+								
+								<input type="hidden" name="email-lang" id="email-lang" value="" />
+								
+								<input type="submit" name="email-submit" id="email-submit" class="go" value="{% trans '380' %}" />
+							</fieldset>
+						</form>
+						
+						<fieldset>
+							<legend align="top">{% trans '381' %}</legend>
+							<div class="invite-icon fb-invite-icon"></div>
+							<a href="http://www.facebook.com/sharer.php?u=http://www.jappix.com/" style="margin-left: 30px;" title="{% trans '382' %}" class="facebook-share" target="_blank">{% trans '383' %}</a>
+							<div class="invite-help">{% trans '384' %}</div>
+						</fieldset>
+						
+						<fieldset>
+							<legend align="top">{% trans '385' %}</legend>
+							<div class="invite-icon tw-invite-icon"></div>
+							<a href="http://twitter.com/home?status={% trans '386' %}" style="margin-left: 30px;" title="{% trans '387' %}" class="twitter-share" target="_blank">{% trans '388' %}</a>
+							<div class="invite-help">{% trans '389' %}</div>
+						</fieldset>
+					</div>
+				</div>
+				
+				<div class="bottom">
+					<div class="mail-info mail-wait">{% trans '390' %}</div>
+					<div class="mail-info mail-ok">{% trans '391' %}</div>
+					<div class="mail-info mail-error">{% trans '392' %}</div>
+					<div class="finish" onclick="return inviteFriendClose();">{% trans '393' %}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END INVITE POPUP -->
+	
+	<!-- BEGIN DATA-STORE -->
+	<div id="data-store">
+		<div class="current">
+			<input class="username resetable" type="hidden" />
+			<input class="domain resetable" type="hidden" />
+			<input class="resource resetable" type="hidden" />
+			<input class="password resetable" type="hidden" />
+		</div>
+		
+		<div class="roster">
+		</div>
+		
+		<div class="vcard">
+		</div>
+		
+		<div class="presence">
+		</div>
+		
+		<div class="chatstates">
+		</div>
+		
+		<div class="messages">
+		</div>
+		
+		<div class="favorites">
+		</div>
+		
+		<div class="groupchats">
+		</div>
+		
+		<div class="options">
+			<input class="sounds resetable" type="hidden" value="on" />
+			<input class="geolocalisation" type="hidden" value="off" />
+		</div>
+		
+		<div class="hosts">
+			<input class="host-main" type="hidden" value="{{ HOST_MAIN }}" />
+			<input class="host-muc" type="hidden" value="{{ HOST_MUC }}" />
+			<input class="host-vjud" type="hidden" value="{{ HOST_VJUD }}" />
+			<input class="host-pubsub" type="hidden" value="{{ HOST_PUBSUB }}" />
+		</div>
+		
+		<div class="translate">
+			<input class="translation-0" type="hidden" value="{% trans '551' %}" />
+			<input class="translation-1" type="hidden" value="{% trans '552' %}" />
+			<input class="translation-2" type="hidden" value="{% trans '553' %}" />
+			<input class="translation-3" type="hidden" value="{% trans '554' %}" />
+			<input class="translation-4" type="hidden" value="{% trans '555' %}" />
+			<input class="translation-5" type="hidden" value="{% trans '556' %}" />
+			<input class="translation-6" type="hidden" value="{% trans '557' %}" />
+			<input class="translation-7" type="hidden" value="{% trans '558' %}" />
+			<input class="translation-8" type="hidden" value="{% trans '559' %}" />
+			<input class="translation-9" type="hidden" value="{% trans '560' %}" />
+			<input class="translation-10" type="hidden" value="{% trans '561' %}" />
+			<input class="translation-11" type="hidden" value="{% trans '562' %}" />
+			<input class="translation-12" type="hidden" value="{% trans '563' %}" />
+			<input class="translation-13" type="hidden" value="{% trans '564' %}" />
+			<input class="translation-14" type="hidden" value="{% trans '565' %}" />
+			<input class="translation-15" type="hidden" value="{% trans '566' %}" />
+			<input class="translation-16" type="hidden" value="{% trans '567' %}" />
+			<input class="translation-17" type="hidden" value="{% trans '568' %}" />
+			<input class="translation-18" type="hidden" value="{% trans '569' %}" />
+			<input class="translation-19" type="hidden" value="{% trans '570' %}" />
+			<input class="translation-20" type="hidden" value="{% trans '571' %}" />
+			<input class="translation-21" type="hidden" value="{% trans '572' %}" />
+			<input class="translation-22" type="hidden" value="{% trans '573' %}" />
+			<input class="translation-23" type="hidden" value="{% trans '574' %}" />
+			<input class="translation-24" type="hidden" value="{% trans '575' %}" />
+			<input class="translation-25" type="hidden" value="{% trans '576' %}" />
+			<input class="translation-26" type="hidden" value="{% trans '577' %}" />
+			<input class="translation-27" type="hidden" value="{% trans '578' %}" />
+			<input class="translation-28" type="hidden" value="{% trans '579' %}" />
+			<input class="translation-29" type="hidden" value="{% trans '394' %}" />
+			<input class="translation-31" type="hidden" value="{% trans '580' %}" />
+			<input class="translation-32" type="hidden" value="{% trans '581' %}" />
+			<input class="translation-33" type="hidden" value="{% trans '582' %}" />
+			<input class="translation-34" type="hidden" value="{% trans '605' %}" />
+			<input class="translation-35" type="hidden" value="{% trans '611' %}" />
+			<input class="translation-36" type="hidden" value="{% trans '657' %}" />
+			<input class="translation-37" type="hidden" value="{% trans '672' %}" />
+			<input class="translation-38" type="hidden" value="{% trans '677' %}" />
+			<input class="translation-39" type="hidden" value="{% trans '678' %}" />
+			<input class="translation-40" type="hidden" value="{% trans '679' %}" />
+			<input class="translation-41" type="hidden" value="{% trans '680' %}" />
+		</div>
+		
+		<div class="system">
+			<input class="version" type="hidden" value="{{ VERSION }}" />
+			<input class="http-base" type="hidden" value="{{ HTTP_BASE }}" />
+			<input class="close-prevent" type="hidden" value="{{ CLOSE_PREVENT }}" />
+		</div>
+		
+		<div class="titles">
+			<input class="home" type="hidden" value="{% trans '1' %}" />
+		</div>
+	</div>
+	<!-- END DATA-STORE -->
+	
+	<!-- BEGIN SAMPLE ELEMENTS -->
+	<div id="sample-elements">
+		<!-- BEGIN SAMPLE CHAT DIV -->
+		<div class="sample-chat chat-engine-chan">
+			<div class="top">
+				<div class="avatar-container"></div>
+						
+				<div class="name">
+					<p class="buddy-name buddy-name-nick"></p>
+					<p class="buddy-infos"></p>
+				</div>
+			</div>
+			
+			<div class="fade"></div>
+			
+			<div class="content" id="chatContentFor">
+				<div class="thisFalseDivIsForJQuery"></div>
+			</div>
+			
+			<div class="chatstate">
+				<div class="composing one-chatstate">{% trans '598' %}</div>
+				<div class="paused one-chatstate">{% trans '599' %}</div>
+				<div class="inactive one-chatstate">{% trans '600' %}</div>
+				<div class="gone one-chatstate">{% trans '601' %}</div>
+			</div>
+			
+			<div class="text">
+				<div class="tools">
+				<div class="left">
+					<a class="tools-smileys tools-tooltip" title="{% trans '401' %}"></a>
+					<div class="tooltip bubble-smileys">
+						<div class="tooltip-left">
+							<div class="tooltip-smileys"></div>
+						</div>
+					
+						<div class="tooltip-right">
+							<p class="tooltip-right-top tooltip-insert-smiley">{% trans '402' %}</p>				
+						</div>
+					</div>
+				
+					<a class="tools-colors tools-tooltip" title="{% trans '403' %}"></a>
+					<div class="tooltip bubble-colors">
+						<div class="tooltip-left">
+							<div class="tooltip-colors"></div>
+						</div>
+					
+						<div class="tooltip-right">
+							<p class="tooltip-right-top">{% trans '404' %}</p>
+							<p style="margin-bottom: 8px;">{% trans '405' %}</p>
+							<p><b>{% trans '406' %}</b></p>
+						</div>
+					</div>
+				
+					<a class="tools-save tools-tooltip" title="{% trans '407' %}"></a>
+					<div class="tooltip bubble-save">
+						<div class="tooltip-left">
+							<div class="tooltip-save"></div>
+						</div>
+						
+						<div class="tooltip-right">
+							<p class="tooltip-right-top">{% trans '408' %}</p>
+							<p style="margin-bottom: 8px;">{% trans '409' %}</p>
+							<a class="tooltip-right-dchat">{% trans '410' %}</a>
+							<a class="tooltip-right-fchat" target="_blank">{% trans '411' %}</a>					</div>
+					</div>
+				
+					<a class="tools-send tools-tooltip" title="{% trans '412' %}"></a>
+					<div class="tooltip bubble-send">
+						<div class="tooltip-left">
+							<div class="tooltip-file"></div>
+						</div>
+					
+						<div class="tooltip-right">
+							<p class="tooltip-right-top">{% trans '413' %}</p>
+							<p style="margin-bottom: 8px;">{% trans '414' %}</p>
+							<p><b>{% trans '415' %}</b></p>
+						</div>
+					</div>
+				
+					<a class="tools-webcam tools-tooltip" title="{% trans '416' %}"></a>
+					<div class="tooltip bubble-webcam">
+						<div class="tooltip-left"> 
+							<div class="tooltip-webcam"></div>
+						</div>
+						
+						<div class="tooltip-right">
+							<p class="tooltip-right-top">{% trans '417' %}</p>
+							<p style="margin-bottom: 8px;">{% trans '418' %}</p>
+							<p><b>{% trans '419' %}</b></p>
+						</div>
+					</div>
+				
+					<a class="tools-clear tools-tooltip" title="{% trans '420' %}"></a>
+									
+					<a class="tools-infos tools-tooltip" title="{% trans '421' %}"></a>
+					<div class="tooltip bubble-infos">
+						<div class="tooltip-left">
+							<div class="tooltip-vcard"></div>
+						</div>
+					
+						<div class="tooltip-right">
+							<p class="tooltip-right-top">{% trans '422' %}</p>
+							<div class="thisFalseVCardDivIsForJQuery"></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="right">
+					<a class="tools-close tools-tooltip" title="{% trans '423' %}"></a>
+				</div>
+			</div>
+			
+			<form name="sendForm" onsubmit="return sendMessage(this, 'chat');" action="#">
+				<input type="hidden" name="sendTo" class="send-to" />
+				<input type="text" name="msg" class="message-area" />
+			</form>
+		</div>
+		</div>
+		<!-- END SAMPLE CHAT DIV -->
+					
+		<!-- BEGIN SAMPLE GROUPCHAT DIV -->
+		<div class="sample-groupchat chat-engine-chan">
+			<div class="top">
+				<div class="thisFalseChanAvatarIsForJQuery"></div>
+				
+				<div class="name">
+					<p class="buddy-name buddy-name-nick"></p>
+					<p class="buddy-infos">{% trans '424' %}</p>
+				</div>
+			</div>
+			
+			<div class="fade fade-groupchat"></div>
+			
+			<div class="content groupchat-content">
+				<div class="thisFalseDivIsForJQuery"></div>
+			</div>
+			
+			<div class="list">
+				<div class="moderator">
+					<p class="title">{% trans '607' %}</p>
+				</div>
+				
+				<div class="participant">
+					<p class="title">{% trans '608' %}</p>
+				</div>
+				
+				<div class="visitor">
+					<p class="title">{% trans '609' %}</p>
+				</div>
+				
+				<div class="none">
+					<p class="title">{% trans '610' %}</p>
+				</div>
+			</div>
+			
+			<div class="text text-groupchat">
+				<div class="tools">
+					<div class="left">
+						<a class="tools-smileys tools-tooltip" title="{% trans '425' %}"></a>
+						<div class="tooltip bubble-smileys">
+							<div class="tooltip-left">
+								<div class="tooltip-smileys"></div>
+							</div>
+							
+							<div class="tooltip-right">
+								<p class="tooltip-right-top tooltip-insert-smiley">{% trans '426' %}</p>
+							</div>
+						</div>
+						
+						<a class="tools-colors tools-tooltip" title="{% trans '427' %}"></a>
+						<div class="tooltip bubble-colors">
+							<div class="tooltip-left">
+								<div class="tooltip-colors"></div>
+							</div>
+						
+							<div class="tooltip-right">
+								<p class="tooltip-right-top">{% trans '428' %}</p>
+								<p style="margin-bottom: 8px;">{% trans '429' %}</p>
+								<p><b>{% trans '430' %}</b></p>
+							</div>
+						</div>
+					
+						<a class="tools-save tools-tooltip" title="{% trans '488' %}"></a>
+						<div class="tooltip bubble-save">
+							<div class="tooltip-left">
+								<div class="tooltip-save"></div>
+							</div>
+							
+							<div class="tooltip-right">
+								<p class="tooltip-right-top">{% trans '431' %}</p>
+								<p style="margin-bottom: 8px;">{% trans '432' %}</p>
+								<a class="tooltip-right-dchat">{% trans '433' %}</a>
+								<a class="tooltip-right-fchat" target="_blank">{% trans '434' %}</a>
+							</div>
+						</div>
+						
+						<a class="tools-clear tools-tooltip" title="{% trans '435' %}"></a>
+						
+						<a class="tools-mucadmin tools-tooltip" title="{% trans '654' %}"></a>
+					</div>
+					
+					<div class="right">
+						<a class="tools-close tools-muc-close tools-tooltip" title="{% trans '436' %}"></a>
+					</div>
+				</div>
+				
+				<form name="sendForm" onsubmit="return sendMessage(this, 'groupchat');" action="#">
+					<input type="hidden" name="sendTo" class="send-to" />
+					<input type="text" name="msg" class="message-area" />
+				</form>
+			</div>
+		</div>
+		<!-- END SAMPLE GROUPCHAT DIV -->
+		
+		<!-- BEGIN SAMPLE CHAN DIV -->
+		<div class="sample-chan switcher chan">
+			<div class="icon"></div>
+			
+			<div class="name">
+				<a></a>
+			</div>
+			
+			<div class="exit">x</div>
+		</div>
+		<!-- END SAMPLE CHAN DIV -->
+	</div>
+	<!-- END SAMPLE ELEMENTS -->
+	
+	<!-- BEGIN ABOUT JAPPIX -->
+	<div id="about" class="lock hidable">
+		<div class="popup">
+			<div class="popup-content">
+				<div class="top">
+					<p>{% trans '666' %}</p>
+				</div>
+				
+				<div class="content">
+					<p class="title">{% trans '437' %}</p>
+					<p>{% trans '438' %}</p>
+					<p>{% trans '439' %}</p>
+					<p>{% trans '440' %}</p>
+					<div class="logo"></div>
+				</div>
+				
+				<div class="bottom">
+					<div class="finish" onclick="return quitAbout();">{% trans '441' %}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END ABOUT JAPPIX -->
+	
+	<!-- BEGIN HELP CENTER -->
+	<div id="help" class="lock hidable">
+		<div class="popup">
+			<div class="popup-content">
+				<div class="top">
+					<p>{% trans '442' %}</p>
+				</div>
+				
+				<div class="content">
+					<p>{% trans '443' %}</p>
+					
+					<div class="question">
+						<p><b>&raquo; {% trans '444' %}</b></p>
+						<p><em>{% trans '445' %}</em></p>
+					</div>
+					
+					<div class="question">
+						<p><b>&raquo; {% trans '446' %}</b></p>
+						<p><em>{% trans '447' %}</em></p>
+					</div>
+					
+					<div class="question">
+						<p><b>&raquo; {% trans '448' %}</b></p>
+						<p><em>{% trans '449' %}</em></p>
+					</div>
+					
+					<div class="question">
+						<p><b>&raquo; {% trans '450' %}</b></p>
+						<p><em>{% trans '451' %}</em></p>
+					</div>
+					
+					<div class="question">
+						<p><b>&raquo; {% trans '452' %}</b></p>
+						<p><em>{% trans '453' %}</em></p>
+					</div>
+					
+					<div class="question">
+						<p><b>&raquo; {% trans '454' %}</b></p>
+						<p><em>{% trans '455' %}</em></p>
+					</div>
+					
+					<div class="question">
+						<p><b>&raquo; {% trans '456' %}</b></p>
+						<p><em>{% trans '457' %}</em></p>
+					</div>
+					
+					<div class="question">
+						<p><b>&raquo; {% trans '458' %}</b></p>
+						<p><em>{% trans '459' %}</em></p>
+					</div>
+					
+					<div class="question">
+						<p><b>&raquo; {% trans '460' %}</b></p>
+						<p><em>{% trans '461' %}</em></p>
+					</div>
+					
+					<div class="question">
+						<p><b>&raquo; {% trans '462' %}</b></p>
+						<p><em>{% trans '463' %}</em></p>
+					</div>
+					
+					<div class="question">
+						<p><b>&raquo; {% trans '464' %}</b></p>
+						<p><em>{% trans '465' %}</em></p>
+					</div>
+					
+					<div class="question">
+						<p><b>&raquo; {% trans '466' %}</b></p>
+						<p><em>{% trans '467' %}</em></p>
+					</div>
+					
+					<div class="question">
+						<p><b>&raquo; {% trans '468' %}</b></p>
+						<p><em>{% trans '469' %}</em></p>
+					</div>
+					
+					<div class="question">
+						<p><b>&raquo; {% trans '470' %}</b></p>
+						<p><em>{% trans '471' %}</em></p>
+					</div>
+				</div>
+				
+				<div class="bottom">
+					<div class="finish" onclick="return quitHelp();">{% trans '472' %}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END HELP CENTER -->
+	
+	<!-- BEGIN FAVORITES -->
+	<div id="favorites" class="lock hidable">
+		<div class="popup">
+			<div class="popup-content">
+				<div class="top">
+					<p>{% trans '473' %}</p>
+				</div>
+				
+				<div class="content">
+					<div class="switch-fav">
+						<div class="room-switcher room-list">
+							<div class="icon list-icon"></div>
+							{% trans '474' %}
+						</div>
+						
+						<div class="room-switcher room-search">
+							<div class="icon search-icon"></div>
+							{% trans '475' %}
+						</div>
+					</div>
+					
+					<div class="static-fav">
+						<div class="favorites-edit favorites-content">
+							<div class="fedit-head static-fav-head">
+								<div class="fedit-head-text">{% trans '476' %}</div>
+								<select name="fedit-head-select" class="fedit-head-select resetable">
+									<option value="none" class="fedit-head-select-first-option">Sélectionnez un salon</option>
+								</select>
+							</div>
+							
+							<div class="fedit-results static-fav-results">
+								<div class="fedit-line">
+									<div class="fedit-text">{% trans '477' %}</div>
+									<input class="fedit-input fedit-title" type="text" />
+								</div>
+								
+								<div class="fedit-line">
+									<div class="fedit-text">{% trans '478' %}</div>
+									<input class="fedit-input fedit-nick" type="text" />
+								</div>
+								
+								<div class="fedit-line">
+									<div class="fedit-text">{% trans '479' %}</div>
+									<input class="fedit-input fedit-chan" type="text" />
+								</div>
+								
+								<div class="fedit-line">
+									<div class="fedit-text">{% trans '480' %}</div>
+									<input class="fedit-input fedit-server" type="text" value="{{ HOST_MUC }}" />
+								</div>
+								
+								<div class="fedit-line">
+									<div class="fedit-text">{% trans '481' %}</div>
+									<input class="fedit-input fedit-password" type="password" />
+								</div>
+								
+								<div class="fedit-actions">
+									<a class="fedit-terminate fedit-add" onclick="terminateThisFavorite('add');">{% trans '482' %}</a>
+									<a class="fedit-terminate fedit-edit" onclick="terminateThisFavorite('edit');">{% trans '489' %}</a>
+									<a class="fedit-terminate fedit-remove" onclick="terminateThisFavorite('remove');">{% trans '483' %}</a>
+								</div>
+							</div>
+						</div>
+						
+						<div class="favorites-search favorites-content">
+							<div class="fsearch-head static-fav-head">
+								<div class="fsearch-head-text">{% trans '484' %}</div>
+								<input type="text" class="fsearch-head-server" value="{{ HOST_MUC }}" />
+							</div>
+							
+							<div class="fsearch-results static-fav-results">
+								<p class="fsearch-noresults">{% trans '588' %}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bottom">
+					<div class="wait wait-small"></div>
+					<div class="finish" onclick="return quitFavorites();">{% trans '485' %}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END FAVORITES -->
+	
+	<!-- BEGIN DIRECTORY -->
+	<div id="directory" class="lock hidable">
+		<div class="popup">
+			<div class="popup-content">
+				<div class="top">
+					<p>{% trans '506' %}</p>
+				</div>
+				
+				<div class="content">
+					<div class="directory-edit directory-content">
+						<div class="dsearch-head static-fav-head">
+							<div class="dsearch-head-first">
+								<div class="dsearch-head-text">{% trans '492' %}</div>
+								<input name="dsearch-head-input" class="dsearch-head-input dsearch-input resetable" value="{{ HOST_VJUD }}" />
+							</div>
+							
+							<div class="dsearch-head-second">
+								<div class="dsearch-head-text">{% trans '508' %}</div>
+							</div>
+						</div>
+						
+						<div class="dsearch-firstgroup">
+							<div class="dsearch-form">
+								<div class="dsearch-line">
+									<div class="dsearch-text">{% trans '493' %}</div>
+									<input class="dsearch-input dsearch-user" type="text" />
+								</div>
+							
+								<div class="dsearch-line">
+									<div class="dsearch-text">{% trans '495' %}</div>
+									<input class="dsearch-input dsearch-name" type="text" />
+								</div>
+							
+								<div class="dsearch-line">
+									<div class="dsearch-text">{% trans '496' %}</div>
+									<input class="dsearch-input dsearch-family" type="text" />
+								</div>
+							
+								<div class="dsearch-line">
+									<div class="dsearch-text">{% trans '497' %}</div>
+									<input class="dsearch-input dsearch-country" type="text" />
+								</div>
+							
+								<div class="dsearch-line">
+									<div class="dsearch-text">{% trans '498' %}</div>
+									<input class="dsearch-input dsearch-city" type="text" />
+								</div>
+							
+								<div class="dsearch-line">
+									<div class="dsearch-text">{% trans '499' %}</div>
+									<input class="dsearch-input dsearch-mail" type="text" />
+								</div>
+							
+								<div class="dsearch-actions">
+									<a class="dsearch-launch" onclick="searchDirectory();">{% trans '500' %}</a>
+								</div>
+							</div>
+						
+							<div class="infos">
+								<div class="infos-content">
+									<p><b>{% trans '502' %}</b></p>
+									<p>{% trans '503' %}</p>
+									<p>{% trans '504' %}</p>
+									<p>{% trans '505' %}</p>
+								</div>
+							</div>
+						</div>
+						
+						<div class="dsearch-results">
+							<div class="dsearch-results-list">
+								<p class="dsearch-noresults">{% trans '509' %}</p>
+							</div>
+							
+							<a class="dsearch-results-again" onclick="onceAgainDirectory();">{% trans '507' %}</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bottom">
+					<div class="wait wait-small"></div>
+					<div class="finish" onclick="return quitDirectory();">{% trans '501' %}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END DIRECTORY -->
+	
+	<!-- BEGIN DISCOVERY -->
+	<div id="discovery" class="lock hidable">
+		<div class="popup">
+			<div class="popup-content">
+				<div class="top">
+					<p>{% trans '516' %}</p>
+				</div>
+				
+				<div class="content">
+					<div class="discovery-head">
+						<div class="disco-server-text">{% trans '521' %}</div>
+						<input name="disco-server-input" class="disco-server-input resetable" value="{{ HOST_MAIN }}" />
+					</div>
+					
+					<div class="discovery-results">
+						<p class="discovery-noresults">{% trans '522' %}</p>
+						
+						<div class="disco-category disco-account">
+							<p class="disco-category-title">{% trans '523' %}</p>
+						</div>
+						
+						<div class="disco-category disco-auth">
+							<p class="disco-category-title">{% trans '524' %}</p>
+						</div>
+						
+						<div class="disco-category disco-automation">
+							<p class="disco-category-title">{% trans '525' %}</p>
+						</div>
+						
+						<div class="disco-category disco-client">
+							<p class="disco-category-title">{% trans '526' %}</p>
+						</div>
+						
+						<div class="disco-category disco-collaboration">
+							<p class="disco-category-title">{% trans '527' %}</p>
+						</div>
+						
+						<div class="disco-category disco-component">
+							<p class="disco-category-title">{% trans '528' %}</p>
+						</div>
+						
+						<div class="disco-category disco-conference">
+							<p class="disco-category-title">{% trans '529' %}</p>
+						</div>
+						
+						<div class="disco-category disco-directory">
+							<p class="disco-category-title">{% trans '530' %}</p>
+						</div>
+						
+						<div class="disco-category disco-gateway">
+							<p class="disco-category-title">{% trans '531' %}</p>
+						</div>
+						
+						<div class="disco-category disco-headline">
+							<p class="disco-category-title">{% trans '532' %}</p>
+						</div>
+						
+						<div class="disco-category disco-hierarchy">
+							<p class="disco-category-title">{% trans '533' %}</p>
+						</div>
+						
+						<div class="disco-category disco-proxy">
+							<p class="disco-category-title">{% trans '534' %}</p>
+						</div>
+						
+						<div class="disco-category disco-pubsub">
+							<p class="disco-category-title">{% trans '535' %}</p>
+						</div>
+						
+						<div class="disco-category disco-server">
+							<p class="disco-category-title">{% trans '536' %}</p>
+						</div>
+						
+						<div class="disco-category disco-store">
+							<p class="disco-category-title">{% trans '537' %}</p>
+						</div>
+						
+						<div class="disco-category disco-others">
+							<p class="disco-category-title">{% trans '538' %}</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bottom">
+					<div class="wait wait-small"></div>
+					<div class="finish" onclick="return quitDiscovery();">{% trans '517' %}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END DISCOVERY -->
+	
+	<!-- BEGIN MESSAGES -->
+	<div id="messages" class="lock hidable">
+		<div class="popup">
+			<div class="popup-content">
+				<div class="top">
+					<p>{% trans '514' %}</p>
+				</div>
+				
+				<div class="content">
+					<div class="messages-head">
+						<div class="messages-head-text">{% trans '539' %}</div>
+						<div class="messages-head-actions">
+							<a onclick="deleteAllMessages();" class="a-delete-messages">{% trans '540' %}</a>
+							<a onclick="newMessage();" class="a-new-message">{% trans '541' %}</a>
+							<a onclick="showMessages();" class="a-show-messages">{% trans '544' %}</a>
+						</div>
+					</div>
+					
+					<div class="messages-results">
+						<p class="messages-noresults showable">{% trans '542' %}</p>
+						<div class="inbox"></div>
+					</div>
+					
+					<div class="messages-new">
+						<div class="messages-new-to messages-new-block">
+							<p class="messages-new-text">{% trans '545' %}</p>
+							<input name="messages-new-user-input" class="messages-new-input messages-new-user-input resetable" /><span style="float: left; margin: 0 5px 0 5px;">@</span><input name="messages-new-server-input" class="messages-new-input messages-new-server-input resetable" value="{{ HOST_MAIN }}" />
+						</div>
+						
+						<div class="messages-new-topic messages-new-block">
+							<p class="messages-new-text">{% trans '546' %}</p>
+							<input name="messages-new-subject-input" class="messages-new-input messages-new-subject-input resetable" />
+						</div>
+						
+						<div class="messages-new-body messages-new-block">
+							<p class="messages-new-text">{% trans '548' %}</p>
+							<textarea class="messages-new-textarea resetable" rows="8" cols="60"></textarea>
+						</div>
+						
+						<div class="messages-new-send messages-new-block">
+							<a onclick="sendThisMessage();">{% trans '547' %}</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bottom">
+					<div class="wait wait-small"></div>
+					<div class="finish" onclick="return messagesClose();">{% trans '515' %}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END MESSAGES -->
+	
+	<!-- BEGIN MUC-ADMIN -->
+	<div id="muc-admin" class="lock hidable">
+		<div class="popup">
+			<div class="popup-content">
+				<div class="top">
+					<p>{% trans '518' %}</p>
+				</div>
+				
+				<div class="content">
+					<div class="muc-admin-head">
+						<div class="muc-admin-head-text">{% trans '617' %}</div>
+						<div class="muc-admin-head-jid"></div>
+					</div>
+					
+					<div class="muc-admin-results">
+						<div class="muc-admin-topic">
+							<fieldset>
+								<legend align="top">{% trans '660' %}</legend>
+								<label for="topic-text">{% trans '661' %}</label>
+								<textarea id="topic-text" name="room-topic" class="resetable" rows="8" cols="60" ></textarea>
+							</fieldset>
+						</div>
+						
+						<div class="muc-admin-conf">
+							<fieldset>
+								<legend align="top">{% trans '618' %}</legend>
+								<div class="last-element"></div>
+							</fieldset>
+						</div>
+						
+						<div class="muc-admin-aut">
+							<fieldset>
+								<legend align="top">{% trans '653' %}</legend>
+								<label>{% trans '641' %}</label>
+								<div class="aut-member aut-group">
+									<a class="aut-add" onclick="addInputMucAdmin('', 'member');">{% trans '659' %}</a>
+								</div>
+								<label>{% trans '642' %}</label>
+								<div class="aut-owner aut-group">
+									<a class="aut-add" onclick="addInputMucAdmin('', 'owner');">{% trans '659' %}</a>
+								</div>
+								<label>{% trans '644' %}</label>
+								<div class="aut-admin aut-group">
+									<a class="aut-add" onclick="addInputMucAdmin('', 'admin');">{% trans '659' %}</a>
+								</div>
+								<label>{% trans '645' %}</label>
+								<div class="aut-outcast aut-group">
+									<a class="aut-add" onclick="addInputMucAdmin('', 'outcast');">{% trans '659' %}</a>
+								</div>
+							</fieldset>
+						</div>
+						
+						<div class="muc-admin-others">
+							<fieldset>
+								<legend align="top">{% trans '662' %}</legend>
+								<label for="others-destroy">{% trans '663' %}</label>
+								<a id="others-destroy" onclick="destroyMucAdmin();">{% trans '664' %}</a>
+							</fieldset>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bottom">
+					<div class="wait wait-small"></div>
+					<div class="finish" onclick="return saveMucAdmin();">{% trans '520' %}</div>
+					<div class="finish" onclick="return cancelMucAdmin();">{% trans '519' %}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END MUC-ADMIN -->
+	{% endcomment %}
+</body>
+
+</html>

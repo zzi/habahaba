@@ -1,0 +1,192 @@
+{% load i18n %}
+	<!-- BEGIN HOMEPAGE -->
+	<div id="home" class="showable">
+		<!-- the tooltip to help the user completing forms -->
+			<div class="tooltip"></div>
+			
+		<!-- the topbar of jappix, with the logo and the login form -->
+			<div id="topbar">
+				<div class="logo"></div>
+
+		
+				<div class="connect">
+					<div class="left"></div>
+
+					<div class="right">
+						<form id="ajax-l-form" name="loginForm" onsubmit="return doLogin(this);" action="#">
+							<p class="maintitle">{% trans "Connection" %}</p>
+							<p class="l-jid" style="color: #959595; font-size: 16px;"><span class="jtitle1">{% trans "My address :" %}</span><input class="jadd resetable" type="text" id='l-jid' name="l-jid" title="Enter your Jabber ID" /><span class="jaro">@</span><input class="jadd" type="text" id='l-server' name="l-server" title="Enter the server you're using" value="im.jappix.com" /></p>
+							<p style="color: #959595; font-size: 16px;"><span class="jtitle2">{% trans "My password :" %}</span><input class="jpwd resetable" type="password" id='l-pass' name="l-pass" title="Enter your password" /><input class="jgo submit-button" type="submit" name="l-submit" value="Go !" title="Let's go !" /></p>
+
+						</form>
+					</div>
+				</div>
+			</div>
+			
+		<!-- the main content of the page -->
+			<div id="contentcenter">
+				<!-- the leftcontent where users can register a new account -->
+					<div id="leftcontent">
+						<div id="leftbar">
+
+							<p class="maintitle">{% trans "Register" %}</p>
+						
+							<form id="ajax-r-form" name="registerForm" onsubmit="return doRegister(this);" action="#">
+								<div style="margin-top: 15px;">
+									<div class="group"></div>
+
+									<div class="register">
+											<p style="color: #959595; font-size: 20px; margin-bottom: 5px;">{% trans "Nick" %}</p>
+											<input class="register-input registerStart resetable" type="text" id="r-nick" name="r-nick" title="Enter your nick in lower caps" />
+
+									</div>
+								</div>
+				
+								<div style="margin-top: 23px;">
+									<div class="group"></div>
+
+									<div class="register">
+											<p style="color: #959595; font-size: 20px; margin-bottom: 5px;">{% trans "Server" %}</p>
+											<input class="register-input registerStart resetable" type="text" id="r-server" name="r-server" title="You can keep the default server or use your own server" value="im.jappix.com" />
+									</div>
+
+								</div>
+				
+								<div style="margin-top: 23px;">
+									<div class="group"></div>
+
+									<div class="register">
+											<p style="color: #959595; font-size: 20px; margin-bottom: 5px;">{% trans "Password" %}</p>
+											<input class="register-input registerStart resetable" type="password" id="r-pass" name="r-pass" title="Enter your password, but try to generate a strong one ☺" />
+									</div>
+								</div>
+
+				
+								<div style="margin-top: 30px; font-size: 0.9em; border-top: 1px solid #c8c8c8;" id="ajax-r-result">
+									<p style="margin-top: 20px; margin-bottom: 20px; font-size: 13px; text-align: justify;">{% trans "For your security, please enter a very strong password." %}</p>
+								</div>
+
+								<div style="padding-top: 15px; font-size: 0.9em; border-top: 1px solid #c8c8c8;">
+									<div style="float: right;">
+										<input type="submit" id="r-submit" name="r-submit" value="Continuer &raquo;" title="And we finish your registering ☺" class="submit-button send" />
+									</div>
+								
+									<div style="display: none; float: right; margin: -2px 12px 0 0" class="register-wait wait-small"></div>
+
+								</div>
+							</form>
+						</div>
+						
+													<div id="sslbar">
+								<p class="sslicon">{% trans "You private life matters !" %}</p>
+								<p>{% trans "Use Jappix in :" %} <a href='https://localhost/jappix/'>{% trans "crypted" %}</a> {% trans "or" %} <a href='http://localhost/jappix/'>{% trans "classical" %}</a>.</p>
+
+							</div>
+											</div>
+					
+				<!-- the right content where the users are told what's really jappix -->
+					<div id="rightcontent">
+						<div id="rightmenu">
+							<ul>
+								<li style="margin-left: 20px;"><a class="selected whatsjappix" onclick="switchMenu('whatsjappix');">{% trans "What's Jappix ?" %}</a></li>
+								<li style="margin-left: 10px;"><a class="advantages" onclick="switchMenu('advantages');">{% trans "The advantages" %}</a></li>
+
+								<li style="margin-left: 10px;"><a class="yourprivatelife" onclick="switchMenu('yourprivatelife');">{% trans "Your private life" %}</a></li>
+								<li style="margin-left: 10px;"><a class="theproject" onclick="switchMenu('theproject');">{% trans "The project" %}</a></li>
+								<li style="margin-left: 10px;"><a class="abouth" onclick="switchMenu('abouth');">{% trans "About" %}</a></li>
+							</ul>
+						</div>
+
+						<div id="rightbar-text">
+							<div id="whatsjappix" class="rightbar-group">
+
+								<h2>{% trans "What's Jappix ?" %}</h2>
+								<p>{% trans "Jappix is a free web application that allow you to stay in touch with your friends." %}</p>
+								<div class="whatsjappix"></div>
+								<p>{% trans "Jappix, it't not only an instant messaging: thanks to Jappix, you'll do so fantastic things that you'll remember them all your life (no, no, I'm not laughing at you !)." %}</p>
+								<p>{% trans "The web's social, so enter in the revolution : communicate even further without installing anything on your computer." %}</p>
+
+								<p>{% trans "When you'll have an account, you'll be allowed to do things that can only be defined with verbs, certain stronger than other..." %}</p>
+								<p>{% trans "If I tell you : meet, chat, have fun, publish, share, flirt, know, laugh, learn, make friends, doesn't it attract you ? Uh ? You got it : Jappix is made for YOU!" %}</p>
+
+								<p>{% trans "You want to chat with your friends who are on Facebook or Google Talk ? There's no problem : Jappix can connect to your Facebook or Google Talk account ! You've just to enter chat.facebook.com or gmail.com depending of the service you use." %}</p>
+
+								<p>{% trans "Jappix is a part of the huge free Jabber network, on which a half billion people like you are waiting for you ! Become as talkative as your grandmother, communicate with Jappix!" %}</p>
+							</div>
+				
+							<div id="advantages" class="rightbar-group">
+								<h2>{% trans "The advantages" %}</h2>
+								<p>{% trans "But what can make Jappix so fantastic? We believe that it's the first thing you ask yourself when you see it. Here are the explaination :" %}</p>
+
+								<div class="advantages rb-image"></div>
+								<p>{% trans "&bull; Jappix's using the Jabber network, and it has the capability to interact with every Jabber server in the world. But what are the advantages you've go to use this protocol and not another one ? Let's take the e-mail as an example : two people (called 1 and 2) and two servers (called A and B) are trying to communicate, with 1 at A and 2 at B. Because the e-mail protocols are standards, the A and B servers can interact and understand themselves, so that 1 and 2 can send messages. It's exactly the same for XMPP : feel free to use the server that you want to, located in the country that you want. You can use your own server too !" %}</p>
+								<p>{% trans "&bull; Jappix is <b>reacheable from everywhere</b>. You've got a proxy at work that blocks the 5222 socket, used by the Jabber clients ? That's nothing, thanks to Jappix, you'll be able to use your Jabber account everywhere you are, because it's our server that will connect to your Jabber account and transmitt the data on the 80 socket, used by all the web browsers. It will always work if the Jappix website is not blocked !" %}</p>
+								<p>{% trans "&bull; Jappix allow you to <b>connect to your Google Talk</b> (or Gmail) account. Just enter your <b>Gmail logins</b> followed by the <b>server gmail.com</b> after the arobase. But it's not all : <b>Facebook is supported</b> ! For further informations, have a look to the official help page" %}</p>
+
+							</div>
+
+							<div id="yourprivatelife" class="rightbar-group">
+								<h2>{% trans "Your private life" %}</h2>
+								<p>{% trans "Jappix has not really a long and boring confidentiality politic. According to us, it's simple : <b><em>your private life belong to you, it doesn't interest us</em></b> !" %}</p>
+								<div class="yourprivatelife rb-image"></div>
+								<p>{% trans "But we can tell you that you are responsible from the information that you send on your Jabber account with Jappix. <b>Jappix doesn't store any information</b> that pass on its proxy between you and your Jabber server. But take care of the things you submit on your account because this data, like your complete name, your avatar, your address and so and so will be accessible to anyone out of your friend circle ! Consider it as your <b>public identity card</b> that allow people to find you." %}</p>
+
+								<p>{% trans "Find me, you said ?! Well, in fact Jappix has a user search engine, called the 'directory'. Thanks to this tool, someone that know your nick, your name, your locality, your e-mail will be able to <b>enter in contact with you</b>." %}</p>
+								<p><b>{% trans "The respect of your private life is our main goal, you can believe in us !" %}</b></p>
+							</div>
+							
+							<div id="theproject" class="rightbar-group">
+								<h2>{% trans "The project" %}</h2>
+								<p>{% trans "Jappix is an <b>opened project</b>, and the official platform is available in a <b>non-lucrative goal</b>, because we believe that <b>all the world goodness must be shared</b>, without the disappointing profit researching." %}</p>
+
+								<div class="theproject rb-image"></div>
+								<p>{% trans "By using Jappix in your everyday life, you help us <b>creating good things</b>, in the best way that is possible." %}</p>
+								<p>{% trans "At the very beginning, we got the idea of Jappix when we saw that all the Jabber web-based clients were very poor or not esthetic. With Jappix, we wish to <b>offer the world the universal Jabber client, reacheable from everywhere, by anyone</b> !" %}</p>
+								<p>{% trans "We want to work on the <b>disabled people accessibility</b> in the future to make Jappix really universal." %}</p>
+
+								<p>{% trans "The team behind Jappix really wishes to <b>offer the Internet community a gift</b> !" %}</p>
+							</div>
+
+							<div id="abouth" class="rightbar-group">
+								<h2>{% trans "About" %}</h2>
+								<p>{% trans "Jappix was developed, at the beginning by a <b>computing, free software and Internet fan</b>. Now it's a bigger project of the PostPro association." %}</p>
+
+								<div class="abouth rb-image"></div>
+								<p>{% trans "Yes, we know we've got an <b>utopic vision of computing</b>, but we really do the best to release good stuffs." %}</p>
+								<p>{% trans "The Jappix source code is obviously downloadable, released under the <b>free AGPL license</b> terms. If you are a developer, a translator or a graphist, you can visit the developement panel. You can download the latest version too to install it on your own server and get more independance." %}</p>
+
+								<p>{% trans "The Jappix project was developed with the <b>free software philosophy</b>, so that we respect our &laquo; doctrine &raquo; when you use Jappix : <em><b>freedom, equality, fraternity</b></em>. It means that we respect your private life and <b>we do not monitor your private communications</b> on Jappix." %}</p>
+								<p>{% trans "As an information, our services are hosted in Paris, on a virtual server at Gandi's, a french company that respect our philosophy." %}</p>
+
+								<p><b>{% trans "Unity is strength !" %}</b></p>
+							</div>
+						</div>
+			
+						<div id="rightbar-thumbs">
+							<a class="prevPage browse left"></a>
+							<div class="scrollable">
+								<div class="items">
+									<a href="/static/scr/img1.png" class="thumb thumbs-images e1" title="A groupchat in a MUC room"></a>
+
+									<a href="/static/scr/img2.png" class="thumb thumbs-images e2" title="The new chat page"></a>
+									<a href="/static/scr/img3.png" class="thumb thumbs-images e3" title="An integrated video viewing"></a>
+									<a href="/static/scr/img4.png" class="thumb thumbs-images e4" title="The server services discovery"></a>
+									<a href="/static/scr/img5.png" class="thumb thumbs-images e5" title="The users directory"></a>
+									
+									<a href="/static/scr/img6.png" class="thumb thumbs-images e6" title="The users profile editor"></a>
+									<div class="thumb"></div>
+								</div>
+							</div>
+							<a class="nextPage browse right"></a>
+
+						</div>
+					</div>
+				
+				<!-- the copyright informations and so -->
+					<div id="bottombar">
+						<p><a href='http://project.jappix.com/' target='_blank'>{% trans "Developers &bull; Jappix is a free project of the association (v0.1, AGPL) developed with the community  &bull; In free software we trust." %}</p>
+
+					</div>
+			</div>
+	</div>
+	<!-- END HOMEPAGE -->

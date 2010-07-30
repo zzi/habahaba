@@ -1,0 +1,122 @@
+{% load i18n %}
+	<!-- BEGIN GENERAL-WAIT -->
+	<div id="general-wait" class="hidable">
+		<div class="general-wait-content">
+			<div class="wait-medium"></div>
+		</div>
+	</div>
+	<!-- END GENERAL-WAIT -->
+	
+	<!-- BEGIN AUDIO -->
+		<div id="audio">
+		</div>
+	<!-- END AUDIO -->
+	
+	<!-- BEGIN DATA -->
+	<div id="data">		
+		<div class="hosts">
+			<input class="host-main" type="hidden" value="{{ HOST_MAIN }}" />
+			<input class="host-muc" type="hidden" value="{{ HOST_MUC }}" />
+			<input class="host-anonymous" type="hidden" value="{{ HOST_ANONYMOUS }}" />
+		</div>
+		
+		<div class="translate">
+			<input class="translation-12" type="hidden" value="{% trans 'unknown' %}" />
+			<input class="translation-14" type="hidden" value="{% trans 'Available' %}" />
+			<input class="translation-15" type="hidden" value="{% trans 'Talkative' %}" />
+			<input class="translation-16" type="hidden" value="{% trans 'Away' %}" />
+			<input class="translation-17" type="hidden" value="{% trans 'Not available' %}" />
+			<input class="translation-18" type="hidden" value="{% trans 'Busy' %}" />
+			<input class="translation-19" type="hidden" value="{% trans 'Unavailable' %}" />
+			<input class="translation-28" type="hidden" value="{% trans 'Add this room to my favorites' %}" />
+			<input class="translation-32" type="hidden" value="{% trans 'Delete' %}" />
+			<input class="translation-33" type="hidden" value="{% trans 'Reply' %}" />
+			<input class="translation-34" type="hidden" value="{% trans 'Hide' %}" />
+			<input class="translation-35" type="hidden" value="{% trans 'Forbidden' %}" />
+			<input class="translation-36" type="hidden" value="{% trans 'Error' %}" />
+			<input class="translation-37" type="hidden" value="{% trans 'Me' %}" />
+			<input class="translation-40" type="hidden" value="{% trans 'Remove' %}" />
+			<input class="translation-41" type="hidden" value="{% trans 'Rename' %}" />
+			<input class="translation-42" type="hidden" value="{% trans 'I would like to add you in my buddy list.' %}" />
+			<input class="translation-43" type="hidden" value="{% trans 'Requesting this service...' %}" />
+			<input class="translation-44" type="hidden" value="{% trans 'Service offline or broken' %}" />
+			<input class="translation-45" type="hidden" value="{% trans 'joined the chat room.' %}" />
+			<input class="translation-46" type="hidden" value="{% trans 'just left the chat room.' %}" />
+			<input class="translation-52" type="hidden" value="{% trans 'would like to add you as a friend.' %}" />
+			<input class="translation-53" type="hidden" value="{% trans 'Yes' %}" />
+			<input class="translation-54" type="hidden" value="{% trans 'No' %}" />
+			<input class="translation-55" type="hidden" value="{% trans 'would like you to join this chatroom:' %}" />
+			<input class="translation-56" type="hidden" value="{% trans 'Do you accept?' %}" />
+			<input class="translation-57" type="hidden" value="{% trans 'would like to get an authorization.' %}" />
+			<input class="translation-58" type="hidden" value="{% trans 'Submit' %}" />
+			<input class="translation-59" type="hidden" value="{% trans 'Cancel' %}" />
+			<input class="translation-60" type="hidden" value="{% trans 'See his/her position on the globe' %}" />
+			<input class="translation-61" type="hidden" value="{% trans 'anonymous mode' %}" />
+			<input class="translation-62" type="hidden" value="{% trans 'Password' %}" />
+			<input class="translation-63" type="hidden" value="{% trans 'Nick' %}" />
+			<input class="translation-64" type="hidden" value="{% trans 'Others' %}" />
+			<input class="translation-65" type="hidden" value="{% trans 'Group' %}" />
+			<input class="translation-66" type="hidden" value="{% trans 'Authorize' %}" />
+			<input class="translation-67" type="hidden" value="{% trans 'Close' %}" />
+			<input class="translation-68" type="hidden" value="{% trans 'View the profile of this user' %}" />
+			<input class="translation-69" type="hidden" value="{% trans 'Repeat this notice' %}" />
+			<input class="translation-71" type="hidden" value="{% trans 'Channel of' %}" />
+			<input class="translation-72" type="hidden" value="{% trans 'Previous' %}" />
+			<input class="translation-73" type="hidden" value="{% trans 'Remove this notice' %}" />
+			<input class="translation-74" type="hidden" value="{% trans 'Authorization failed' %}" />
+			<input class="translation-75" type="hidden" value="{% trans 'Registration failed, please choose a different username' %}" />
+			<input class="translation-76" type="hidden" value="{% trans 'Service unavailable' %}" />
+			<input class="translation-77" type="hidden" value="{% trans 'Internal server error, try later' %}" />
+			<input class="translation-78" type="hidden" value="{% trans 'More notices...' %}" />
+			<input class="translation-79" type="hidden" value="{% trans 'Browse' %}" />
+			<input class="translation-80" type="hidden" value="{% trans 'Command' %}" />
+			<input class="translation-81" type="hidden" value="{% trans 'Subscribe' %}" />
+			<input class="translation-82" type="hidden" value="{% trans 'Join' %}" />
+			<input class="translation-83" type="hidden" value="{% trans 'Search' %}" />
+			<input class="translation-84" type="hidden" value="{% trans 'View his/her channel' %}" />
+			<input class="translation-85" type="hidden" value="{% trans 'My channel' %}" />
+			<input class="translation-86" type="hidden" value="{% trans 'Your form has been sent successfully.' %}" />
+			<input class="translation-87" type="hidden" value="{% trans 'Gateways' %}" />
+			<input class="translation-88" type="hidden" value="{% trans 'E-mail' %}" />
+			
+			
+			
+			<input class="translation-89" type="hidden" value="{% trans 'Your friend is writing a message...' %}" />
+			<input class="translation-90" type="hidden" value="{% trans 'Your friend stopped writing a message.' %}" />
+			<input class="translation-91" type="hidden" value="{% trans 'Your friend is doing something else.' %}" />
+			<input class="translation-92" type="hidden" value="{% trans 'Your friend closed the chat.' %}" />
+			<input class="translation-93" type="hidden" value="{% trans 'Smiley insertion' %}" />
+			<input class="translation-94" type="hidden" value="{% trans 'Save the chat' %}" />
+			<input class="translation-95" type="hidden" value="{% trans 'Click on the following link to get the chat log, and wait. Then click again to get the file.' %}" />
+			<input class="translation-96" type="hidden" value="{% trans 'Generate the file!' %}" />
+			<input class="translation-97" type="hidden" value="{% trans 'Download the file!' %}" />
+			<input class="translation-98" type="hidden" value="{% trans 'Clean the current chat...' %}" />
+			<input class="translation-99" type="hidden" value="{% trans 'Display user profile...' %}" />
+			<input class="translation-100" type="hidden" value="{% trans 'Add this contact to your friends...' %}" />
+			<input class="translation-101" type="hidden" value="{% trans 'Close the chat' %}" />
+			<input class="translation-102" type="hidden" value="{% trans 'Moderators' %}" />
+			<input class="translation-103" type="hidden" value="{% trans 'Participants' %}" />
+			<input class="translation-104" type="hidden" value="{% trans 'Visitors' %}" />
+			<input class="translation-105" type="hidden" value="{% trans 'Administration panel for this room...' %}" />
+			<input class="translation-106" type="hidden" value="{% trans 'Subject' %}" />
+			<input class="translation-107" type="hidden" value="{% trans 'no subject defined for this room.' %}" />
+		</div>
+		
+		<div class="system">
+			<input class="version" type="hidden" value="{{ version }}" />
+			<input class="http-base" type="hidden" value="{{ HTTP_BASE }}" />
+		</div>
+		
+		<div class="titles">
+			<input class="home" type="hidden" value="{% trans 'Jappix &bull; An Open μSocial Network' %}" />
+		</div>
+		{% comment %}
+		{% if anonymousMode() %}
+			<div class="anonymous">
+				<input class="room" type="hidden" value="{{ $_GET['r'] }}" />
+				<input class="nick" type="hidden" value="{{ $_GET['n'] }}" />
+			</div>
+		{% endif %}
+		{% endcomment %}
+	</div>
+	<!-- END DATA -->

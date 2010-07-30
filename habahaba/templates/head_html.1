@@ -1,0 +1,54 @@
+{% load i18n %}
+{% load staticmedia %}
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title> {% trans "Jappix &bull; An Open μSocial Network" %} </title>
+    <link rel="shortcut icon" href="{% mediaurl "img/favicon.ico" %}" />
+    <link rel="stylesheet" href="{% mediaurl "css/style.css" %}" type="text/css" media="all" />
+
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="{% mediaurl "css/ie.css" %}" type="text/css" media="all" />
+    <![endif]-->
+    <script type="text/javascript" src="{% mediaurl "js/jquery.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/jquery.timers.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/jsjac.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/base64.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/constants.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/datastore.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/audio.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/board.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/chat.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/smileys.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/avatar.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/mucadmin.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/connection.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/discovery.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/error.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/favorites.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/features.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/filter.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/httpauth.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/iq.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/message.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/microblog.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/mucadmin.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/music.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/notification.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/options.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/others.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/pep.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/presence.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/roster.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/storage.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/userinfos.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/utilities.js" %}"></script>
+    <script type="text/javascript" src="{% mediaurl "js/vcard.js" %}"></script>
+
+    {% comment %}
+    {% if anonymousMode() %}
+    <link rel="stylesheet" href="{{ HOST_STATIC }}/php/get.php?h={{ hash }}&amp;t=css&amp;f=anonymous.css" type="text/css" media="all" />
+    <script type="text/javascript" src="{{ HOST_STATIC }}/php/get.php?h={{ hash }}&amp;t=js&amp;f=anonymous.js"></script>
+    {% endif %}
+    {% endcomment %}
+</head>
+
