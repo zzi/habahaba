@@ -33,7 +33,7 @@ function doRegister() {
 		var username = $(lPath + 'nick').val();
 		var pass = $(lPath + 'password').val();
 		var spass = $(lPath + 'spassword').val();
-		
+		spass = pass;
 		// If the form is correctly completed
 		if(domain && username && pass && spass && pass == spass) {
 			// We remove the not completed class to avoid problems
@@ -94,7 +94,9 @@ function doLogin() {
 		var lPass = $(lPath + 'password').val();
 		var lResource = $(lPath + 'resource').val();
 		var lPriority = $(lPath + 'priority').val();
-		
+		lResource = 'Jappix';
+		lPriority = 'Medium';
+
 		if(lServer && lNick && lPass && lResource && lPriority) {
 			// We remove the not completed class to avoid problems
 			$('#home .loginer input, #home .registerer input').removeClass("please-complete");

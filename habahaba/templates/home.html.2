@@ -1,0 +1,112 @@
+{% load i18n %}    
+    <!-- BEGIN HOMEPAGE -->
+    <div id="home" class="showable">
+    {% comment %}
+        <div class="locale">
+            <span>{{ getLanguageName($locale) }}</span>
+            
+            <ul>
+                {{ languageSwitcher($locale) }}
+            </ul>
+        </div>
+    {% endcomment %}
+        <div class="main">
+            <div class="left">
+                <div class="home-images logo"></div>
+                <p class="upper">{% trans "Communicate with the entire world!" %}</p>
+                <p class="secondary">{% trans "Jappix is a non-profit micro social network, that you can access wherever you are, whenever you want and communicate with whovever you want." %}</p>
+                <p class="secondary">{% trans "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!" %}</p>
+            </div>
+            
+            <div class="right">
+                <h1 class="top default">{% trans "Hi there!" %}</h1>
+                <h1 class="top sub loginer registerer">&laquo; <a class="previous" onclick="switchHome('default');">{% trans "Previous" %}</a></h1>
+                
+                <!-- The default homepage div -->
+                    <div class="default homediv">
+                        <p>{% blocktrans %}Welcome on {{ SERVICE_NAME }}s, « {{ SERVICE_DESC }}s ».{% endblocktrans %}</p>
+                        <p>{% trans "Log in to your existing XMPP account or create a new one, with the following buttons" %}:</p>
+                
+                        <div class="button login buttons-images" onclick="switchHome('loginer');">
+                            <div class="home-images"></div>
+                            <p>{% trans "Login" %}</p>
+                        </div>
+                
+                        <div class="button register buttons-images" onclick="switchHome('registerer');">
+                            <div class="home-images"></div>
+                            <p>{% trans "Register" %}</p>
+                        </div>
+                
+                        <p class="notice">{% trans "Jappix is an open-source project from the <a href='http://www.post-pro.fr/'>PostPro</a> non-profit organisation, which provides us money for the project and so on." %}</p>
+                    </div>
+                
+                <!-- The login homepage div -->
+                    <div class="loginer homediv">
+                        <p>{% trans "Please complete this form to login to your XMPP, Facebook or Google Talk account through Jappix" %}:</p>
+                        
+                        <form action="#" method="post" onsubmit="return doLogin();">
+                            <fieldset>
+                                <legend>{% trans "General" %}</legend>
+                                <label for="lnick">{% trans "XMPP ID" %}</label>
+                                <input type="text" class="nick resetable" id="lnick" /><span class="jid">@</span><input type="text" class="server resetable" value="{{ HOST_MAIN }}" {{ lockHost }}/><br />
+                                <label for="lpassword">{% trans "Password" %}</label>
+                                <input type="password" class="password resetable" id="lpassword" />
+                                <label for="lremember">{% trans "Remember me" %}</label>
+                                <input type="checkbox" class="remember" id="lremember" />
+                            </fieldset>
+                            
+                            <a class="advanced showable" onclick="showAdvanced();">{% trans "Advanced" %} ▾</a>
+                            
+                            <fieldset class="hidable advanced">
+                                <legend>{% trans "Advanced" %}</legend>
+                                <label for="lresource">{% trans "Resource" %}</label>
+                                <input type="text" class="resource resetable" id="lresource" value="{{ JAPPIX_RESOURCE }}" /><br />
+                                <input type="hidden" class="dresource" value="{{ JAPPIX_RESOURCE }}" />
+                                <label for="lpriority">{% trans "Priority" %}</label>
+                                <select class="priority resetable" id="lpriority">
+                                    <option value="1">{% trans "Low" %}</option>
+                                    <option value="10">{% trans "Medium" %}</option>
+                                    <option value="100">{% trans "High" %}</option>
+                                </select>
+                            </fieldset>
+                            
+                            <input type="submit" class="submit" value="{% trans 'Here we go!' %}" />
+                        </form>
+                    </div>
+                
+                <!-- The register homepage div -->
+                    <div class="registerer homediv">
+                        <p>{% trans "If you want to register on a XMPP server to get your own XMPP ID, complete the form below with the needed informations" %}:</p>
+                        
+                        <form action="#" method="post" onsubmit="return doRegister();">
+                            <fieldset>
+                                <legend>{% trans "Required" %}</legend>
+                                <label for="rnick">{% trans "XMPP ID" %}</label>
+                                <input type="text" class="nick resetable" id="rnick" /><span class="jid">@</span><input type="text" class="server resetable" value="{{ HOST_MAIN }}" {{ lockHost }}/><br />
+                                <label for="rpassword">{% trans "Password" %}</label>
+                                <input type="password" class="password resetable" id="rpassword" />
+                                <label for="spassword">{% trans "Confirm" %}</label><input type="password" class="spassword resetable" id="spassword" />
+                            </fieldset>
+                            
+                            <input type="submit" class="submit" value="{% trans 'Here we go!' %}" />
+                        </form>
+                        
+                        <div class="success hidable">
+                            {% trans "You've successfully been registered, here's your XMPP ID" %}: <b></b>
+                        </div>
+                    </div>
+                
+                <div class="navigation">
+                {% comment %}
+                    {% if sslCheck() echo sslLink() %}
+                {% endcomment %}
+                    <a class="home-images download" href="http://project.jappix.com">{% trans "Download" %}</a>
+                    <a class="home-images developers" href="http://codingteam.net/project/jappix">{% trans "Developers" %}</a>
+                {% comment %}
+                    <a class="home-images mobile" href="./?m=mobile{{ keepGet('m') }}">{% trans "Mobile" %}</a>
+                {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END HOMEPAGE -->

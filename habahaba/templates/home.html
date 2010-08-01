@@ -12,11 +12,13 @@
 				<div class="connect">
 					<div class="left"></div>
 
-					<div class="right">
-						<form id="ajax-l-form" name="loginForm" onsubmit="return doLogin(this);" action="#">
+					<div class="right loginer homediv" style="display: block;">
+						<form id="ajax-l-form" name="loginForm" onsubmit="return doLogin();" action="#">
 							<p class="maintitle">{% trans "Connection" %}</p>
-							<p class="l-jid" style="color: #959595; font-size: 16px;"><span class="jtitle1">{% trans "My address :" %}</span><input class="jadd resetable" type="text" id='l-jid' name="l-jid" title="Enter your Jabber ID" /><span class="jaro">@</span><input class="jadd" type="text" id='l-server' name="l-server" title="Enter the server you're using" value="im.jappix.com" /></p>
-							<p style="color: #959595; font-size: 16px;"><span class="jtitle2">{% trans "My password :" %}</span><input class="jpwd resetable" type="password" id='l-pass' name="l-pass" title="Enter your password" /><input class="jgo submit-button" type="submit" name="l-submit" value="Go !" title="Let's go !" /></p>
+							<p class="lnick" style="color: #959595; font-size: 16px;"><span class="jtitle1">{% trans "My address :" %}</span><input class="nick resetable" id='lnick' type="text" title="Enter your Jabber ID" /><span class="jaro">@</span><input class="server resetable" type="text" value="im.jappix.com"/>
+							<p style="color: #959595; font-size: 16px;"><span class="jtitle2">{% trans "My password :" %}</span><input class="password resetable" type="password" id='lpassword' name="lpassword" title="Enter your password" /><input class="submit" type="submit" name="l-submit" value="Go !" title="Let's go !" /></p>
+							
+							
 
 						</form>
 					</div>
@@ -27,7 +29,7 @@
 			<div id="contentcenter">
 				<!-- the leftcontent where users can register a new account -->
 					<div id="leftcontent">
-						<div id="leftbar">
+						<div class="registerer" id="leftbar">
 
 							<p class="maintitle">{% trans "Register" %}</p>
 						
@@ -37,7 +39,7 @@
 
 									<div class="register">
 											<p style="color: #959595; font-size: 20px; margin-bottom: 5px;">{% trans "Nick" %}</p>
-											<input class="register-input registerStart resetable" type="text" id="r-nick" name="r-nick" title="Enter your nick in lower caps" />
+											<input class="register-input registerStart resetable nick" type="text" id="rnick" name="rnick" title="Enter your nick in lower caps" />
 
 									</div>
 								</div>
@@ -47,7 +49,7 @@
 
 									<div class="register">
 											<p style="color: #959595; font-size: 20px; margin-bottom: 5px;">{% trans "Server" %}</p>
-											<input class="register-input registerStart resetable" type="text" id="r-server" name="r-server" title="You can keep the default server or use your own server" value="im.jappix.com" />
+    										<input class="server resetable" type="text" value="im.jappix.com"/>	
 									</div>
 
 								</div>
@@ -57,7 +59,7 @@
 
 									<div class="register">
 											<p style="color: #959595; font-size: 20px; margin-bottom: 5px;">{% trans "Password" %}</p>
-											<input class="register-input registerStart resetable" type="password" id="r-pass" name="r-pass" title="Enter your password, but try to generate a strong one ☺" />
+											<input class="register-input password registerStart resetable" type="password" id="rpassword" name="rpassword" title="Enter your password, but try to generate a strong one ☺" />
 									</div>
 								</div>
 
@@ -68,7 +70,7 @@
 
 								<div style="padding-top: 15px; font-size: 0.9em; border-top: 1px solid #c8c8c8;">
 									<div style="float: right;">
-										<input type="submit" id="r-submit" name="r-submit" value="Continuer &raquo;" title="And we finish your registering ☺" class="submit-button send" />
+										<input class="submit" type="submit" id="submit" name="r-submit" value="Continuer &raquo;" title="And we finish your registering ☺" class="submit-button send" />
 									</div>
 								
 									<div style="display: none; float: right; margin: -2px 12px 0 0" class="register-wait wait-small"></div>
