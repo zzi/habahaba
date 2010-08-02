@@ -1,2 +1,5 @@
 .gitignore
 *.pyc
+*.swp
+*.swn
+*.swo
