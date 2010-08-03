@@ -825,3 +825,72 @@ Last revision: 16/07/10
 		}
 	/* ///////// END GENERAL-WAIT STYLE ///////// */
 /* ///////// END HOMEPAGE STYLE ///////// */
+
+
+/* ///////// BEGIN SCROLLABLE STYLE ///////// */
+	div.scrollable {
+		position: relative;
+		overflow: hidden;
+		width: 660px;
+		height: 125px;
+	}
+
+	div.scrollable div.items {
+		width: 20000em;
+		position: absolute;
+	}
+
+	div.scrollable div.items div {
+		float: left;
+	} 
+
+	div.items div.active {
+		border: 1px inset #ccc;
+		background-color: #fff;
+	}
+
+	.scrollable {
+		float: left;	
+	}
+
+	a.browse {
+		background: url(../img/sprites/home.png) no-repeat;
+		display: block;
+		width: 30px;
+		height: 30px;
+		float: left;
+		margin: 40px 10px;
+		cursor: pointer;
+		font-size: 1px;
+	}
+
+	a.right {
+		background-position: -710px -30px;
+		clear: right;
+		margin-right: 0px;
+		margin-top: 47px;
+	}
+
+	a.right:hover {
+		background-position: -740px -30px;
+	}
+
+	a.right:active {
+		background-position: -770px -30px;
+	}
+
+	a.left {
+		background-position: -710px 0;
+		margin-left: 3px;
+		margin-top: 47px;
+	}
+
+	a.left:hover {
+		background-position: -740px 0;
+	}
+
+	a.left:active {
+		background-position: -770px 0;
+	}
+/* ///////// END SCROLLABLE STYLE ///////// */
+
