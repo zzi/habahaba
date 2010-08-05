@@ -10,4 +10,12 @@ def app_view(request):
         {'version': '0.0', 'lockHost': lockHost},
         context_instance=RequestContext(request))
 
+def app_1_view(request):
+    lockHost = ''
+    if config.main.LOCK_HOST == 'on':
+        lockHost = 'disabled="disabled" '
+    return render_to_response('app_1.html',
+        {'version': '0.0', 'lockHost': lockHost},
+        context_instance=RequestContext(request))
+
 

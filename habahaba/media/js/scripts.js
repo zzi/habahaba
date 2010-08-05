@@ -13613,7 +13613,7 @@ Last revision : 24/03/10
 					position: "bottom center",
 					offset: [10, -85],
 					effect: "fade",
-					opacity: 0.7,
+				//	opacity: 0.7,
 					tip: '#home .tooltip'
 				});
 			});

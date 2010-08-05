@@ -17,6 +17,13 @@ Last revision: 17/07/10
 	background-repeat: repeat-x;
 }
 
+
+.thumbs-images {
+	background-image: url(../img/sprites/thumbs.png);
+	background-repeat: no-repeat;
+}
+	
+
 .home-images {
 	background-image: url(../img/sprites/home.png);
 	background-repeat: no-repeat;

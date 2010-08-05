@@ -1,10 +1,10 @@
 {% load i18n %}
 {% load staticmedia %}
 
-	<!-- BEGIN HOMEPAGE -->
-	<div id="home" class="showable">
+    <!-- BEGIN HOMEPAGE -->
 		<!-- the tooltip to help the user completing forms -->
 		<div class="tooltip"></div>
+	<div id="home" class="showable">
 		
 
 		<!-- HOMEPAGE TOPBAR -->
@@ -19,8 +19,8 @@
 				<div class="right loginer homediv" style="display: block;">
 					<form id="ajax-l-form" name="loginForm" onsubmit="return doLogin();" action="#">
 						<p class="maintitle">{% trans "Connection" %}</p>
-						<p class="lnick" style="color: #959595; font-size: 16px;"><span class="jtitle1">{% trans "My address :" %}</span><input class="nick resetable" id='lnick' type="text" title="Enter your Jabber ID" /><span class="jaro">@</span><input class="server resetable" type="text" value="im.jappix.com"/>
-						<p style="color: #959595; font-size: 16px;"><span class="jtitle2">{% trans "My password :" %}</span><input class="password resetable" type="password" id='lpassword' name="lpassword" title="Enter your password" /><input class="submit" type="submit" name="l-submit" value="Go !" title="Let's go !" /></p>
+						<p class="lnick" style="color: #959595; font-size: 16px;"><span class="jtitle1">{% trans "My address :" %}</span><input class="jadd nick resetable" id='lnick' type="text" title="Enter your Jabber ID" /><span class="jaro">@</span><input class="jadd server resetable" type="text" value="im.jappix.com" title="Your server" />
+						<p style="color: #959595; font-size: 16px;"><span class="jtitle2">{% trans "My password :" %}</span><input class="jpwd password resetable" type="password" id='lpassword' name="lpassword" title="Enter your password" /><input class="jgo submit submit-button" type="submit" name="l-submit" value="Go !" </p>
 					</form>
 				</div>
 			</div>
