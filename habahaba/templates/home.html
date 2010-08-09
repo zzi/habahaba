@@ -19,7 +19,7 @@
 				<div class="right loginer homediv" style="display: block;">
 					<form id="ajax-l-form" name="loginForm" onsubmit="return doLogin();" action="#">
 						<p class="maintitle">{% trans "Connection" %}</p>
-						<p class="lnick" style="color: #959595; font-size: 16px;"><span class="jtitle1">{% trans "My address :" %}</span><input class="jadd nick resetable" id='lnick' type="text" title="Enter your Jabber ID" /><span class="jaro">@</span><input class="jadd server resetable" type="text" value="im.jappix.com" title="Your server" />
+						<p class="lnick" style="color: #959595; font-size: 16px;"><span class="jtitle1">{% trans "My address :" %}</span><input class="jadd nick resetable" id='lnick' type="text" title="Enter your Jabber ID" /><span class="jaro">@</span><input class="jadd server resetable" type="text" value="im.jappix.com" title="Enter the server you're using" />
 						<p style="color: #959595; font-size: 16px;"><span class="jtitle2">{% trans "My password :" %}</span><input class="jpwd password resetable" type="password" id='lpassword' name="lpassword" title="Enter your password" /><input class="jgo submit submit-button" type="submit" name="l-submit" value="Go !" </p>
 					</form>
 				</div>
@@ -54,7 +54,7 @@
 
 							<div class="register">
 								<p style="color: #959595; font-size: 20px; margin-bottom: 5px;">{% trans "Server" %}</p>
-    							<input class="server resetable" type="text" value="im.jappix.com"/>	
+    							<input class="server resetable" type="text" value="im.jappix.com" title="You can keep the default server or use your own one" />	
 							</div>
                         </div>
 
@@ -161,19 +161,22 @@
             
             <!-- HOMEPAGE MAIN BOTTOM -->
 			<div id="rightbar-thumbs">
-				<a class="prevPage browse left"></a>
+				<a class="prev browse left"></a>
 				<div class="scrollable">
 					<div class="items">
-						<a href="{% mediaurl "img/scr/img1.png" %}" class="thumb thumbs-images e1" title="A groupchat in a MUC room"></a>
-						<a href="{% mediaurl "img/scr/img2.png" %}" class="thumb thumbs-images e2" title="The new chat page"></a>
-						<a href="{% mediaurl "img/scr/img3.png" %}" class="thumb thumbs-images e3" title="An integrated video viewing"></a>
-						<a href="{% mediaurl "img/scr/img4.png" %}" class="thumb thumbs-images e4" title="The server services discovery"></a>
-						<a href="{% mediaurl "img/scr/img5.png" %}" class="thumb thumbs-images e5" title="The users directory"></a>
-						<a href="{% mediaurl "img/scr/img6.png" %}" class="thumb thumbs-images e6" title="The users profile editor"></a>
-						<div class="thumb"></div>
+					    <div>
+						    <a href="{% mediaurl "img/scr/img1.png" %}" class="thumb thumbs-images e1" title="A groupchat in a MUC room"></a>
+						    <a href="{% mediaurl "img/scr/img2.png" %}" class="thumb thumbs-images e2" title="The new chat page"></a>
+						</div>
+						<div>
+						    <a href="{% mediaurl "img/scr/img3.png" %}" class="thumb thumbs-images e3" title="An integrated video viewing"></a>
+						    <a href="{% mediaurl "img/scr/img4.png" %}" class="thumb thumbs-images e4" title="The server services discovery"></a>
+						    <a href="{% mediaurl "img/scr/img5.png" %}" class="thumb thumbs-images e5" title="The users directory"></a>
+						    <a href="{% mediaurl "img/scr/img6.png" %}" class="thumb thumbs-images e6" title="The users profile editor"></a>
+						</div>
 					</div>
 				</div>
-				<a class="nextPage browse right"></a>
+				<a class="next browse right"></a>
 			</div>
 			<!-- END HOMEPAGE MAIN BOTTOM -->
 
