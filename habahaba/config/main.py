@@ -1,3 +1,5 @@
+from staticmedia import get_mount_points
+
 # SERVICE_NAME
 SERVICE_NAME = 'Jappix'
 

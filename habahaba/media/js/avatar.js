@@ -127,7 +127,7 @@ function displayAvatar(hash, type, binval) {
 	if(type != 'none' && binval != 'none')
 		code += 'data:' + type + ';base64,' + binval;
 	else
-		code += './img/others/default-avatar.png';
+		code += '../img/others/default-avatar.png';
 	
 	code += '" alt="" /></div>';
 	

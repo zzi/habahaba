@@ -40,7 +40,7 @@
 					position: "center right",
 					offset: [0, 15],
 					effect: "fade",
-					opacity: 0.7,
+					opacity: 0.7
 				});
 			});
 			
@@ -60,7 +60,7 @@
 					position: "bottom center",
 					offset: [10, -85],
 					effect: "fade",
-					opacity: 0.7,
+					opacity: 0.7
 				});
 			});
 

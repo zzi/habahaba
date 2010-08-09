@@ -55,9 +55,6 @@ function showAdvanced() {
 // Changes the title of the document
 function pageTitle(title) {
 	// We change the title of the page so that it will give the user's JID when he's logged in
-	/*@cc_on
-	     return;
-	 @*/
 	switch(title) {
 		case "home":
 			$('title').html($('#data .titles .home').val());

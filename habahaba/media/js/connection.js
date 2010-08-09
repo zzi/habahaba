@@ -158,21 +158,16 @@ function doLogin() {
 function handleConnected() {
 	// We hide the home page
 	$('#home, #general-wait').hide();
-	
 	// We show the chatting app.
 	$('#talk').show();
 	switchChan('channel');
-	
 	// We reset the homepage
 	switchHome('default');
-	
 	// We put a special class on our avatar
 	var jid = getJID();
 	$('.channel-header').attr('class', 'showable channel-header mixed ' + hex_md5(jid));
-	
 	// We change the title of the page
 	pageTitle('talk');
-	
 	// We get all the other things
 	getEverything();
 }
