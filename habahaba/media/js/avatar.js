@@ -121,16 +121,18 @@ function resetAvatar(jid, hash) {
 function displayAvatar(hash, type, binval) {
 	// Define the path to replace
 	var replacement = hash + " .avatar-container";
+    // var replacement = "avatar-container";
 	var code = '<div class="avatar-container"><img class="avatar removable" src="';
 	
 	// If the avatar exists
 	if(type != 'none' && binval != 'none')
 		code += 'data:' + type + ';base64,' + binval;
 	else
-		code += '../img/others/default-avatar.png';
-	
+		code += $('.system .media-alias').val() + '/img/others/default-avatar.png';
+
 	code += '" alt="" /></div>';
 	
 	// Replace with the new avatar (in the roster and in the chat)
 	$('.' + replacement + ', #' + replacement).replaceWith(code);
+	// $('.' + replacement).replaceWith(code);
 }

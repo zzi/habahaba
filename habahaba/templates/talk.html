@@ -91,15 +91,6 @@
 								<div class="one-buddy-conf">
 									<a class="add buddy-list-icon talk-images" title="{% trans "Add a friend..." %}"></a>
 									
-									<div id="buddy-conf-add" class="buddy-conf-item bubble hidable">
-										<div class="buddy-conf-subarrow talk-images"></div>
-										
-										<div class="buddy-conf-subitem">
-											<p class="buddy-conf-p" style="margin-bottom: 0;">{% trans "Add a friend..." %}</p>
-											<p class="buddy-conf-close">X</p>
-											<input type="text" class="buddy-conf-input add-contact-jid resetable" />
-										</div>
-									</div>
 								</div>
 								
 								<div class="one-buddy-conf">
@@ -588,3 +579,11 @@
 		</div>
 	</div>
 	<!-- END TALKPAGE -->
+
+    <div id="buddy-conf-add" class="buddy-conf-add buddy-conf-item bubble hidable">
+	    <div class="buddy-conf-subarrow talk-images"></div>
+	    <div class="buddy-conf-subitem">
+	    <p class="buddy-conf-p" style="margin-bottom: 0;">{% trans "Add a friend..." %}</p>
+		<p class="buddy-conf-close">X</p>
+		<input type="text" class="buddy-conf-input add-contact-jid resetable" />
+	</div>

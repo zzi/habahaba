@@ -1,4 +1,5 @@
 from staticmedia import get_mount_points
+from django.conf import settings
 
 # SERVICE_NAME
 SERVICE_NAME = 'Jappix'
@@ -26,3 +27,8 @@ ANONYMOUS_ENABLED = 'off'
 
 # DISABLE THE CACHING WITH THE DEVELOPER MODE (on/off)
 DEVELOPER_MODE = 'off'
+
+# MEDIA ALIAS FOR USING IN JAVASCRIPT
+if not settings.STATICMEDIA_MOUNTS:
+    MEDIA_ALIAS = get_mount_points()[0][0] #'/appmedia/habahaba'
+
