@@ -1,11 +1,5 @@
-import config
-from funcs import globals_from_module
+from django.conf import settings
 
 def config_processor(request):
-    hosts_dict = globals_from_module(config.hosts)
-    main_dict = globals_from_module(config.main)
-    hosts_dict.update(main_dict)
-    return hosts_dict
+    return { 'settings': settings }
 
-if __name__ == '__main__':
-    print(config_processor(None))

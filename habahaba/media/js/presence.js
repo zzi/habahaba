@@ -127,7 +127,8 @@ function displayMucPresence(from, roomHash, hash, show, status, affiliation, rol
 			'<div class="user ' + hash + '" onclick="openUserInfos(\'' + from + '\');">' + 
 				'<div class="name talk-images available">' + chatterNick + '</div>' + 
 				'<div class="avatar-container">' + 
-					'<img class="avatar removable" src="./img/others/default-avatar.png" alt="" />' + 
+					'<img class="avatar removable" src="' + 
+					$('.system .default-avatar').val() + '" alt="" />' + 
 				'</div>' + 
 				'<input class="userJid-' + chatterNick + '"  type="hidden" value="' + from + '" />' + 
 			'</div>'

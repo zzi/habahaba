@@ -128,7 +128,7 @@ function displayAvatar(hash, type, binval) {
 	if(type != 'none' && binval != 'none')
 		code += 'data:' + type + ';base64,' + binval;
 	else
-		code += $('.system .media-alias').val() + '/img/others/default-avatar.png';
+		code += $('.system .default-avatar').val();
 
 	code += '" alt="" /></div>';
 	

@@ -65,6 +65,80 @@
 		</div>
 		
 		<div id="main-content">
+			<!-- the right content with all the things we need to chat -->
+				<div id="right-content">
+					<div id="chat-engine">
+						<div class="title container-title">
+							{% trans "Your conversations" %}
+						</div>
+						
+						<div id="channel" class="showable chat-engine-chan">
+							<div class="showable channel-header mixed">
+								<div class="avatar-container">
+								</div>
+								
+								<div class="update">
+									<p>{% trans "What's up with you?" %}</p>
+									
+									<form action="#" method="post" onsubmit="return sendMicroblog(this);">
+										<input class="resetable" type="text" name="body" maxlength="140" disabled="disabled" />
+										<input class="resetable" type="hidden" name="attachedname" />
+										<input class="resetable" type="hidden" name="attachedurl" />
+										<input class="resetable" type="hidden" name="attachedtype" />
+										<input class="resetable" type="hidden" name="attachedext" />
+										
+										<div class="one-microblog-icon">
+											<a onclick="bubbleMicroblog('attach', 'show');" title="{% trans "Attach a file..." %}" class="postit attach talk-images showable"></a>
+											<a onclick="unattachMicroblog();" title="{% trans "Unattach the file..." %}" class="postit unattach talk-images hidable"></a>
+											
+											<div id="attach" class="bubble hidable">
+												<div class="attach-subarrow talk-images"></div>
+												
+												<div class="attach-subitem">
+													<p class="attach-p">{% trans "Attach a file..." %}</p>
+													<p class="attach-close" onclick="bubbleMicroblog('attach', 'hide');">X</p>
+													<input type="file" class="resetable" id="microblog-attach" onchange="attachMicroblog()" />
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							
+							<div class="showable channel-content mixed">
+							</div>
+							
+							<div class="channel-footer">
+								<div class="sync hidable talk-images">
+									{% trans "You are synchronized with your network." %}
+								</div>
+								
+								<div class="unsync hidable talk-images">
+									{% trans "Cannot send anything: you can only receive notices!" %}
+								</div>
+								
+								<div class="fetch showable wait-lilliput">
+									{% trans "Fetching the social channel..." %}
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div id="chat-switch">
+						<div class="title container-title">{% trans "Opened chats" %}</div>
+						<div class="content">
+							<div class="channels">
+							</div>
+							
+							<div class="channel switcher activechan" onclick="switchChan('channel');">
+								<div class="icon talk-images"></div>
+								<div class="name">
+									<a>{% trans "Social channel" %}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
 			<!-- the left sidebar with buddies and my-infos -->
 				<div id="left-content">
 					<div id="buddy-list">
@@ -91,6 +165,14 @@
 								<div class="one-buddy-conf">
 									<a class="add buddy-list-icon talk-images" title="{% trans "Add a friend..." %}"></a>
 									
+                                    <div id="buddy-conf-add" class="buddy-conf-add buddy-conf-item bubble hidable">
+                            	        <div class="buddy-conf-subarrow talk-images"></div>
+                            	        <div class="buddy-conf-subitem">
+                                    	    <p class="buddy-conf-p" style="margin-bottom: 0;">{% trans "Add a friend..." %}</p>
+                                	    	<p class="buddy-conf-close">X</p>
+                                		    <input type="text" class="buddy-conf-input add-contact-jid resetable" />
+                                		</div>
+                                	</div>
 								</div>
 								
 								<div class="one-buddy-conf">
@@ -502,88 +584,7 @@
 					</div>
 				</div>
 			
-			<!-- the right content with all the things we need to chat -->
-				<div id="right-content">
-					<div id="chat-engine">
-						<div class="title container-title">
-							{% trans "Your conversations" %}
-						</div>
-						
-						<div id="channel" class="showable chat-engine-chan">
-							<div class="showable channel-header mixed">
-								<div class="avatar-container">
-								</div>
-								
-								<div class="update">
-									<p>{% trans "What's up with you?" %}</p>
-									
-									<form action="#" method="post" onsubmit="return sendMicroblog(this);">
-										<input class="resetable" type="text" name="body" maxlength="140" disabled="disabled" />
-										<input class="resetable" type="hidden" name="attachedname" />
-										<input class="resetable" type="hidden" name="attachedurl" />
-										<input class="resetable" type="hidden" name="attachedtype" />
-										<input class="resetable" type="hidden" name="attachedext" />
-										
-										<div class="one-microblog-icon">
-											<a onclick="bubbleMicroblog('attach', 'show');" title="{% trans "Attach a file..." %}" class="postit attach talk-images showable"></a>
-											<a onclick="unattachMicroblog();" title="{% trans "Unattach the file..." %}" class="postit unattach talk-images hidable"></a>
-											
-											<div id="attach" class="bubble hidable">
-												<div class="attach-subarrow talk-images"></div>
-												
-												<div class="attach-subitem">
-													<p class="attach-p">{% trans "Attach a file..." %}</p>
-													<p class="attach-close" onclick="bubbleMicroblog('attach', 'hide');">X</p>
-													<input type="file" class="resetable" id="microblog-attach" onchange="attachMicroblog()" />
-												</div>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-							
-							<div class="showable channel-content mixed">
-							</div>
-							
-							<div class="channel-footer">
-								<div class="sync hidable talk-images">
-									{% trans "You are synchronized with your network." %}
-								</div>
-								
-								<div class="unsync hidable talk-images">
-									{% trans "Cannot send anything: you can only receive notices!" %}
-								</div>
-								
-								<div class="fetch showable wait-lilliput">
-									{% trans "Fetching the social channel..." %}
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div id="chat-switch">
-						<div class="title container-title">{% trans "Opened chats" %}</div>
-						<div class="content">
-							<div class="channels">
-							</div>
-							
-							<div class="channel switcher activechan" onclick="switchChan('channel');">
-								<div class="icon talk-images"></div>
-								<div class="name">
-									<a>{% trans "Social channel" %}</a>
-								</div>
-							</div>
-						</div>
-					</div>
-			</div>
 		</div>
 	</div>
 	<!-- END TALKPAGE -->
 
-    <div id="buddy-conf-add" class="buddy-conf-add buddy-conf-item bubble hidable">
-	    <div class="buddy-conf-subarrow talk-images"></div>
-	    <div class="buddy-conf-subitem">
-	    <p class="buddy-conf-p" style="margin-bottom: 0;">{% trans "Add a friend..." %}</p>
-		<p class="buddy-conf-close">X</p>
-		<input type="text" class="buddy-conf-input add-contact-jid resetable" />
-	</div>

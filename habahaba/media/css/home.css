@@ -389,14 +389,20 @@
 				margin: 12px 25px 5px 12px;
 			}
 			
-			#rightbar-text .whatsjappix {
+			#rightbar-text .quickconnect {
 				background: url(../img/sprites/home.png) 0 -172px no-repeat;
 				width: 250px;
 				height: 150px;
 				float: left;
 				margin: 5px 15px 5px 15px;
 			}
-			
+
+			#rightbar-text .quickconnect .anonimous-jid {
+				background: url(../img/sprites/home.png) 0 -172px no-repeat;
+				margin: 15px;
+			}
+
+
 			#rightbar-text .advantages {
 				background: url(../img/sprites/home_advantages.png) no-repeat;
 			}
@@ -636,7 +642,7 @@
 		background-color: #000;
 		border: 1px solid #fff;
 		padding: 10px 15px;
-		width: 200px;
+		width: 205px;
 		display: none;
 		color: #fff;
 		z-index: 10000;

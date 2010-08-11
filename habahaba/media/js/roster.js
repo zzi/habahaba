@@ -145,7 +145,8 @@ function displayRoster(dJID, dJIDHash, dName, dSubscription, dGroup, dMode) {
 				'<div class="hidden-buddy buddy ' + dJIDHash + gateway + '">' + 
 					'<div class="buddy-click" onclick="checkChatCreate(\'' + dJID + '\', \'chat\');">' + 
 						'<div class="avatar-container">' + 
-							'<img class="avatar" src="./img/others/default-avatar.png" alt="" />' + 
+							'<img class="avatar" src="' + 
+							$('.system .default-avatar').val() + '" alt="" />' + 
 						'</div>' + 
 						
 						'<div class="name">' + 

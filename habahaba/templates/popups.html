@@ -277,7 +277,7 @@
 								
 								<div class="fedit-line">
 									<div class="fedit-text">{% trans "Server" %}:</div>
-									<input class="fedit-input fedit-server fedit-required" type="text" value="{{  HOST_MUC }}" />
+									<input class="fedit-input fedit-server fedit-required" type="text" value="{{ settings.HOST_MUC }}" />
 								</div>
 								
 								<div class="fedit-line">
@@ -296,7 +296,7 @@
 						<div class="favorites-search favorites-content">
 							<div class="head fsearch-head static-fav-head">
 								<div class="head-text fsearch-head-text">{% trans "Search a room on" %}:</div>
-								<input type="text" class="head-input fsearch-head-server" value="{{  HOST_MUC }}" />
+								<input type="text" class="head-input fsearch-head-server" value="{{ settings.HOST_MUC }}" />
 							</div>
 							
 							<div class="results fsearch-results static-fav-results">
@@ -326,7 +326,7 @@
 				<div class="content">
 					<div class="discovery-head">
 						<div class="disco-server-text">{% trans "Server to query" %}</div>
-						<input name="disco-server-input" class="disco-server-input resetable" value="{{  HOST_MAIN }}" />
+						<input name="disco-server-input" class="disco-server-input resetable" value="{{ settings.HOST_MAIN }}" />
 					</div>
 					
 					<div class="results discovery-results">

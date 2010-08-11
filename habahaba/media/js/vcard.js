@@ -190,7 +190,8 @@ function handleVCard(iq, type) {
 	}
 	
 	else if(type == 'buddy')
-		$(aContainer).replaceWith('<div class="avatar-container"><img class="avatar removable" src="./img/others/default-avatar.png" alt="" /></div>');
+		$(aContainer).replaceWith('<div class="avatar-container"><img class="avatar removable" src="' + 
+		$('.system .default-avatar') + '" alt="" /></div>');
 	
 	// Do someting depending of the type
 	if(type == 'user')

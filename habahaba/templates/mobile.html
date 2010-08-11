@@ -6,8 +6,8 @@
 	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
 	<title>{% trans "Jappix Mobile" %}</title>
 	<link rel="shortcut icon" href="./favicon.ico" />
-	<link rel="stylesheet" href="{{ HOST_STATIC }}/php/get.php?h={{ hash }}&amp;t=css&amp;f=mobile.css~images.css" type="text/css" media="all" />
-	<script type="text/javascript" src="{{ HOST_STATIC }}/php/get.php?h={{ hash }}&amp;t=js&amp;f=jsjac.js~constants.js~mobile.js"></script>
+	<link rel="stylesheet" href="{{ settings.HOST_STATIC }}/php/get.php?h={{ settings.hash }}&amp;t=css&amp;f=mobile.css~images.css" type="text/css" media="all" />
+	<script type="text/javascript" src="{{ settings.HOST_STATIC }}/php/get.php?h={{ settings.hash }}&amp;t=js&amp;f=jsjac.js~constants.js~mobile.js"></script>
 </head>
 
 <body>
@@ -40,7 +40,7 @@
 			</form>
 		</div>
 		
-		<a href="./?m=desktop{{ keepGet('m') }}">{% trans 'Desktop' %}</a>
+		<a href="./?m=desktop{{ settings.keepGet('m') }}">{% trans 'Desktop' %}</a>
 	</div>
 	
 	<div id="talk">
@@ -62,13 +62,13 @@
 	</div>
 	
 	<div id="storage">
-		<input type="hidden" id="http-base" value="{{ HTTP_BASE }}" />
-		<input type="hidden" id="version" value="{{ version }}" />
-		<input type="hidden" id="resource" value="{{ JAPPIX_RESOURCE }}" />
+		<input type="hidden" id="http-base" value="{{ settings.HTTP_BASE }}" />
+		<input type="hidden" id="version" value="{{ settings.version }}" />
+		<input type="hidden" id="resource" value="{{ settings.JAPPIX_RESOURCE }}" />
 		<input type="hidden" id="me" value="{% trans 'Me' %}" />
 	</div>
 </body>
 
 </html>
 
-<!-- Jappix Mobile {{ version }} - An Open μSocial Platform -->
+<!-- Jappix Mobile {{ settings.version }} - An Open μSocial Platform -->

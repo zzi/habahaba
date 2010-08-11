@@ -63,7 +63,8 @@ function displayMicroblog(packet, from, hash, mode) {
 		// Display the received message
 		var html = '<div class="one-update removable ' + hash + ' ' + tHash + '">' + 
 				'<div class="avatar-container">' + 
-					'<img class="avatar removable" src="./img/others/default-avatar.png" alt="" />' + 
+					'<img class="avatar removable" src="' + 
+					$('.system .default-avatar').val() + '" alt="" />' + 
 				'</div>' + 
 				
 				'<div class="body">' + 

@@ -19,8 +19,8 @@
 				<div class="right loginer homediv">
 					<form id="ajax-l-form" name="loginForm" onsubmit="return doLogin();" action="#">
 						<p class="maintitle">{% trans "Connection" %}</p>
-						<p class="lnick" style="color: #959595; font-size: 16px;"><span class="jtitle1">{% trans "My address :" %}</span><input class="jadd nick resetable" id='lnick' type="text" title="Enter your Jabber ID" /><span class="jaro">@</span><input class="jadd server resetable" type="text" value="{{ HOST_MAIN }}" title="Enter the server you're using" />
-						<p style="color: #959595; font-size: 16px;"><span class="jtitle2">{% trans "My password :" %}</span><input class="jpwd password resetable" type="password" id='lpassword' name="lpassword" title="Enter your password" /><input class="jgo submit submit-button" type="submit" name="l-submit" value="Go !" </p>
+						<p class="lnick" style="color: #959595; font-size: 16px;"><span class="jtitle1">{% trans "My address :" %}</span><input class="jadd nick resetable" id='lnick' type="text" title="{% trans "Enter your Jabber ID" %}" /><span class="jaro">@</span><input class="jadd server resetable" type="text" value="{{ settings.HOST_MAIN }}" title="{% trans 'Enter your server' %}" />
+						<p style="color: #959595; font-size: 16px;"><span class="jtitle2">{% trans "My password :" %}</span><input class="jpwd password resetable" type="password" id='lpassword' name="lpassword" title="{% trans "Enter your password" %}" /><input class="jgo submit submit-button" type="submit" name="l-submit" value="{% trans "Go !" %}" </p>
 					</form>
 				</div>
 			</div>
@@ -54,7 +54,7 @@
 
 							<div class="register">
 								<p style="color: #959595; font-size: 20px; margin-bottom: 5px;">{% trans "Server" %}</p>
-    							<input class="register-input server resetable" type="text" value="{{ HOST_MAIN }}" title="You can keep the default server or use your own one" />	
+    							<input class="register-input server resetable" type="text" value="{{ settings.HOST_MAIN }}" title="You can keep the default server or use your own one" />	
 							</div>
                         </div>
 
@@ -73,7 +73,7 @@
 
                         <div style="padding-top: 15px; font-size: 0.9em; border-top: 1px solid #c8c8c8;">
                             <div style="float: right;">
-                                <input class="submit" type="submit" id="submit" name="r-submit" value="Continuer &raquo;" title="And we finish your registering ☺" class="submit-button send" />
+                                <input class="submit submit-button" type="submit" id="submit" name="r-submit" value="{% trans "Continue &raquo;" %}" title="And we finish your registering ☺" class="submit-button send" />
 						    </div>
 								
                             <div style="display: none; float: right; margin: -2px 12px 0 0" class="register-wait wait-small"></div>
@@ -94,7 +94,7 @@
 			<div id="rightcontent">
 				<div id="rightmenu">
 					<ul>
-						<li style="margin-left: 20px;"><a class="selected whatsjappix" onclick="switchMenu('whatsjappix');">{% trans "What's Jappix ?" %}</a></li>
+						<li style="margin-left: 20px;"><a class="selected whatsjappix" onclick="switchMenu('quickconnect');">{% trans "Quick connection" %}</a></li>
 						<li style="margin-left: 10px;"><a class="advantages" onclick="switchMenu('advantages');">{% trans "The advantages" %}</a></li>
 						<li style="margin-left: 10px;"><a class="yourprivatelife" onclick="switchMenu('yourprivatelife');">{% trans "Your private life" %}</a></li>
 						<li style="margin-left: 10px;"><a class="theproject" onclick="switchMenu('theproject');">{% trans "The project" %}</a></li>
@@ -103,17 +103,22 @@
 				</div>
 
 				<div id="rightbar-text">
-					<div id="whatsjappix" class="rightbar-group">
+					<div id="quickconnect" class="rightbar-group">
 
-						<h2>{% trans "What's Jappix ?" %}</h2>
-						<p>{% trans "Jappix is a free web application that allow you to stay in touch with your friends." %}</p>
-						<div class="whatsjappix"></div>
-						<p>{% trans "Jappix, it't not only an instant messaging: thanks to Jappix, you'll do so fantastic things that you'll remember them all your life (no, no, I'm not laughing at you !)." %}</p>
-						<p>{% trans "The web's social, so enter in the revolution : communicate even further without installing anything on your computer." %}</p>
-						<p>{% trans "When you'll have an account, you'll be allowed to do things that can only be defined with verbs, certain stronger than other..." %}</p>
-						<p>{% trans "If I tell you : meet, chat, have fun, publish, share, flirt, know, laugh, learn, make friends, doesn't it attract you ? Uh ? You got it : Jappix is made for YOU!" %}</p>
-						<p>{% trans "You want to chat with your friends who are on Facebook or Google Talk ? There's no problem : Jappix can connect to your Facebook or Google Talk account ! You've just to enter chat.facebook.com or gmail.com depending of the service you use." %}</p>
-						<p>{% trans "Jappix is a part of the huge free Jabber network, on which a half billion people like you are waiting for you ! Become as talkative as your grandmother, communicate with Jappix!" %}</p>
+						<h2>{% trans "Quick connection" %}</h2>
+						<form id="anonimous-form" name="anonimousForm" onsubmit="return doLogin();" action="#">
+						    <div class="anonimous-jid">
+                                <p>{% trans "JID or pseudonym" %}</p>
+                                <input class="anonimous-jid-input" type="text" title="{% trans "Enter JID you want to send message to" %}" />
+						    </div>
+    					    <div class="anonimous-msg">
+	                            <p>{% trans "Text:" %}</p>
+                                <textarea rows="10" cols="50" class="anonimous-msg-input" title="{% trans "Enter your message" %}"></textarea>
+						    </div>
+						    <div>
+						        <input class="submit submit-button" type="submit" value="{% trans "Continue &raquo;" %}">
+						    </div>
+						</form>
 					</div>
 
 				<div id="advantages" class="rightbar-group">
