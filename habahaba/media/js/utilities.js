@@ -233,7 +233,7 @@ function processCaps() {
 // Gets the full JID of the user
 function getJID() {
 	// Return the JID of the user
-	return con.username + "@" + con.domain;
+	return con.jid;
 }
 
 // Gets the nickname of the user

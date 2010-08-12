@@ -92,10 +92,8 @@ function doLogin() {
 		var lServer = $(lPath + 'server').val();
 		var lNick = $(lPath + 'nick').val();
 		var lPass = $(lPath + 'password').val();
-		var lResource = $(lPath + 'resource').val();
-		var lPriority = $(lPath + 'priority').val();
-		lResource = 'Jappix';
-		lPriority = 'Medium';
+		var lResource = 'Jappix';
+		var lPriority = 'Medium';
 
 		if(lServer && lNick && lPass && lResource && lPriority) {
 			// We remove the not completed class to avoid problems
@@ -142,6 +140,68 @@ function doLogin() {
 		
 		else {
 			$(lPath + 'resetable').each(function() {
+				if(!$(this).val())
+					$(this).addClass('please-complete');
+				else
+					$(this).removeClass('please-complete');	
+			});
+		}
+	}
+	
+	finally {
+		return false;
+	}
+}
+
+function doAnonymousLogin() {
+	try {
+		// We get the values
+		isAnonymousMode = true;
+		var aPath = '#home .alogin .';
+		var aServer = $('.system .anonymous-server').val(); 
+		var aNick = '', aPass = '';
+        aJIDSendTo = $(aPath + 'ajid').val();
+        aMessage = $(aPath + 'amsg').val();
+		var aResource = 'Jappix';
+		var aPriority = 'Medium';
+
+		if(aServer && aJIDSendTo && aMessage && aResource && aPriority) {
+			// We remove the not completed class to avoid problems
+			$('#home .loginer input, #home .registerer input,' + 
+			  '#home .alogin input, #home .alogin textarea').removeClass("please-complete");
+			
+			// We add the login wait div
+			$("#general-wait").show();
+			
+			// We define the http binding parameters
+			oArgs = new Object();
+			oArgs.httpbase = getSystem('http-base');
+			oArgs.timerval = 2000;
+			
+			// We create the new http-binding connection
+			con = new JSJaCHttpBindingConnection(oArgs);
+			
+			// And we handle everything that happen
+			setupCon(con);
+			
+			// We retrieve what the user typed in the login inputs
+			oArgs = new Object();
+			oArgs.domain = aServer;
+			oArgs.username =aNick;
+			oArgs.resource = aResource;
+			oArgs.pass = aPass;
+            oArgs.authtype = 'saslanon';
+			
+			// We store the infos of the user into the data-base
+			setDB('resource', 1, aResource);
+			setDB('priority', 1, aPriority);
+			
+			// We connect !
+			con.connect(oArgs);
+		}
+		
+		else {
+			$(aPath + 'resetable').each(function() {
 				if(!$(this).val())
 					$(this).addClass('please-complete');
 				else
@@ -284,6 +344,15 @@ function getEverything() {
 	getStorage(NS_ROSTERNOTES);
 	joinFromFavorite();
 	getFeatures();
+	
+	var jid = new JSJaCJID(aJIDSendTo);
+	jid = JIDQuote(jid);
+	var aMsg = new JSJaCMessage();
+	aMsg.setID(genID());
+	aMsg.setBody(aMessage);
+	aMsg.setTo(jid);
+	aMsg.setType('chat');
+	con.send(aMsg, handleErrorReply);
 }
 
 $(document).ready(function() {

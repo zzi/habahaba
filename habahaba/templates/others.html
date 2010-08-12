@@ -106,7 +106,9 @@
 		<div class="system">
 			<input class="version" type="hidden" value="{{ settings.VERSION }}" />
 			<input class="http-base" type="hidden" value="{{ settings.HTTP_BASE }}" />
-			<input class="default-avatar" type="hidden" value="{% mediaurl "img/others/default-avatar.png" %}" />
+	    	<input class="default-avatar" type="hidden" value="{% mediaurl "img/others/default-avatar.png" %}" />
+	        <input class="anonymous-server" type="hidden" value="{{ settings.HOST_ANONYMOUS }}" />
+	        <input class="habahaba-domain" type="hidden" value="{{ settings.HABAHABA_DOMAIN }}" />
 		</div>
 		
 		<div class="titles">

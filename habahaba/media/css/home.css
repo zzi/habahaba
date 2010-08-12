@@ -97,6 +97,18 @@
 		-moz-border-radius: 4px;
 		-webkit-border-radius: 4px;
 	}
+		
+	#home textarea {
+		background: #ffffff url(../img/sprites/home.png) -276px -804px no-repeat;
+		border: 1px solid #c0c0c0;
+		color: #686868;
+		padding: 0 2px 2px 2px;
+		font-size: 13px;
+		cursor: text;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+	}
 	
 	#home input:hover, select:hover {
 		border: 1px solid #a3a3a3;
@@ -396,17 +408,26 @@
 				float: left;
 				margin: 5px 15px 5px 15px;
 			}
-
-			#rightbar-text .quickconnect .anonimous-jid {
-				background: url(../img/sprites/home.png) 0 -172px no-repeat;
-				margin: 15px;
-			}
-
-
-			#rightbar-text .advantages {
-				background: url(../img/sprites/home_advantages.png) no-repeat;
+			
+			#rightbar-text .rightbar-group input, textarea {
+				background: #ffffff url(../img/sprites/home.png) -276px -804px no-repeat;
+				border: 1px solid #c0c0c0;
+				padding: 2px;
+				cursor: text;
 			}
 			
+			#rightbar-text .rightbar-group input:hover {
+				border: 1px solid #a3a3a3;
+			}
+				
+			#rightbar-text .rightbar-group textarea:hover {
+				border: 1px solid #a3a3a3;
+			}
+			
+			#rightbar-text .send:hover {
+				cursor: pointer;
+			}
+
 			#rightbar-text .yourprivatelife {
 				background: url(../img/sprites/home_yourprivatelife.png) no-repeat;
 			}
