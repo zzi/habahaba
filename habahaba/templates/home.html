@@ -104,7 +104,6 @@
 
 				<div id="rightbar-text">
 					<div id="quickconnect" class="rightbar-group alogin">
-
 						<h2>{% trans "Quick connection" %}</h2>
 						<form id="anonimous-form" name="anonimousForm" onsubmit="return doAnonymousLogin();" action="#">
 						    <div style="margin-top: 20px">
@@ -113,54 +112,57 @@
 						    </div>
     					    <div style="margin-top: 20px">
 	                            <p>{% trans "Text:" %}</p>
-                                <textarea rows="7" cols="90" class="resetable amsg" title="{% trans "Enter your message" %}"></textarea>
+                                <textarea rows="8" cols="55" class="resetable amsg" title="{% trans "Enter your message" %}"></textarea>
 						    </div>
 						    <div style="margin-top: 20px">
 						        <input id="a-submit" class="submit submit-button send" type="submit" name="a-submit" value="{% trans "Continue &raquo;" %}">
 						    </div>
 						</form>
+					    <div class="alogin-about">
+					        <p>{% trans "Blablabla" %}</p>
+					    </div>
 					</div>
 
-				<div id="advantages" class="rightbar-group">
-					<h2>{% trans "The advantages" %}</h2>
-					<p>{% trans "But what can make Jappix so fantastic? We believe that it's the first thing you ask yourself when you see it. Here are the explaination :" %}</p>
-    				<div class="advantages rb-image"></div>
-					<p>{% trans "&bull; Jappix's using the Jabber network, and it has the capability to interact with every Jabber server in the world. But what are the advantages you've go to use this protocol and not another one ? Let's take the e-mail as an example : two people (called 1 and 2) and two servers (called A and B) are trying to communicate, with 1 at A and 2 at B. Because the e-mail protocols are standards, the A and B servers can interact and understand themselves, so that 1 and 2 can send messages. It's exactly the same for XMPP : feel free to use the server that you want to, located in the country that you want. You can use your own server too !" %}</p>
-					<p>{% trans "&bull; Jappix is <b>reacheable from everywhere</b>. You've got a proxy at work that blocks the 5222 socket, used by the Jabber clients ? That's nothing, thanks to Jappix, you'll be able to use your Jabber account everywhere you are, because it's our server that will connect to your Jabber account and transmitt the data on the 80 socket, used by all the web browsers. It will always work if the Jappix website is not blocked !" %}</p>
-					<p>{% trans "&bull; Jappix allow you to <b>connect to your Google Talk</b> (or Gmail) account. Just enter your <b>Gmail logins</b> followed by the <b>server gmail.com</b> after the arobase. But it's not all : <b>Facebook is supported</b> ! For further informations, have a look to the official help page" %}</p>
-				</div>
+				    <div id="advantages" class="rightbar-group">
+    					<h2>{% trans "The advantages" %}</h2>
+	    				<p>{% trans "But what can make Jappix so fantastic? We believe that it's the first thing you ask yourself when you see it. Here are the explaination :" %}</p>
+    	        		<div class="advantages rb-image"></div>
+				    	<p>{% trans "&bull; Jappix's using the Jabber network, and it has the capability to interact with every Jabber server in the world. But what are the advantages you've go to use this protocol and not another one ? Let's take the e-mail as an example : two people (called 1 and 2) and two servers (called A and B) are trying to communicate, with 1 at A and 2 at B. Because the e-mail protocols are standards, the A and B servers can interact and understand themselves, so that 1 and 2 can send messages. It's exactly the same for XMPP : feel free to use the server that you want to, located in the country that you want. You can use your own server too !" %}</p>
+					    <p>{% trans "&bull; Jappix is <b>reacheable from everywhere</b>. You've got a proxy at work that blocks the 5222 socket, used by the Jabber clients ? That's nothing, thanks to Jappix, you'll be able to use your Jabber account everywhere you are, because it's our server that will connect to your Jabber account and transmitt the data on the 80 socket, used by all the web browsers. It will always work if the Jappix website is not blocked !" %}</p>
+					    <p>{% trans "&bull; Jappix allow you to <b>connect to your Google Talk</b> (or Gmail) account. Just enter your <b>Gmail logins</b> followed by the <b>server gmail.com</b> after the arobase. But it's not all : <b>Facebook is supported</b> ! For further informations, have a look to the official help page" %}</p>
+			    	</div>
 
-				<div id="yourprivatelife" class="rightbar-group">
-					<h2>{% trans "Your private life" %}</h2>
-					<p>{% trans "Jappix has not really a long and boring confidentiality politic. According to us, it's simple : <b><em>your private life belong to you, it doesn't interest us</em></b> !" %}</p>
-					<div class="yourprivatelife rb-image"></div>
-					<p>{% trans "But we can tell you that you are responsible from the information that you send on your Jabber account with Jappix. <b>Jappix doesn't store any information</b> that pass on its proxy between you and your Jabber server. But take care of the things you submit on your account because this data, like your complete name, your avatar, your address and so and so will be accessible to anyone out of your friend circle ! Consider it as your <b>public identity card</b> that allow people to find you." %}</p>
-					<p>{% trans "Find me, you said ?! Well, in fact Jappix has a user search engine, called the 'directory'. Thanks to this tool, someone that know your nick, your name, your locality, your e-mail will be able to <b>enter in contact with you</b>." %}</p>
-					<p><b>{% trans "The respect of your private life is our main goal, you can believe in us !" %}</b></p>
-				</div>
+    				<div id="yourprivatelife" class="rightbar-group">
+	    				<h2>{% trans "Your private life" %}</h2>
+		    			<p>{% trans "Jappix has not really a long and boring confidentiality politic. According to us, it's simple : <b><em>your private life belong to you, it doesn't interest us</em></b> !" %}</p>
+			    		<div class="yourprivatelife rb-image"></div>
+				    	<p>{% trans "But we can tell you that you are responsible from the information that you send on your Jabber account with Jappix. <b>Jappix doesn't store any information</b> that pass on its proxy between you and your Jabber server. But take care of the things you submit on your account because this data, like your complete name, your avatar, your address and so and so will be accessible to anyone out of your friend circle ! Consider it as your <b>public identity card</b> that allow people to find you." %}</p>
+					    <p>{% trans "Find me, you said ?! Well, in fact Jappix has a user search engine, called the 'directory'. Thanks to this tool, someone that know your nick, your name, your locality, your e-mail will be able to <b>enter in contact with you</b>." %}</p>
+					    <p><b>{% trans "The respect of your private life is our main goal, you can believe in us !" %}</b></p>
+			    	</div>
 							
-				<div id="theproject" class="rightbar-group">
-					<h2>{% trans "The project" %}</h2>
-					<p>{% trans "Jappix is an <b>opened project</b>, and the official platform is available in a <b>non-lucrative goal</b>, because we believe that <b>all the world goodness must be shared</b>, without the disappointing profit researching." %}</p>
-					<div class="theproject rb-image"></div>
-					<p>{% trans "By using Jappix in your everyday life, you help us <b>creating good things</b>, in the best way that is possible." %}</p>
-					<p>{% trans "At the very beginning, we got the idea of Jappix when we saw that all the Jabber web-based clients were very poor or not esthetic. With Jappix, we wish to <b>offer the world the universal Jabber client, reacheable from everywhere, by anyone</b> !" %}</p>
-					<p>{% trans "We want to work on the <b>disabled people accessibility</b> in the future to make Jappix really universal." %}</p>
-					<p>{% trans "The team behind Jappix really wishes to <b>offer the Internet community a gift</b> !" %}</p>
-				</div>
+			    	<div id="theproject" class="rightbar-group">
+			    		<h2>{% trans "The project" %}</h2>
+		    			<p>{% trans "Jappix is an <b>opened project</b>, and the official platform is available in a <b>non-lucrative goal</b>, because we believe that <b>all the world goodness must be shared</b>, without the disappointing profit researching." %}</p>
+	    				<div class="theproject rb-image"></div>
+    					<p>{% trans "By using Jappix in your everyday life, you help us <b>creating good things</b>, in the best way that is possible." %}</p>
+					    <p>{% trans "At the very beginning, we got the idea of Jappix when we saw that all the Jabber web-based clients were very poor or not esthetic. With Jappix, we wish to <b>offer the world the universal Jabber client, reacheable from everywhere, by anyone</b> !" %}</p>
+			        	<p>{% trans "We want to work on the <b>disabled people accessibility</b> in the future to make Jappix really universal." %}</p>
+		    			<p>{% trans "The team behind Jappix really wishes to <b>offer the Internet community a gift</b> !" %}</p>
+	    			</div>
 
-				<div id="abouth" class="rightbar-group">
-					<h2>{% trans "About" %}</h2>
-					<p>{% trans "Jappix was developed, at the beginning by a <b>computing, free software and Internet fan</b>. Now it's a bigger project of the PostPro association." %}</p>
-					<div class="abouth rb-image"></div>
-					<p>{% trans "Yes, we know we've got an <b>utopic vision of computing</b>, but we really do the best to release good stuffs." %}</p>
-					<p>{% trans "The Jappix source code is obviously downloadable, released under the <b>free AGPL license</b> terms. If you are a developer, a translator or a graphist, you can visit the developement panel. You can download the latest version too to install it on your own server and get more independance." %}</p>
+    				<div id="abouth" class="rightbar-group">
+					    <h2>{% trans "About" %}</h2>
+				    	<p>{% trans "Jappix was developed, at the beginning by a <b>computing, free software and Internet fan</b>. Now it's a bigger project of the PostPro association." %}</p>
+			    		<div class="abouth rb-image"></div>
+		    			<p>{% trans "Yes, we know we've got an <b>utopic vision of computing</b>, but we really do the best to release good stuffs." %}</p>
+	    				<p>{% trans "The Jappix source code is obviously downloadable, released under the <b>free AGPL license</b> terms. If you are a developer, a translator or a graphist, you can visit the developement panel. You can download the latest version too to install it on your own server and get more independance." %}</p>
 
-					<p>{% trans "The Jappix project was developed with the <b>free software philosophy</b>, so that we respect our &laquo; doctrine &raquo; when you use Jappix : <em><b>freedom, equality, fraternity</b></em>. It means that we respect your private life and <b>we do not monitor your private communications</b> on Jappix." %}</p>
-					<p>{% trans "As an information, our services are hosted in Paris, on a virtual server at Gandi's, a french company that respect our philosophy." %}</p>
-    				<p><b>{% trans "Unity is strength !" %}</b></p>
-				</div>
-	        </div>
+					    <p>{% trans "The Jappix project was developed with the <b>free software philosophy</b>, so that we respect our &laquo; doctrine &raquo; when you use Jappix : <em><b>freedom, equality, fraternity</b></em>. It means that we respect your private life and <b>we do not monitor your private communications</b> on Jappix." %}</p>
+				    	<p>{% trans "As an information, our services are hosted in Paris, on a virtual server at Gandi's, a french company that respect our philosophy." %}</p>
+    	        		<p><b>{% trans "Unity is strength !" %}</b></p>
+	    			</div>
+    	        </div>
 	        <!-- END HOMEPAGE MAIN RIGHT -->
 
             

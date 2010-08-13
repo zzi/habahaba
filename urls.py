@@ -8,7 +8,7 @@ import staticmedia
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^habahaba/', include('jabber.habahaba.urls')),
+    (r'^habahaba/', include('habahaba.urls')),
     # Example:
     # (r'^jabber/', include('jabber.foo.urls')),
 

@@ -99,7 +99,7 @@
 	}
 		
 	#home textarea {
-		background: #ffffff url(../img/sprites/home.png) -276px -804px no-repeat;
+		background: #ffffff url(../img/sprites/home.png) -276px -804px;
 		border: 1px solid #c0c0c0;
 		color: #686868;
 		padding: 0 2px 2px 2px;
@@ -400,15 +400,11 @@
 				float: left;
 				margin: 12px 25px 5px 12px;
 			}
-			
-			#rightbar-text .quickconnect {
-				background: url(../img/sprites/home.png) 0 -172px no-repeat;
-				width: 250px;
-				height: 150px;
-				float: left;
-				margin: 5px 15px 5px 15px;
-			}
-			
+		
+            #rightbar-text #quickconnect .alogin-about {
+            	float: right;
+            }
+
 			#rightbar-text .rightbar-group input, textarea {
 				background: #ffffff url(../img/sprites/home.png) -276px -804px no-repeat;
 				border: 1px solid #c0c0c0;
@@ -426,6 +422,10 @@
 			
 			#rightbar-text .send:hover {
 				cursor: pointer;
+			}
+            	          	
+           	#rightbar-text .advantages {
+				background: url(../img/sprites/home_advantages.png) no-repeat;
 			}
 
 			#rightbar-text .yourprivatelife {
