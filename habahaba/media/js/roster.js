@@ -391,6 +391,9 @@ $(document).ready(function() {
 		// Get the values
 			var jid = generateJID($('.add-contact-jid').val(), 'chat');
 			
+			if(isAnonymousMode) {
+				jid = JIDQuote(jid);
+            }
 			// Submit the form
 			addThisContact(jid);
 		}
@@ -434,7 +437,9 @@ $(document).ready(function() {
 				
 				// Generate a correct JID
 				jid = generateJID(jid, type);
-				
+				if(isAnonymousMode) {
+					jid = JIDQuote(jid);
+				}
 				// Create a new chat
 				checkChatCreate(jid, type);
 			}

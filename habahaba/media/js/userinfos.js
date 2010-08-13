@@ -28,7 +28,11 @@ function retrieveUserInfos(jid) {
 	$('#userinfos .content').addClass('vcard version time');
 	
 	// We put the user's JID
-	$('#userinfos #BUDDY-JID').text(jid);
+	$('#userinfos #BUDDY-JID').text(
+	    isAnonymousMode ?
+	    jid :
+	    JIDUnQuote(jid)
+	);
 	
 	// We get the vCard
 	getVCard(jid, 'buddy');

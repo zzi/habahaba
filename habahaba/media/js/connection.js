@@ -337,44 +337,46 @@ function normalQuit() {
 }
 
 function getEverything() {
-	getRoster();
-	getStorage(NS_OPTIONS);
-	getStorage(NS_MESSAGES);
-	getStorage(NS_BOOKMARKS);
-	getStorage(NS_ROSTERNOTES);
-	joinFromFavorite();
-	getFeatures();
-	
-	var jid = new JSJaCJID(aJIDSendTo);
-	jid = JIDQuote(jid);
-	var aMsg = new JSJaCMessage();
-	aMsg.setID(genID());
-	aMsg.setBody(aMessage);
-	aMsg.setTo(jid);
-	aMsg.setType('chat');
-	con.send(aMsg, handleErrorReply);
+    getRoster();
+    getStorage(NS_OPTIONS);
+    getStorage(NS_MESSAGES);
+    getStorage(NS_BOOKMARKS);
+    getStorage(NS_ROSTERNOTES);
+    joinFromFavorite();
+    getFeatures();
+ 
+    if(isAnonymousMode) {	
+        var jid = new JSJaCJID(aJIDSendTo);
+        jid = JIDQuote(jid);
+        var aMsg = new JSJaCMessage();
+        aMsg.setID(genID());
+        aMsg.setBody(aMessage);
+        aMsg.setTo(jid);
+        aMsg.setType('chat');
+        con.send(aMsg, handleErrorReply);
+    }
 }
 
 $(document).ready(function() {
-	// Try to resume a stored session, if not anonymous
-	if(!isAnonymous() && getPersistent('session', 'stored')) {
-		// Hide the homepage
-		$('#home').hide();
-		
-		// Show the waiting icon
-		$('#general-wait').show();
-		
-		// Apply the data to the form
-		var lPath = '#home .loginer .';
-		var lServer = $(lPath + 'server').val(getPersistent('session', 'domain'));
-		var lNick = $(lPath + 'nick').val(getPersistent('session', 'username'));
-		var lPass = $(lPath + 'password').val(getPersistent('session', 'password'));
-		var lResource = $(lPath + 'resource').val(getPersistent('session', 'resource'));
-		var lPriority = $(lPath + 'priority').val(getPersistent('session', 'priority'));
-		
-		// Fire the login event
-		doLogin();
-	}
+    // Try to resume a stored session, if not anonymous
+    if(!isAnonymous() && getPersistent('session', 'stored')) {
+        // Hide the homepage
+        $('#home').hide();
+
+        // Show the waiting icon
+        $('#general-wait').show();
+
+        // Apply the data to the form
+        var lPath = '#home .loginer .';
+        var lServer = $(lPath + 'server').val(getPersistent('session', 'domain'));
+        var lNick = $(lPath + 'nick').val(getPersistent('session', 'username'));
+        var lPass = $(lPath + 'password').val(getPersistent('session', 'password'));
+        var lResource = $(lPath + 'resource').val(getPersistent('session', 'resource'));
+        var lPriority = $(lPath + 'priority').val(getPersistent('session', 'priority'));
+
+        // Fire the login event
+        doLogin();
+    }
 });
 
 $(window).bind('beforeunload', terminate);

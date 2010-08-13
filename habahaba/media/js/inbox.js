@@ -107,6 +107,10 @@ function sendThisMessage() {
 		// Edit the JID if needed
 		to = generateJID(to, 'chat');
 		
+		if(isAnonymousMode) {
+            to = JIDQuote(to);
+        }
+
 		// We send the message
 		normalMessageSender(to, getJID(), subject, body);
 		
