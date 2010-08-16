@@ -3,70 +3,70 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
-	<title>{% trans "Jappix Mobile" %}</title>
-	<link rel="shortcut icon" href="./favicon.ico" />
-	<link rel="stylesheet" href="{{ settings.HOST_STATIC }}/php/get.php?h={{ settings.hash }}&amp;t=css&amp;f=mobile.css~images.css" type="text/css" media="all" />
-	<script type="text/javascript" src="{{ settings.HOST_STATIC }}/php/get.php?h={{ settings.hash }}&amp;t=js&amp;f=jsjac.js~constants.js~mobile.js"></script>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>{% trans "Jappix Mobile" %}</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="{{ settings.HOST_STATIC }}/php/get.php?h={{ settings.hash }}&amp;t=css&amp;f=mobile.css~images.css" type="text/css" media="all" />
+    <script type="text/javascript" src="{{ settings.HOST_STATIC }}/php/get.php?h={{ settings.hash }}&amp;t=js&amp;f=jsjac.js~constants.js~mobile.js"></script>
 </head>
 
 <body>
-	<div id="home">
-		<div class="header">
-			<div class="mobile-images"></div>
-		</div>
-		
-		<noscript>
-			<div class="notification" id="noscript">
-				{% trans "Please enable JavaScript" %}
-			</div>
-		</noscript>
-		
-		<div class="notification" id="error">
-			{% trans "Error" %}
-		</div>
-		
-		<div class="notification" id="info">
-			{% trans "Please wait..." %}
-		</div>
-		
-		<div class="login">
-			{% trans "Login" %}
-			
-			<form action="#" method="post" onsubmit="return doLogin(this);">
-				<input class="xid mobile-images" type="text" name="xid" />
-				<input class="password mobile-images" type="password" id="pwd" name="pwd" />
-				<input type="submit" name="ok" value="{% trans 'Here we go!' %}" />
-			</form>
-		</div>
-		
-		<a href="./?m=desktop{{ settings.keepGet('m') }}">{% trans 'Desktop' %}</a>
-	</div>
-	
-	<div id="talk">
-		<div class="header">
-			<button onclick="doLogout();">{% trans "Disconnect" %}</button>
-		</div>
-		
-		<div id="roster">
-		</div>
-	</div>
-	
-	<div id="chat">
-		<div class="header">
-			<button onclick="returnToRoster();">{% trans "Previous" %}</button>
-		</div>
-		
-		<div id="chans">
-		</div>
-	</div>
-	
-	<div id="storage">
-		<input type="hidden" id="http-base" value="{{ settings.HTTP_BASE }}" />
-		<input type="hidden" id="version" value="{{ settings.version }}" />
-		<input type="hidden" id="resource" value="{{ settings.JAPPIX_RESOURCE }}" />
-		<input type="hidden" id="me" value="{% trans 'Me' %}" />
-	</div>
+    <div id="home">
+        <div class="header">
+            <div class="mobile-images"></div>
+        </div>
+        
+        <noscript>
+            <div class="notification" id="noscript">
+                {% trans "Please enable JavaScript" %}
+            </div>
+        </noscript>
+        
+        <div class="notification" id="error">
+            {% trans "Error" %}
+        </div>
+        
+        <div class="notification" id="info">
+            {% trans "Please wait..." %}
+        </div>
+        
+        <div class="login">
+            {% trans "Login" %}
+            
+            <form action="#" method="post" onsubmit="return doLogin(this);">
+                <input class="xid mobile-images" type="text" name="xid" />
+                <input class="password mobile-images" type="password" id="pwd" name="pwd" />
+                <input type="submit" name="ok" value="{% trans 'Here we go!' %}" />
+            </form>
+        </div>
+        
+        <a href="./?m=desktop{{ settings.keepGet('m') }}">{% trans 'Desktop' %}</a>
+    </div>
+    
+    <div id="talk">
+        <div class="header">
+            <button onclick="doLogout();">{% trans "Disconnect" %}</button>
+        </div>
+        
+        <div id="roster">
+        </div>
+    </div>
+    
+    <div id="chat">
+        <div class="header">
+            <button onclick="returnToRoster();">{% trans "Previous" %}</button>
+        </div>
+        
+        <div id="chans">
+        </div>
+    </div>
+    
+    <div id="storage">
+        <input type="hidden" id="http-base" value="{{ settings.HTTP_BASE }}" />
+        <input type="hidden" id="version" value="{{ settings.version }}" />
+        <input type="hidden" id="resource" value="{{ settings.JAPPIX_RESOURCE }}" />
+        <input type="hidden" id="me" value="{% trans 'Me' %}" />
+    </div>
 </body>
 
 </html>

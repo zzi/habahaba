@@ -1,0 +1,293 @@
+django-staticmedia
+==================
+
+* Bugs_
+
+.. _Bugs: http://bugs.launchpad.net/django-staticmedia
+
+.. contents::
+
+Overview
+--------
+
+django-staticmedia provides a lightweight framework for dynamically
+obtaining the URLs and paths of your site-level and app-level static
+media, such as images and css stylesheets. It lets you avoid
+hardcoding absolute, site-specific paths to your static media files in
+site-level and/or app-level templates, or in your Python code
+(declaring widget assets). It can also be used as an alternative to
+using a settings directive, much like 'ADMIN_MEDIA_PREFIX'.
+
+Features
+~~~~~~~~
+
+* ``staticmedia.url``, ``staticmedia.path`` and
+  ``staticmedia.resolve`` functions that you can use to dynamically
+  obtain the URL, path, or both (respectively) of your static media in
+  your Python code.
+
+* A ``{% mediaurl %}`` and ``{% mediapath %}`` template tags.
+
+* A submodule and management commands for generating configuraton
+  directives for various common web servers.
+
+* A convenience function for generating urlpatterns that statically
+  serve your static media from Django (although this is slow and
+  insecure).
+
+
+Settings
+--------
+
+``STATICMEDIA_MOUNTS``
+
+Default: ``[]``
+
+A sequence of ``(mount_url, mount_path)`` tuples. The term 'mount' in
+this case just means directories on the filesystem, ``mount_path``,
+that are expected to be available at a given url on the site,
+``mount_url``. Usually these are served by a webserver, but can be
+served by Django for testing purposes.
+
+``STATICMEDIA_URL``
+
+Default: ``/appmedia``
+
+The URL prefix to use for each application media mount.
+
+
+Using django-staticmedia
+------------------------
+
+Bundling media with your application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To bundle static media with your application, create a ``media``
+directory in the root directory of you Django application::
+
+    myapp/
+    |---media/
+    \---models.py
+    \---urls.py
+
+This ``media`` directory will then be picked up by django-staticmedia
+as a mount point.
+
+Getting the absolute URL or path for static media
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Static media should be specified relative to mount points. Extending
+the above application structure example::
+
+    myapp/
+    |---media/
+    |   \---button.png
+    \---models.py
+    \---urls.py
+
+From Python code::
+
+    >>> import staticmedia
+    >>> staticmedia.resolve('button.png')
+    ('/appmedia/myapp/button.png', '/path/to/myapp/media/button.png')
+    >>> staticmedia.url('button.png')
+    '/appmedia/myapp/button.png'
+    >>> staticmedia.path('button.png')
+    '/path/to/myapp/media/button.png'
+
+Or from a template::
+
+    {% load staticmedia %}
+
+    {% mediaurl "button.png" %}
+    <!-- or -->
+    {% mediapath "button.png" %}
+
+
+django-staticmedia first goes through your mounts specified with the
+``STATICMEDIA_MOUNTS`` setting, and then through each application
+mount (installed applications with a ``media`` directory in the
+package). The URL the first mount point in which a 'button.png' file
+exists is used.
+
+In the above case, 'button.png' was found in the application media
+directory, and since the default value of the ``STATICMEDIA_URL`` is
+``'/appmedia'``, the expected URL of the static media file is
+'/appmedia/myapp/button.png'.
+
+Suppose you wanted to have a custom 'button.png' for a particular site
+to use instead of the one bundled with the application media. You
+could add a mount to ``STATICMEDIA_MOUNTS``::
+
+    STATICMEDIA_MOUNTS = (
+        ('/sitemedia', '/sites/mysite/sitemedia')
+    )
+
+Provided that a '/sites/mysite/sitemedia/button.png' file exists, a
+call to ``staticmedia.resolve`` would now return
+``'/sitemedia/button.png'``.
+
+
+Avoiding media filename conflicts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A good convention to use is to 'namespace' application media, much
+like application templates::
+
+    myapp/
+    |---media/
+    |   \---myapp
+    |       \---button.png
+    \---models.py
+    \---urls.py
+
+Requesting media would look like::
+
+    >>> staticmedia.resolve('myapp/button.png')
+    ('/appmedia/myapp/myapp/button.png', '/path/to/myapp/media/myapp/button.png')
+
+    # if we have a 'myapp/button.png' file in the '/sitemedia'
+    # mount in the example above, then:
+
+    >>> staticmedia.resolve('myapp/button.png')
+    ('/sitemedia/myapp/button.png', '/sites/mysite/sitemedia/myapp/button.png')
+
+
+django-staticmedia and web servers
+----------------------------------
+
+Normally you want to delegate the serving of your static media to web
+servers. django-staticmedia comes with a submodule to dynamically
+generate configuration directives for some common web servers::
+
+    >>> from staticmedia import serverconf
+
+    >>> serverconf.nginx()
+    'location /appmedia/myapp { alias /path/to/myapp/media; }'
+
+    >>> serverconf.apache()
+    'Alias "/appmedia/myapp" "/path/to/myapp/media"'
+
+    >>> serverconf.lighttpd()
+    'alias.url += ( "/appmedia/myapp" => "/path/to/myapp/media" )
+
+    >>> serverconf.nginx(access_log='off')
+    'location /appmedia/myapp { alias /path/to/myapp/media; access_log off; }'
+
+    >>> serverconf.apache(diroptions='Indexes')
+    'Alias "/appmedia/myapp" "/path/to/myapp/media"
+    <Directory "/path/to/myapp/media">Options Indexes</Directory>'
+
+You can also use a management command to print out the configuration
+directives::
+
+    $ ./manage.py staticmedia nginx-conf
+    location /appmedia/myapp { alias /path/to/myapp/media; }
+
+    $ ./manage.py staticmedia apache-conf
+    Alias "/appmedia/myapp" "/path/to/myapp/media"
+    
+    $ ./manage.py staticmedia lighttpd-conf
+    alias.url += ( "/appmedia/myapp" => "/path/to/myapp/media" )
+
+    # ./manage.py staticmedia nginx-conf access_log=off
+    location /appmedia/myapp { alias /path/to/myapp/media; access_log off; }
+
+    # ./manage.py staticmedia apache-conf diroptions=Indexes
+    Alias "/appmedia/myapp" "/path/to/myapp/media"
+    <Directory "/path/to/myapp/media">Options Indexes</Directory>
+
+You can also get a generic tab-delineated output::
+
+    $ ./manage.py staticmedia list-mounts
+    /appmedia/myapp    /path/to/myapp/media
+
+Or from Python::
+
+    >>> import staticmedia
+    >>> staticmedia.get_mount_points()
+    (('/appmedia/myapp', '/path/to/myapp/media'),)
+
+
+Serving static media with Django
+--------------------------------
+
+A convenience function is provided for automatically generating
+urlpatterns that serve your mount points with the
+``django.views.static.serve`` method. This isn't recommended outside
+of a development environment as its slow and insecure. 
+
+In your urlconf::
+
+    from django.conf.urls.defaults import *
+    import staticmedia
+
+    urlpatterns = patterns(
+        '',
+        # your urls here
+    ) + staticmedia.serve()
+
+``staticmedia.serve`` optionally takes two arguments:
+
+* ``debug``: If ``True``, only generate url patterns if the ``DEBUG``
+  setting is ``True``.  
+* ``show_indexes``: Takes a boolean that gets passed directly to
+  ``django.views.static.serve`` (see official Django documentation for
+  details about this)
+
+Changelog
+---------
+
+0.2.2
+~~~~~
+
+* Moved readme and license file to standard location.
+
+0.2.1
+~~~~~
+
+* Fix for use of incorrect path separators returned by the ``resolve``
+  function on Windows.
+
+0.2
+~~~
+
+* ``resolve`` function returns media url and path (backwards
+  incompatible), and added ``url`` and ``path`` methods (use ``url``
+  for previous behavior)
+* templatetag library renamed to ``staticmedia`` to be more explicit,
+  and the ``media`` template tag split into ``mediaurl`` and
+  ``mediapath`` template tags (backwards incompatible).
+* added ``StaticMediaNotFound`` exception, which can be suppressed the
+  template tags by adding 'fail_silently' at the end of the tags
+
+0.1.4
+~~~~~
+
+* Fixed ``Directory`` directive generated by
+  ``staticmedia.serverconf.apache``.
+
+0.1.3
+~~~~~
+
+* Renamed ``staticmedia.conf`` to ``staticmedia.serverconf`` 
+* Added support for generating lighttpd ``alias`` directives
+* Added support for passing nginx directives for the generated
+  ``location`` directive
+
+0.1.2
+~~~~~
+
+* Fixed template tag to allow resolving of context variables.
+* Fixed url pattern generation in ``staticmedia.serve``.
+* Added ``show_indexes`` argument to ``staticmedia.serve``.
+
+0.1.1
+~~~~~
+
+* Fixed packaging.
+
+0.1
+~~~
+
+* Initial release.

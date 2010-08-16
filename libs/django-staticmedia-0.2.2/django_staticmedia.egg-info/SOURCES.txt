@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README
+setup.py
+django_staticmedia.egg-info/PKG-INFO
+django_staticmedia.egg-info/SOURCES.txt
+django_staticmedia.egg-info/dependency_links.txt
+django_staticmedia.egg-info/not-zip-safe
+django_staticmedia.egg-info/top_level.txt
+staticmedia/__init__.py
+staticmedia/base.py
+staticmedia/serverconf.py
+staticmedia/management/__init__.py
+staticmedia/management/commands/__init__.py
+staticmedia/management/commands/staticmedia.py
+staticmedia/templatetags/__init__.py
+staticmedia/templatetags/staticmedia.py

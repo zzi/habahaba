@@ -41,7 +41,7 @@ HOST_MUC = 'muc.jappix.com'
 HOST_ANONYMOUS = 'anonymous.localhost'
 
 # DOMAIN FOR ANONYMOUS MESSAGES TRANSPORT
-HABAHABA_DOMAIN = 'binary.mine.nu'
+HABAHABA_DOMAIN = 'gateway.habahaba.im'
 
 # APP VERSION
 VERSION = '0.0'

@@ -13,27 +13,27 @@ Last revision: 17/07/10
 */
 
 #integratebox {
-	display: none;
+    display: none;
 }
 
 #integratebox .top {
-	height: 55px;
+    height: 55px;
 }
 
 #integratebox .content {
-	height: 385px;
-	text-align: center;
+    height: 385px;
+    text-align: center;
 }
 
 #integratebox .one-media img {
-	max-height: 385px;
-	max-width: 640px;
+    max-height: 385px;
+    max-width: 640px;
 }
 
 #integratebox .one-media a img {
-	border: none;
+    border: none;
 }
 
 #integratebox .one-media audio {
-	margin-top: 170px;
+    margin-top: 170px;
 }

@@ -1,590 +1,590 @@
-{% load i18n %}	
-	<!-- BEGIN TALKPAGE -->
-	<div id="talk" class="hidable">
-		<div id="top-content">
-			<!-- the tools we need to configure our account and logout -->
-				<div class="tools-all links-tools">
-					<div class="tools">
-						<a onclick="openVCard();">{% trans "Profile" %}</a>
-						<a onclick="optionsOpen();">{% trans "Options" %}</a>
-						<a onclick="normalQuit();">{% trans "Disconnect" %}</a>
-					</div>
-				</div>
-				
-				<div class="tools-all messages-tools">
-					<div class="tools">
-						<a onclick="messagesOpen();">{% trans "Messages" %}</a>
-					</div>
-				</div>
-			
-			<!-- the music search and listen tool -->
-				<div class="tools-all">
-					<div class="tools music" onclick="openMusic();">♫</div>
-					<div class="music-content tools-content bubble hidable">
-						<div class="tools-content-subarrow talk-images"></div>
-						<div class="tools-content-subitem">
-							<div class="top">
-								<a onclick="closeMusic();">x</a>
-							</div>
-							
-							<div class="middle">
-								<div class="player">
-									<div class="control stop talk-images" onclick="actionMusic('stop');"></div>
-								</div>
-								
-								<div class="list">
-									<div class="list-content">
-										<p class="no-results">{% trans "No result!" %}</p>
-									</div>
-								</div>
-								
-								<div class="search">
-									<input type="text" class="resetable" />
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-			<!-- the notifications tool -->
-				<div class="tools-all">
-					<div class="tools notifications" onclick="openNotifications();">✱</div>
-					<div class="notifications-content tools-content bubble hidable">
-						<div class="tools-content-subarrow talk-images"></div>
-						<div class="tools-content-subitem">
-							<div class="top">
-								<a onclick="closeNotifications();">x</a>
-							</div>
-							
-							<div class="middle">
-								<p class="nothing">{% trans "No notification!" %}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-		</div>
-		
-		<div id="main-content">
-			<!-- the right content with all the things we need to chat -->
-				<div id="right-content">
-					<div id="chat-engine">
-						<div class="title container-title">
-							{% trans "Your conversations" %}
-						</div>
-						
-						<div id="channel" class="showable chat-engine-chan">
-							<div class="showable channel-header mixed">
-								<div class="avatar-container">
-								</div>
-								
-								<div class="update">
-									<p>{% trans "What's up with you?" %}</p>
-									
-									<form action="#" method="post" onsubmit="return sendMicroblog(this);">
-										<input class="resetable" type="text" name="body" maxlength="140" disabled="disabled" />
-										<input class="resetable" type="hidden" name="attachedname" />
-										<input class="resetable" type="hidden" name="attachedurl" />
-										<input class="resetable" type="hidden" name="attachedtype" />
-										<input class="resetable" type="hidden" name="attachedext" />
-										
-										<div class="one-microblog-icon">
-											<a onclick="bubbleMicroblog('attach', 'show');" title="{% trans "Attach a file..." %}" class="postit attach talk-images showable"></a>
-											<a onclick="unattachMicroblog();" title="{% trans "Unattach the file..." %}" class="postit unattach talk-images hidable"></a>
-											
-											<div id="attach" class="bubble hidable">
-												<div class="attach-subarrow talk-images"></div>
-												
-												<div class="attach-subitem">
-													<p class="attach-p">{% trans "Attach a file..." %}</p>
-													<p class="attach-close" onclick="bubbleMicroblog('attach', 'hide');">X</p>
-													<input type="file" class="resetable" id="microblog-attach" onchange="attachMicroblog()" />
-												</div>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-							
-							<div class="showable channel-content mixed">
-							</div>
-							
-							<div class="channel-footer">
-								<div class="sync hidable talk-images">
-									{% trans "You are synchronized with your network." %}
-								</div>
-								
-								<div class="unsync hidable talk-images">
-									{% trans "Cannot send anything: you can only receive notices!" %}
-								</div>
-								
-								<div class="fetch showable wait-lilliput">
-									{% trans "Fetching the social channel..." %}
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div id="chat-switch">
-						<div class="title container-title">{% trans "Opened chats" %}</div>
-						<div class="content">
-							<div class="channels">
-							</div>
-							
-							<div class="channel switcher activechan" onclick="switchChan('channel');">
-								<div class="icon talk-images"></div>
-								<div class="name">
-									<a>{% trans "Social channel" %}</a>
-								</div>
-							</div>
-						</div>
-					</div>
-			</div>
-			<!-- the left sidebar with buddies and my-infos -->
-				<div id="left-content">
-					<div id="buddy-list">
-						<div class="title container-title">
-							<p>{% trans "Your friends" %}</p>
-						</div>
-						
-						<div class="content">
-							<div class="loading-roster showable">
-								<div class="wait-big"></div>
-							</div>
-							
-							<div class="no-buddy hidable">
-								<p>{% trans "Ugh! You've nobody to talk, that's so sad..." %}</p>
-								<p style="margin-top: 10px;">{% trans "The lonelyness is bad: add friends with the tools below." %}</p>
-							</div>
-							
-							<div class="inner">
-							</div>
-						</div>
-						
-						<div class="foot">
-							<div class="foot-elements showable">
-								<div class="one-buddy-conf">
-									<a class="add buddy-list-icon talk-images" title="{% trans "Add a friend..." %}"></a>
-									
+{% load i18n %}    
+    <!-- BEGIN TALKPAGE -->
+    <div id="talk" class="hidable">
+        <div id="top-content">
+            <!-- the tools we need to configure our account and logout -->
+                <div class="tools-all links-tools">
+                    <div class="tools">
+                        <a onclick="openVCard();">{% trans "Profile" %}</a>
+                        <a onclick="optionsOpen();">{% trans "Options" %}</a>
+                        <a onclick="normalQuit();">{% trans "Disconnect" %}</a>
+                    </div>
+                </div>
+                
+                <div class="tools-all messages-tools">
+                    <div class="tools">
+                        <a onclick="messagesOpen();">{% trans "Messages" %}</a>
+                    </div>
+                </div>
+            
+            <!-- the music search and listen tool -->
+                <div class="tools-all">
+                    <div class="tools music" onclick="openMusic();">♫</div>
+                    <div class="music-content tools-content bubble hidable">
+                        <div class="tools-content-subarrow talk-images"></div>
+                        <div class="tools-content-subitem">
+                            <div class="top">
+                                <a onclick="closeMusic();">x</a>
+                            </div>
+                            
+                            <div class="middle">
+                                <div class="player">
+                                    <div class="control stop talk-images" onclick="actionMusic('stop');"></div>
+                                </div>
+                                
+                                <div class="list">
+                                    <div class="list-content">
+                                        <p class="no-results">{% trans "No result!" %}</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="search">
+                                    <input type="text" class="resetable" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            <!-- the notifications tool -->
+                <div class="tools-all">
+                    <div class="tools notifications" onclick="openNotifications();">✱</div>
+                    <div class="notifications-content tools-content bubble hidable">
+                        <div class="tools-content-subarrow talk-images"></div>
+                        <div class="tools-content-subitem">
+                            <div class="top">
+                                <a onclick="closeNotifications();">x</a>
+                            </div>
+                            
+                            <div class="middle">
+                                <p class="nothing">{% trans "No notification!" %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        
+        <div id="main-content">
+            <!-- the right content with all the things we need to chat -->
+                <div id="right-content">
+                    <div id="chat-engine">
+                        <div class="title container-title">
+                            {% trans "Your conversations" %}
+                        </div>
+                        
+                        <div id="channel" class="showable chat-engine-chan">
+                            <div class="showable channel-header mixed">
+                                <div class="avatar-container">
+                                </div>
+                                
+                                <div class="update">
+                                    <p>{% trans "What's up with you?" %}</p>
+                                    
+                                    <form action="#" method="post" onsubmit="return sendMicroblog(this);">
+                                        <input class="resetable" type="text" name="body" maxlength="140" disabled="disabled" />
+                                        <input class="resetable" type="hidden" name="attachedname" />
+                                        <input class="resetable" type="hidden" name="attachedurl" />
+                                        <input class="resetable" type="hidden" name="attachedtype" />
+                                        <input class="resetable" type="hidden" name="attachedext" />
+                                        
+                                        <div class="one-microblog-icon">
+                                            <a onclick="bubbleMicroblog('attach', 'show');" title="{% trans "Attach a file..." %}" class="postit attach talk-images showable"></a>
+                                            <a onclick="unattachMicroblog();" title="{% trans "Unattach the file..." %}" class="postit unattach talk-images hidable"></a>
+                                            
+                                            <div id="attach" class="bubble hidable">
+                                                <div class="attach-subarrow talk-images"></div>
+                                                
+                                                <div class="attach-subitem">
+                                                    <p class="attach-p">{% trans "Attach a file..." %}</p>
+                                                    <p class="attach-close" onclick="bubbleMicroblog('attach', 'hide');">X</p>
+                                                    <input type="file" class="resetable" id="microblog-attach" onchange="attachMicroblog()" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <div class="showable channel-content mixed">
+                            </div>
+                            
+                            <div class="channel-footer">
+                                <div class="sync hidable talk-images">
+                                    {% trans "You are synchronized with your network." %}
+                                </div>
+                                
+                                <div class="unsync hidable talk-images">
+                                    {% trans "Cannot send anything: you can only receive notices!" %}
+                                </div>
+                                
+                                <div class="fetch showable wait-lilliput">
+                                    {% trans "Fetching the social channel..." %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="chat-switch">
+                        <div class="title container-title">{% trans "Opened chats" %}</div>
+                        <div class="content">
+                            <div class="channels">
+                            </div>
+                            
+                            <div class="channel switcher activechan" onclick="switchChan('channel');">
+                                <div class="icon talk-images"></div>
+                                <div class="name">
+                                    <a>{% trans "Social channel" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <!-- the left sidebar with buddies and my-infos -->
+                <div id="left-content">
+                    <div id="buddy-list">
+                        <div class="title container-title">
+                            <p>{% trans "Your friends" %}</p>
+                        </div>
+                        
+                        <div class="content">
+                            <div class="loading-roster showable">
+                                <div class="wait-big"></div>
+                            </div>
+                            
+                            <div class="no-buddy hidable">
+                                <p>{% trans "Ugh! You've nobody to talk, that's so sad..." %}</p>
+                                <p style="margin-top: 10px;">{% trans "The lonelyness is bad: add friends with the tools below." %}</p>
+                            </div>
+                            
+                            <div class="inner">
+                            </div>
+                        </div>
+                        
+                        <div class="foot">
+                            <div class="foot-elements showable">
+                                <div class="one-buddy-conf">
+                                    <a class="add buddy-list-icon talk-images" title="{% trans "Add a friend..." %}"></a>
+                                    
                                     <div id="buddy-conf-add" class="buddy-conf-add buddy-conf-item bubble hidable">
-                            	        <div class="buddy-conf-subarrow talk-images"></div>
-                            	        <div class="buddy-conf-subitem">
-                                    	    <p class="buddy-conf-p" style="margin-bottom: 0;">{% trans "Add a friend..." %}</p>
-                                	    	<p class="buddy-conf-close">X</p>
-                                		    <input type="text" class="buddy-conf-input add-contact-jid resetable" />
-                                		</div>
-                                	</div>
-								</div>
-								
-								<div class="one-buddy-conf">
-									<a class="edit buddy-list-icon talk-images" title="{% trans "Manage a friend..." %}"></a>
-								</div>
-								
-								<div class="one-buddy-conf">
-									<a class="join buddy-list-icon talk-images" title="{% trans "Join a chat..." %}"></a>
-									
-									<div id="buddy-conf-join" class="buddy-conf-item bubble hidable">
-										<div class="buddy-conf-subarrow talk-images"></div>
-										
-										<div class="buddy-conf-subitem">
-											<p class="buddy-conf-p" style="margin-bottom: 0;">{% trans "Join a chat..." %}</p>
-											<p class="buddy-conf-close">X</p>
-											<input type="text" class="buddy-conf-input join-jid resetable" />
-											<select name="join-type" class="buddy-conf-select buddy-conf-join-select resetable">
-												<option value="chat">{% trans "Chat" %}</option>
-												<option value="groupchat">{% trans "Groupchat" %}</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								
-								<div class="one-buddy-conf">
-									<a class="groupchat buddy-list-icon talk-images" title="{% trans "Join a groupchat..." %}"></a>
-									
-									<div id="buddy-conf-groupchat" class="buddy-conf-item bubble hidable">
-										<div class="buddy-conf-subarrow talk-images"></div>
-					
-										<div class="buddy-conf-subitem">
-											<p class="buddy-conf-p">{% trans "Your groupchats..." %}</p>
-											<p class="buddy-conf-close">X</p>
-											
-											<select name="groupchat-join" class="buddy-conf-select buddy-conf-groupchat-select resetable">
-												<option value="none" class="gc-join-first-option">{% trans "Select a favorite" %}</option>
-											</select>
-											
-											<p class="buddy-conf-text">
-												&rarr;
-												<a class="buddy-conf-groupchat-edit">{% trans "Manage your favorite groupchats" %}</a>
-											</p>
-										</div>
-									</div>
-								</div>
-								
-								<div class="one-buddy-conf">
-									<a class="more buddy-list-icon talk-images" title="{% trans "More stuffs..." %}"></a>
-									
-									<div id="buddy-conf-more" class="buddy-conf-item bubble hidable">
-										<div class="buddy-conf-subarrow talk-images"></div>
-										
-										<div class="buddy-conf-subitem">
-											<p class="buddy-conf-p">{% trans "More stuffs..." %}</p>
-											<p class="buddy-conf-close">X</p>
-											
-											<p class="buddy-conf-text">
-												&rarr;
-												<a class="buddy-conf-more-display-unavailable showable">{% trans "Display all the buddies" %}</a>
-												<a class="buddy-conf-more-display-available hidable">{% trans "Display only the connected buddies" %}</a>
-											</p>
-											
-											<p class="buddy-conf-text">
-												&rarr;
-												<a class="buddy-conf-more-service-disco">{% trans "Services discovery" %}</a>
-											</p>
-											
-											<p class="buddy-conf-text">
-												&rarr;
-												<a href="http://project.jappix.com/about" target="_blank">{% trans "About Jappix" %}</a>
-											</p>
-										</div>
-									</div>
-								</div>
-								
-								<div class="one-buddy-conf" style="float: right;">
-									<a class="involve buddy-list-icon talk-images" title="{% trans "Get involved..." %}"></a>
-									
-									<div id="buddy-conf-involve" class="buddy-conf-item bubble hidable">
-										<div class="buddy-conf-subarrow talk-images"></div>
-										
-										<div class="buddy-conf-subitem">
-											<p class="buddy-conf-p">{% trans "Get involved..." %}</p>
-											<p class="buddy-conf-close">X</p>
-											
-											<p class="buddy-conf-text">
-												&rarr; <a href="http://codingteam.net/project/jappix/browse" target="_blank">{% trans "Write code" %}</a>
-											</p>
-											
-											<p class="buddy-conf-text">
-												&rarr; <a href="http://codingteam.net/project/jappix/i18n" target="_blank">{% trans "Translate strings" %}</a>
-											</p>
-											
-											<p class="buddy-conf-text">
-												&rarr; <a href="http://codingteam.net/project/jappix/bugs/add" target="_blank">{% trans "Report a bug" %}</a>
-											</p>
-											
-											<p class="buddy-conf-text">
-												&rarr; <a href="http://codingteam.net/project/jappix/doc" target="_blank">{% trans "Write documentation" %}</a>
-											</p>
-											
-											<p class="buddy-conf-text">
-												&rarr; <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=contact%40post-pro.fr&amp;item_name=Jappix%20Donation&amp;no_shipping=1&amp;no_note=1&amp;tax=0&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF&amp;charset=UTF%2d8" target="_blank">{% trans "Give money" %}</a>
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="foot-edit-finish hidable">
-								<a onclick="buddyEditFinish();">{% trans "I am okay!" %}</a>
-							</div>
-						</div>
-					</div>
-			
-					<div id="my-infos">
-						<div class="title container-title">
-							<p>{% trans "Your status" %}</p>
-						</div>
-						
-						<div class="content">
-							<div class="element f-presence">
-								<div class="icon">
-									<div class="icon-status status-available talk-images showable"></div>
-									<div class="icon-status status-chat talk-images hidable"></div>
-									<div class="icon-status status-away talk-images hidable"></div>
-									<div class="icon-status status-xa talk-images hidable"></div>
-									<div class="icon-status status-dnd talk-images hidable"></div>
-								</div>
-								
-								<div class="type">
-									<select name="statut" class="change-presence myInfosSelect resetable">
-										<option value="available">{% trans "Available" %}</option>
-										<option value="chat">{% trans "Talkative" %}</option>
-										<option value="away">{% trans "Away" %}</option>
-										<option value="xa">{% trans "Not available" %}</option>
-										<option value="dnd">{% trans "Busy" %}</option>
-									</select>
-								</div>
-								
-								<div id="my-infos-text-first" class="my-infos-text-item bubble hidable">
-									<div class="my-infos-text-subarrow talk-images"></div>
-									
-									<div class="my-infos-text-subitem">
-										<p class="my-infos-text-p">{% trans "A short message?" %}</p>
-										<p class="my-infos-text-close">X</p>
-										<input type="text" class="my-infos-text-input textPresence" />
-									</div>
-								</div>
-							</div>
-							
-							<div class="element f-mood hidable">
-								<div class="icon">
-									<div class="icon-mood mood-one talk-images hidable"></div>
-									<div class="icon-mood mood-two talk-images hidable"></div>
-									<div class="icon-mood mood-three talk-images hidable"></div>
-									<div class="icon-mood mood-four talk-images showable"></div>
-									<div class="icon-mood mood-five talk-images hidable"></div>
-									<div class="icon-mood mood-six talk-images hidable"></div>
-									<div class="icon-mood mood-seven talk-images hidable"></div>
-									<div class="icon-mood mood-eight talk-images hidable"></div>
-									<div class="icon-mood mood-nine talk-images hidable"></div>
-								</div>
-								
-								<div class="type">
-									<select name="mood" class="change-mood myInfosSelect resetable">
-										<option value="none">{% trans "None" %}</option>
-										<option value="afraid">{% trans "Afraid" %}</option>
-										<option value="amazed">{% trans "Amazed" %}</option>
-										<option value="amorous">{% trans "Amorous" %}</option>
-										<option value="angry">{% trans "Angry" %}</option>
-										<option value="annoyed">{% trans "Annoyed" %}</option>
-										<option value="anxious">{% trans "Anxious" %}</option>
-										<option value="aroused">{% trans "Aroused" %}</option>
-										<option value="ashamed">{% trans "Ashamed" %}</option>
-										<option value="bored">{% trans "Bored" %}</option>
-										<option value="brave">{% trans "Brave" %}</option>
-										<option value="calm">{% trans "Calm" %}</option>
-										<option value="cautious">{% trans "Cautious" %}</option>
-										<option value="cold">{% trans "Cold" %}</option>
-										<option value="confident">{% trans "Confident" %}</option>
-										<option value="confused">{% trans "Confused" %}</option>
-										<option value="contemplative">{% trans "Contemplative" %}</option>
-										<option value="contented">{% trans "Contented" %}</option>
-										<option value="cranky">{% trans "Cranky" %}</option>
-										<option value="crazy">{% trans "Crazy" %}</option>
-										<option value="creative">{% trans "Creative" %}</option>
-										<option value="curious">{% trans "Curious" %}</option>
-										<option value="dejected">{% trans "Dejected" %}</option>
-										<option value="depressed">{% trans "Depressed" %}</option>
-										<option value="disappointed">{% trans "Disappointed" %}</option>
-										<option value="disgusted">{% trans "Disgusted" %}</option>
-										<option value="dismayed">{% trans "Dismayed" %}</option>
-										<option value="distracted">{% trans "Distracted" %}</option>
-										<option value="embarrassed">{% trans "Embarrassed" %}</option>
-										<option value="envious">{% trans "Envious" %}</option>
-										<option value="excited">{% trans "Excited" %}</option>
-										<option value="flirtatious">{% trans "Flirtatious" %}</option>
-										<option value="frustrated">{% trans "Frustrated" %}</option>
-										<option value="grateful">{% trans "Grateful" %}</option>
-										<option value="grieving">{% trans "Grieving" %}</option>
-										<option value="grumpy">{% trans "Grumpy" %}</option>
-										<option value="guilty">{% trans "Guilty" %}</option>
-										<option value="happy">{% trans "Happy" %}</option>
-										<option value="hopeful">{% trans "Hopeful" %}</option>
-										<option value="hot">{% trans "Hot" %}</option>
-										<option value="humbled">{% trans "Humbled" %}</option>
-										<option value="humiliated">{% trans "Humiliated" %}</option>
-										<option value="hungry">{% trans "Hungry" %}</option>
-										<option value="hurt">{% trans "Hurt" %}</option>
-										<option value="impressed">{% trans "Impressed" %}</option>
-										<option value="in_awe">{% trans "In awe" %}</option>
-										<option value="in_love">{% trans "In love" %}</option>
-										<option value="indignant">{% trans "Indignant" %}</option>
-										<option value="interested">{% trans "Interested" %}</option>
-										<option value="intoxicated">{% trans "Intoxicated" %}</option>
-										<option value="invincible">{% trans "Invincible" %}</option>
-										<option value="jealous">{% trans "Jealous" %}</option>
-										<option value="lonely">{% trans "Lonely" %}</option>
-										<option value="lost">{% trans "Lost" %}</option>
-										<option value="lucky">{% trans "Lucky" %}</option>
-										<option value="mean">{% trans "Mean" %}</option>
-										<option value="moody">{% trans "Moody" %}</option>
-										<option value="nervous">{% trans "Nervous" %}</option>
-										<option value="neutral">{% trans "Neutral" %}</option>
-										<option value="offended">{% trans "Offended" %}</option>
-										<option value="outraged">{% trans "Outraged" %}</option>
-										<option value="playful">{% trans "Playful" %}</option>
-										<option value="proud">{% trans "Proud" %}</option>
-										<option value="relaxed">{% trans "Relaxed" %}</option>
-										<option value="relieved">{% trans "Relieved" %}</option>
-										<option value="remorseful">{% trans "Remorseful" %}</option>
-										<option value="restless">{% trans "Restless" %}</option>
-										<option value="sad">{% trans "Sad" %}</option>
-										<option value="sarcastic">{% trans "Sarcastic" %}</option>
-										<option value="satisfied">{% trans "Satisfied" %}</option>
-										<option value="serious">{% trans "Serious" %}</option>
-										<option value="shocked">{% trans "Shocked" %}</option>
-										<option value="shy">{% trans "Shy" %}</option>
-										<option value="sick">{% trans "Sick" %}</option>
-										<option value="sleepy">{% trans "Sleepy" %}</option>
-										<option value="spontaneous">{% trans "Spontaneous" %}</option>
-										<option value="stressed">{% trans "Stressed" %}</option>
-										<option value="strong">{% trans "Strong" %}</option>
-										<option value="surprised">{% trans "Surprised" %}</option>
-										<option value="thankful">{% trans "Thankful" %}</option>
-										<option value="thirsty">{% trans "Thirsty" %}</option>
-										<option value="tired">{% trans "Tired" %}</option>
-										<option value="undefined">{% trans "Undefined" %}</option>
-										<option value="weak">{% trans "Weak" %}</option>
-										<option value="worried">{% trans "Worried" %}</option>
-									</select>
-								</div>
-								
-								<div id="my-infos-text-second" class="my-infos-text-item bubble hidable">
-									<div class="my-infos-text-subarrow talk-images"></div>
-					
-									<div class="my-infos-text-subitem">
-										<p class="my-infos-text-p">{% trans "How are you?" %}</p>
-										<p class="my-infos-text-close">X</p>
-										<input type="text" class="my-infos-text-input textMood" />
-									</div>
-								</div>
-							</div>
-							
-							<div class="element f-activity hidable">
-								<div class="icon">
-									<div class="icon-activity activity-chores talk-images hidable"></div>
-									<div class="icon-activity activity-drinking talk-images hidable"></div>
-									<div class="icon-activity activity-eating talk-images hidable"></div>
-									<div class="icon-activity activity-exercising talk-images showable"></div>
-									<div class="icon-activity activity-grooming talk-images hidable"></div>
-									<div class="icon-activity activity-appointment talk-images hidable"></div>
-									<div class="icon-activity activity-inactive talk-images hidable"></div>
-									<div class="icon-activity activity-relaxing talk-images hidable"></div>
-									<div class="icon-activity activity-talking talk-images hidable"></div>
-									<div class="icon-activity activity-traveling talk-images hidable"></div>
-									<div class="icon-activity activity-working talk-images hidable"></div>
-								</div>
-								
-								<div class="type">
-									<select name="activity" class="change-activity myInfosSelect resetable">
-										<option value="none">{% trans "None" %}</option>
-										
-										<optgroup label="{% trans "Chores" %}">
-											<option value="doing_chores/buying_groceries">{% trans "Groceries" %}</option>
-											<option value="doing_chores/cleaning">{% trans "Cleaning" %}</option>
-											<option value="doing_chores/cooking">{% trans "Cooking" %}</option>
-											<option value="doing_chores/doing_maintenance">{% trans "Maintenance" %}</option>
-											<option value="doing_chores/doing_the_dishes">{% trans "Dishes" %}</option>
-											<option value="doing_chores/doing_the_laundry">{% trans "Laundry" %}</option>
-											<option value="doing_chores/gardening">{% trans "Gardening" %}</option>
-											<option value="doing_chores/running_an_errand">{% trans "Errand" %}</option>
-											<option value="doing_chores/walking_the_dog">{% trans "Dog" %}</option>
-										</optgroup>
-										
-										<optgroup label="{% trans "Drinking" %}">
-											<option value="drinking/having_a_beer">{% trans "Beer" %}</option>
-											<option value="drinking/having_coffee">{% trans "Coffee" %}</option>
-											<option value="drinking/having_tea">{% trans "Tea" %}</option>
-										</optgroup>
-										
-										<optgroup label="{% trans "Eating" %}">
-											<option value="eating/having_a_snack">{% trans "Snack" %}</option>
-											<option value="eating/having_a_breakfast">{% trans "Breakfast" %}</option>
-											<option value="eating/having_dinner">{% trans "Dinner" %}</option>
-											<option value="eating/having_lunch">{% trans "Lunch" %}</option>
-										</optgroup>
-										
-										<optgroup label="{% trans "Exercising" %}">
-											<option value="exercising/cycling">{% trans "Cycling" %}</option>
-											<option value="exercising/dancing">{% trans "Dancing" %}</option>
-											<option value="exercising/hiking">{% trans "Hiking" %}</option>
-											<option value="exercising/jogging">{% trans "Jogging" %}</option>
-											<option value="exercising/playing_sports">{% trans "Sport" %}</option>
-											<option value="exercising/playing_sports">{% trans "Running" %}</option>
-											<option value="exercising/skiing">{% trans "Skiing" %}</option>
-											<option value="exercising/swimming">{% trans "Swimming" %}</option>
-											<option value="exercising/working_out">{% trans "Working out" %}</option>
-										</optgroup>
-										
-										<optgroup label="{% trans "Grooming" %}">
-											<option value="grooming/at_the_spa">{% trans "Spa" %}</option>
-											<option value="grooming/brushing_teeth">{% trans "Teeth" %}</option>
-											<option value="grooming/getting_a_haircut">{% trans "Haircut" %}</option>
-											<option value="grooming/shaving">{% trans "Shaving" %}</option>
-											<option value="grooming/taking_a_bath">{% trans "Bath" %}</option>
-											<option value="grooming/taking_a_shower">{% trans "Shower" %}</option>
-										</optgroup>
-										
-										<optgroup label="{% trans "Appointment" %}">
-											<option value="having_appointment">{% trans "Appointment" %}</option>
-										</optgroup>
-										
-										<optgroup label="{% trans "Inactive" %}">
-											<option value="inactive/day_off">{% trans "Day off" %}</option>
-											<option value="inactive/hanging_out">{% trans "Hanging out" %}</option>
-											<option value="inactive/hiding">{% trans "Hiding" %}</option>
-											<option value="inactive/on_vacation">{% trans "Vacation" %}</option>
-											<option value="inactive/praying">{% trans "Praying" %}</option>
-											<option value="inactive/scheduled_holiday">{% trans "Holiday" %}</option>
-											<option value="inactive/sleeping">{% trans "Sleeping" %}</option>
-											<option value="inactive/thinking">{% trans "Thinking" %}</option>
-										</optgroup>
-										
-										<optgroup label="{% trans "Relaxing" %}">
-											<option value="relaxing/fishing">{% trans "Fishing" %}</option>
-											<option value="relaxing/gaming">{% trans "Gaming" %}</option>
-											<option value="relaxing/going_out">{% trans "Going out" %}</option>
-											<option value="relaxing/partying">{% trans "Partying" %}</option>
-											<option value="relaxing/reading">{% trans "Reading" %}</option>
-											<option value="relaxing/rehearsing">{% trans "Rehearsing" %}</option>
-											<option value="relaxing/shopping">{% trans "Shopping" %}</option>
-											<option value="relaxing/smoking">{% trans "Smoking" %}</option>
-											<option value="relaxing/socializing">{% trans "Socializing" %}</option>
-											<option value="relaxing/sunbathing">{% trans "Sunbathing" %}</option>
-											<option value="relaxing/watching_tv">{% trans "TV" %}</option>
-											<option value="relaxing/watching_a_movie">{% trans "Movie" %}</option>
-										</optgroup>
-										
-										<optgroup label="{% trans "Talking" %}">
-											<option value="talking/in_real_life">{% trans "Real life" %}</option>
-											<option value="talking/on_the_phone">{% trans "Phone" %}</option>
-											<option value="talking/on_video_phone">{% trans "Video phone" %}</option>
-										</optgroup>
-										
-										<optgroup label="{% trans "Traveling" %}">
-											<option value="traveling/commuting">{% trans "Commuting" %}</option>
-											<option value="traveling/cycling">{% trans "Cycling" %}</option>
-											<option value="traveling/driving">{% trans "Driving" %}</option>
-											<option value="traveling/in_a_car">{% trans "In a car" %}</option>
-											<option value="traveling/on_a_bus">{% trans "On a bus" %}</option>
-											<option value="traveling/on_a_plane">{% trans "On a plane" %}</option>
-											<option value="traveling/on_a_train">{% trans "On a train" %}</option>
-											<option value="traveling/on_a_trip">{% trans "On a trip" %}</option>
-											<option value="traveling/walking">{% trans "Walking" %}</option>
-										</optgroup>
-										
-										<optgroup label="{% trans "Working" %}">
-											<option value="working/coding">{% trans "Coding" %}</option>
-											<option value="working/in_a_meeting">{% trans "Meeting" %}</option>
-											<option value="working/studying">{% trans "Studying" %}</option>
-											<option value="working/writing">{% trans "Writing" %}</option>
-										</optgroup>
-									</select>
-								</div>
-								
-								<div id="my-infos-text-third" class="my-infos-text-item bubble hidable">
-									<div class="my-infos-text-subarrow talk-images"></div>
-									
-									<div class="my-infos-text-subitem">
-										<p class="my-infos-text-p">{% trans "What are you doing?" %}</p>
-										<p class="my-infos-text-close">X</p>
-										<input type="text" class="my-infos-text-input textActivity" />
-									</div>
-								</div>
-							</div>
-							
-							<div class="element f-geoloc hidable">
-								<div class="icon">
-									<div class="icon-location location-world talk-images"></div>
-								</div>
-								
-								<div class="type">
-									<a href="http://www.openstreetmap.org/" target="_blank">{% trans "Where am I?" %}</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			
-		</div>
-	</div>
-	<!-- END TALKPAGE -->
+                                        <div class="buddy-conf-subarrow talk-images"></div>
+                                        <div class="buddy-conf-subitem">
+                                            <p class="buddy-conf-p" style="margin-bottom: 0;">{% trans "Add a friend..." %}</p>
+                                            <p class="buddy-conf-close">X</p>
+                                            <input type="text" class="buddy-conf-input add-contact-jid resetable" />
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="one-buddy-conf">
+                                    <a class="edit buddy-list-icon talk-images" title="{% trans "Manage a friend..." %}"></a>
+                                </div>
+                                
+                                <div class="one-buddy-conf">
+                                    <a class="join buddy-list-icon talk-images" title="{% trans "Join a chat..." %}"></a>
+                                    
+                                    <div id="buddy-conf-join" class="buddy-conf-item bubble hidable">
+                                        <div class="buddy-conf-subarrow talk-images"></div>
+                                        
+                                        <div class="buddy-conf-subitem">
+                                            <p class="buddy-conf-p" style="margin-bottom: 0;">{% trans "Join a chat..." %}</p>
+                                            <p class="buddy-conf-close">X</p>
+                                            <input type="text" class="buddy-conf-input join-jid resetable" />
+                                            <select name="join-type" class="buddy-conf-select buddy-conf-join-select resetable">
+                                                <option value="chat">{% trans "Chat" %}</option>
+                                                <option value="groupchat">{% trans "Groupchat" %}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="one-buddy-conf">
+                                    <a class="groupchat buddy-list-icon talk-images" title="{% trans "Join a groupchat..." %}"></a>
+                                    
+                                    <div id="buddy-conf-groupchat" class="buddy-conf-item bubble hidable">
+                                        <div class="buddy-conf-subarrow talk-images"></div>
+                    
+                                        <div class="buddy-conf-subitem">
+                                            <p class="buddy-conf-p">{% trans "Your groupchats..." %}</p>
+                                            <p class="buddy-conf-close">X</p>
+                                            
+                                            <select name="groupchat-join" class="buddy-conf-select buddy-conf-groupchat-select resetable">
+                                                <option value="none" class="gc-join-first-option">{% trans "Select a favorite" %}</option>
+                                            </select>
+                                            
+                                            <p class="buddy-conf-text">
+                                                &rarr;
+                                                <a class="buddy-conf-groupchat-edit">{% trans "Manage your favorite groupchats" %}</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="one-buddy-conf">
+                                    <a class="more buddy-list-icon talk-images" title="{% trans "More stuffs..." %}"></a>
+                                    
+                                    <div id="buddy-conf-more" class="buddy-conf-item bubble hidable">
+                                        <div class="buddy-conf-subarrow talk-images"></div>
+                                        
+                                        <div class="buddy-conf-subitem">
+                                            <p class="buddy-conf-p">{% trans "More stuffs..." %}</p>
+                                            <p class="buddy-conf-close">X</p>
+                                            
+                                            <p class="buddy-conf-text">
+                                                &rarr;
+                                                <a class="buddy-conf-more-display-unavailable showable">{% trans "Display all the buddies" %}</a>
+                                                <a class="buddy-conf-more-display-available hidable">{% trans "Display only the connected buddies" %}</a>
+                                            </p>
+                                            
+                                            <p class="buddy-conf-text">
+                                                &rarr;
+                                                <a class="buddy-conf-more-service-disco">{% trans "Services discovery" %}</a>
+                                            </p>
+                                            
+                                            <p class="buddy-conf-text">
+                                                &rarr;
+                                                <a href="http://project.jappix.com/about" target="_blank">{% trans "About Jappix" %}</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="one-buddy-conf" style="float: right;">
+                                    <a class="involve buddy-list-icon talk-images" title="{% trans "Get involved..." %}"></a>
+                                    
+                                    <div id="buddy-conf-involve" class="buddy-conf-item bubble hidable">
+                                        <div class="buddy-conf-subarrow talk-images"></div>
+                                        
+                                        <div class="buddy-conf-subitem">
+                                            <p class="buddy-conf-p">{% trans "Get involved..." %}</p>
+                                            <p class="buddy-conf-close">X</p>
+                                            
+                                            <p class="buddy-conf-text">
+                                                &rarr; <a href="http://codingteam.net/project/jappix/browse" target="_blank">{% trans "Write code" %}</a>
+                                            </p>
+                                            
+                                            <p class="buddy-conf-text">
+                                                &rarr; <a href="http://codingteam.net/project/jappix/i18n" target="_blank">{% trans "Translate strings" %}</a>
+                                            </p>
+                                            
+                                            <p class="buddy-conf-text">
+                                                &rarr; <a href="http://codingteam.net/project/jappix/bugs/add" target="_blank">{% trans "Report a bug" %}</a>
+                                            </p>
+                                            
+                                            <p class="buddy-conf-text">
+                                                &rarr; <a href="http://codingteam.net/project/jappix/doc" target="_blank">{% trans "Write documentation" %}</a>
+                                            </p>
+                                            
+                                            <p class="buddy-conf-text">
+                                                &rarr; <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=contact%40post-pro.fr&amp;item_name=Jappix%20Donation&amp;no_shipping=1&amp;no_note=1&amp;tax=0&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF&amp;charset=UTF%2d8" target="_blank">{% trans "Give money" %}</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="foot-edit-finish hidable">
+                                <a onclick="buddyEditFinish();">{% trans "I am okay!" %}</a>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div id="my-infos">
+                        <div class="title container-title">
+                            <p>{% trans "Your status" %}</p>
+                        </div>
+                        
+                        <div class="content">
+                            <div class="element f-presence">
+                                <div class="icon">
+                                    <div class="icon-status status-available talk-images showable"></div>
+                                    <div class="icon-status status-chat talk-images hidable"></div>
+                                    <div class="icon-status status-away talk-images hidable"></div>
+                                    <div class="icon-status status-xa talk-images hidable"></div>
+                                    <div class="icon-status status-dnd talk-images hidable"></div>
+                                </div>
+                                
+                                <div class="type">
+                                    <select name="statut" class="change-presence myInfosSelect resetable">
+                                        <option value="available">{% trans "Available" %}</option>
+                                        <option value="chat">{% trans "Talkative" %}</option>
+                                        <option value="away">{% trans "Away" %}</option>
+                                        <option value="xa">{% trans "Not available" %}</option>
+                                        <option value="dnd">{% trans "Busy" %}</option>
+                                    </select>
+                                </div>
+                                
+                                <div id="my-infos-text-first" class="my-infos-text-item bubble hidable">
+                                    <div class="my-infos-text-subarrow talk-images"></div>
+                                    
+                                    <div class="my-infos-text-subitem">
+                                        <p class="my-infos-text-p">{% trans "A short message?" %}</p>
+                                        <p class="my-infos-text-close">X</p>
+                                        <input type="text" class="my-infos-text-input textPresence" />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="element f-mood hidable">
+                                <div class="icon">
+                                    <div class="icon-mood mood-one talk-images hidable"></div>
+                                    <div class="icon-mood mood-two talk-images hidable"></div>
+                                    <div class="icon-mood mood-three talk-images hidable"></div>
+                                    <div class="icon-mood mood-four talk-images showable"></div>
+                                    <div class="icon-mood mood-five talk-images hidable"></div>
+                                    <div class="icon-mood mood-six talk-images hidable"></div>
+                                    <div class="icon-mood mood-seven talk-images hidable"></div>
+                                    <div class="icon-mood mood-eight talk-images hidable"></div>
+                                    <div class="icon-mood mood-nine talk-images hidable"></div>
+                                </div>
+                                
+                                <div class="type">
+                                    <select name="mood" class="change-mood myInfosSelect resetable">
+                                        <option value="none">{% trans "None" %}</option>
+                                        <option value="afraid">{% trans "Afraid" %}</option>
+                                        <option value="amazed">{% trans "Amazed" %}</option>
+                                        <option value="amorous">{% trans "Amorous" %}</option>
+                                        <option value="angry">{% trans "Angry" %}</option>
+                                        <option value="annoyed">{% trans "Annoyed" %}</option>
+                                        <option value="anxious">{% trans "Anxious" %}</option>
+                                        <option value="aroused">{% trans "Aroused" %}</option>
+                                        <option value="ashamed">{% trans "Ashamed" %}</option>
+                                        <option value="bored">{% trans "Bored" %}</option>
+                                        <option value="brave">{% trans "Brave" %}</option>
+                                        <option value="calm">{% trans "Calm" %}</option>
+                                        <option value="cautious">{% trans "Cautious" %}</option>
+                                        <option value="cold">{% trans "Cold" %}</option>
+                                        <option value="confident">{% trans "Confident" %}</option>
+                                        <option value="confused">{% trans "Confused" %}</option>
+                                        <option value="contemplative">{% trans "Contemplative" %}</option>
+                                        <option value="contented">{% trans "Contented" %}</option>
+                                        <option value="cranky">{% trans "Cranky" %}</option>
+                                        <option value="crazy">{% trans "Crazy" %}</option>
+                                        <option value="creative">{% trans "Creative" %}</option>
+                                        <option value="curious">{% trans "Curious" %}</option>
+                                        <option value="dejected">{% trans "Dejected" %}</option>
+                                        <option value="depressed">{% trans "Depressed" %}</option>
+                                        <option value="disappointed">{% trans "Disappointed" %}</option>
+                                        <option value="disgusted">{% trans "Disgusted" %}</option>
+                                        <option value="dismayed">{% trans "Dismayed" %}</option>
+                                        <option value="distracted">{% trans "Distracted" %}</option>
+                                        <option value="embarrassed">{% trans "Embarrassed" %}</option>
+                                        <option value="envious">{% trans "Envious" %}</option>
+                                        <option value="excited">{% trans "Excited" %}</option>
+                                        <option value="flirtatious">{% trans "Flirtatious" %}</option>
+                                        <option value="frustrated">{% trans "Frustrated" %}</option>
+                                        <option value="grateful">{% trans "Grateful" %}</option>
+                                        <option value="grieving">{% trans "Grieving" %}</option>
+                                        <option value="grumpy">{% trans "Grumpy" %}</option>
+                                        <option value="guilty">{% trans "Guilty" %}</option>
+                                        <option value="happy">{% trans "Happy" %}</option>
+                                        <option value="hopeful">{% trans "Hopeful" %}</option>
+                                        <option value="hot">{% trans "Hot" %}</option>
+                                        <option value="humbled">{% trans "Humbled" %}</option>
+                                        <option value="humiliated">{% trans "Humiliated" %}</option>
+                                        <option value="hungry">{% trans "Hungry" %}</option>
+                                        <option value="hurt">{% trans "Hurt" %}</option>
+                                        <option value="impressed">{% trans "Impressed" %}</option>
+                                        <option value="in_awe">{% trans "In awe" %}</option>
+                                        <option value="in_love">{% trans "In love" %}</option>
+                                        <option value="indignant">{% trans "Indignant" %}</option>
+                                        <option value="interested">{% trans "Interested" %}</option>
+                                        <option value="intoxicated">{% trans "Intoxicated" %}</option>
+                                        <option value="invincible">{% trans "Invincible" %}</option>
+                                        <option value="jealous">{% trans "Jealous" %}</option>
+                                        <option value="lonely">{% trans "Lonely" %}</option>
+                                        <option value="lost">{% trans "Lost" %}</option>
+                                        <option value="lucky">{% trans "Lucky" %}</option>
+                                        <option value="mean">{% trans "Mean" %}</option>
+                                        <option value="moody">{% trans "Moody" %}</option>
+                                        <option value="nervous">{% trans "Nervous" %}</option>
+                                        <option value="neutral">{% trans "Neutral" %}</option>
+                                        <option value="offended">{% trans "Offended" %}</option>
+                                        <option value="outraged">{% trans "Outraged" %}</option>
+                                        <option value="playful">{% trans "Playful" %}</option>
+                                        <option value="proud">{% trans "Proud" %}</option>
+                                        <option value="relaxed">{% trans "Relaxed" %}</option>
+                                        <option value="relieved">{% trans "Relieved" %}</option>
+                                        <option value="remorseful">{% trans "Remorseful" %}</option>
+                                        <option value="restless">{% trans "Restless" %}</option>
+                                        <option value="sad">{% trans "Sad" %}</option>
+                                        <option value="sarcastic">{% trans "Sarcastic" %}</option>
+                                        <option value="satisfied">{% trans "Satisfied" %}</option>
+                                        <option value="serious">{% trans "Serious" %}</option>
+                                        <option value="shocked">{% trans "Shocked" %}</option>
+                                        <option value="shy">{% trans "Shy" %}</option>
+                                        <option value="sick">{% trans "Sick" %}</option>
+                                        <option value="sleepy">{% trans "Sleepy" %}</option>
+                                        <option value="spontaneous">{% trans "Spontaneous" %}</option>
+                                        <option value="stressed">{% trans "Stressed" %}</option>
+                                        <option value="strong">{% trans "Strong" %}</option>
+                                        <option value="surprised">{% trans "Surprised" %}</option>
+                                        <option value="thankful">{% trans "Thankful" %}</option>
+                                        <option value="thirsty">{% trans "Thirsty" %}</option>
+                                        <option value="tired">{% trans "Tired" %}</option>
+                                        <option value="undefined">{% trans "Undefined" %}</option>
+                                        <option value="weak">{% trans "Weak" %}</option>
+                                        <option value="worried">{% trans "Worried" %}</option>
+                                    </select>
+                                </div>
+                                
+                                <div id="my-infos-text-second" class="my-infos-text-item bubble hidable">
+                                    <div class="my-infos-text-subarrow talk-images"></div>
+                    
+                                    <div class="my-infos-text-subitem">
+                                        <p class="my-infos-text-p">{% trans "How are you?" %}</p>
+                                        <p class="my-infos-text-close">X</p>
+                                        <input type="text" class="my-infos-text-input textMood" />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="element f-activity hidable">
+                                <div class="icon">
+                                    <div class="icon-activity activity-chores talk-images hidable"></div>
+                                    <div class="icon-activity activity-drinking talk-images hidable"></div>
+                                    <div class="icon-activity activity-eating talk-images hidable"></div>
+                                    <div class="icon-activity activity-exercising talk-images showable"></div>
+                                    <div class="icon-activity activity-grooming talk-images hidable"></div>
+                                    <div class="icon-activity activity-appointment talk-images hidable"></div>
+                                    <div class="icon-activity activity-inactive talk-images hidable"></div>
+                                    <div class="icon-activity activity-relaxing talk-images hidable"></div>
+                                    <div class="icon-activity activity-talking talk-images hidable"></div>
+                                    <div class="icon-activity activity-traveling talk-images hidable"></div>
+                                    <div class="icon-activity activity-working talk-images hidable"></div>
+                                </div>
+                                
+                                <div class="type">
+                                    <select name="activity" class="change-activity myInfosSelect resetable">
+                                        <option value="none">{% trans "None" %}</option>
+                                        
+                                        <optgroup label="{% trans "Chores" %}">
+                                            <option value="doing_chores/buying_groceries">{% trans "Groceries" %}</option>
+                                            <option value="doing_chores/cleaning">{% trans "Cleaning" %}</option>
+                                            <option value="doing_chores/cooking">{% trans "Cooking" %}</option>
+                                            <option value="doing_chores/doing_maintenance">{% trans "Maintenance" %}</option>
+                                            <option value="doing_chores/doing_the_dishes">{% trans "Dishes" %}</option>
+                                            <option value="doing_chores/doing_the_laundry">{% trans "Laundry" %}</option>
+                                            <option value="doing_chores/gardening">{% trans "Gardening" %}</option>
+                                            <option value="doing_chores/running_an_errand">{% trans "Errand" %}</option>
+                                            <option value="doing_chores/walking_the_dog">{% trans "Dog" %}</option>
+                                        </optgroup>
+                                        
+                                        <optgroup label="{% trans "Drinking" %}">
+                                            <option value="drinking/having_a_beer">{% trans "Beer" %}</option>
+                                            <option value="drinking/having_coffee">{% trans "Coffee" %}</option>
+                                            <option value="drinking/having_tea">{% trans "Tea" %}</option>
+                                        </optgroup>
+                                        
+                                        <optgroup label="{% trans "Eating" %}">
+                                            <option value="eating/having_a_snack">{% trans "Snack" %}</option>
+                                            <option value="eating/having_a_breakfast">{% trans "Breakfast" %}</option>
+                                            <option value="eating/having_dinner">{% trans "Dinner" %}</option>
+                                            <option value="eating/having_lunch">{% trans "Lunch" %}</option>
+                                        </optgroup>
+                                        
+                                        <optgroup label="{% trans "Exercising" %}">
+                                            <option value="exercising/cycling">{% trans "Cycling" %}</option>
+                                            <option value="exercising/dancing">{% trans "Dancing" %}</option>
+                                            <option value="exercising/hiking">{% trans "Hiking" %}</option>
+                                            <option value="exercising/jogging">{% trans "Jogging" %}</option>
+                                            <option value="exercising/playing_sports">{% trans "Sport" %}</option>
+                                            <option value="exercising/playing_sports">{% trans "Running" %}</option>
+                                            <option value="exercising/skiing">{% trans "Skiing" %}</option>
+                                            <option value="exercising/swimming">{% trans "Swimming" %}</option>
+                                            <option value="exercising/working_out">{% trans "Working out" %}</option>
+                                        </optgroup>
+                                        
+                                        <optgroup label="{% trans "Grooming" %}">
+                                            <option value="grooming/at_the_spa">{% trans "Spa" %}</option>
+                                            <option value="grooming/brushing_teeth">{% trans "Teeth" %}</option>
+                                            <option value="grooming/getting_a_haircut">{% trans "Haircut" %}</option>
+                                            <option value="grooming/shaving">{% trans "Shaving" %}</option>
+                                            <option value="grooming/taking_a_bath">{% trans "Bath" %}</option>
+                                            <option value="grooming/taking_a_shower">{% trans "Shower" %}</option>
+                                        </optgroup>
+                                        
+                                        <optgroup label="{% trans "Appointment" %}">
+                                            <option value="having_appointment">{% trans "Appointment" %}</option>
+                                        </optgroup>
+                                        
+                                        <optgroup label="{% trans "Inactive" %}">
+                                            <option value="inactive/day_off">{% trans "Day off" %}</option>
+                                            <option value="inactive/hanging_out">{% trans "Hanging out" %}</option>
+                                            <option value="inactive/hiding">{% trans "Hiding" %}</option>
+                                            <option value="inactive/on_vacation">{% trans "Vacation" %}</option>
+                                            <option value="inactive/praying">{% trans "Praying" %}</option>
+                                            <option value="inactive/scheduled_holiday">{% trans "Holiday" %}</option>
+                                            <option value="inactive/sleeping">{% trans "Sleeping" %}</option>
+                                            <option value="inactive/thinking">{% trans "Thinking" %}</option>
+                                        </optgroup>
+                                        
+                                        <optgroup label="{% trans "Relaxing" %}">
+                                            <option value="relaxing/fishing">{% trans "Fishing" %}</option>
+                                            <option value="relaxing/gaming">{% trans "Gaming" %}</option>
+                                            <option value="relaxing/going_out">{% trans "Going out" %}</option>
+                                            <option value="relaxing/partying">{% trans "Partying" %}</option>
+                                            <option value="relaxing/reading">{% trans "Reading" %}</option>
+                                            <option value="relaxing/rehearsing">{% trans "Rehearsing" %}</option>
+                                            <option value="relaxing/shopping">{% trans "Shopping" %}</option>
+                                            <option value="relaxing/smoking">{% trans "Smoking" %}</option>
+                                            <option value="relaxing/socializing">{% trans "Socializing" %}</option>
+                                            <option value="relaxing/sunbathing">{% trans "Sunbathing" %}</option>
+                                            <option value="relaxing/watching_tv">{% trans "TV" %}</option>
+                                            <option value="relaxing/watching_a_movie">{% trans "Movie" %}</option>
+                                        </optgroup>
+                                        
+                                        <optgroup label="{% trans "Talking" %}">
+                                            <option value="talking/in_real_life">{% trans "Real life" %}</option>
+                                            <option value="talking/on_the_phone">{% trans "Phone" %}</option>
+                                            <option value="talking/on_video_phone">{% trans "Video phone" %}</option>
+                                        </optgroup>
+                                        
+                                        <optgroup label="{% trans "Traveling" %}">
+                                            <option value="traveling/commuting">{% trans "Commuting" %}</option>
+                                            <option value="traveling/cycling">{% trans "Cycling" %}</option>
+                                            <option value="traveling/driving">{% trans "Driving" %}</option>
+                                            <option value="traveling/in_a_car">{% trans "In a car" %}</option>
+                                            <option value="traveling/on_a_bus">{% trans "On a bus" %}</option>
+                                            <option value="traveling/on_a_plane">{% trans "On a plane" %}</option>
+                                            <option value="traveling/on_a_train">{% trans "On a train" %}</option>
+                                            <option value="traveling/on_a_trip">{% trans "On a trip" %}</option>
+                                            <option value="traveling/walking">{% trans "Walking" %}</option>
+                                        </optgroup>
+                                        
+                                        <optgroup label="{% trans "Working" %}">
+                                            <option value="working/coding">{% trans "Coding" %}</option>
+                                            <option value="working/in_a_meeting">{% trans "Meeting" %}</option>
+                                            <option value="working/studying">{% trans "Studying" %}</option>
+                                            <option value="working/writing">{% trans "Writing" %}</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                
+                                <div id="my-infos-text-third" class="my-infos-text-item bubble hidable">
+                                    <div class="my-infos-text-subarrow talk-images"></div>
+                                    
+                                    <div class="my-infos-text-subitem">
+                                        <p class="my-infos-text-p">{% trans "What are you doing?" %}</p>
+                                        <p class="my-infos-text-close">X</p>
+                                        <input type="text" class="my-infos-text-input textActivity" />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="element f-geoloc hidable">
+                                <div class="icon">
+                                    <div class="icon-location location-world talk-images"></div>
+                                </div>
+                                
+                                <div class="type">
+                                    <a href="http://www.openstreetmap.org/" target="_blank">{% trans "Where am I?" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+    <!-- END TALKPAGE -->
 

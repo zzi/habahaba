@@ -61,12 +61,12 @@ XmlHttp.create = function () {
       // some versions of Moz do not support the readyState property
       // and the onreadystate event so we patch it!
       if (req.readyState == null) {
-	req.readyState = 1;
-	req.addEventListener("load", function () {
-			       req.readyState = 4;
-			       if (typeof req.onreadystatechange == "function")
-				 req.onreadystatechange();
-			     }, false);
+    req.readyState = 1;
+    req.addEventListener("load", function () {
+                   req.readyState = 4;
+                   if (typeof req.onreadystatechange == "function")
+                 req.onreadystatechange();
+                 }, false);
       }
      
       return req;
@@ -121,12 +121,12 @@ XmlDocument.create = function (name,ns) {
       // some versions of Moz do not support the readyState property
       // and the onreadystate event so we patch it!
       if (doc.readyState == null) {
-	doc.readyState = 1;
-	doc.addEventListener("load", function () {
-			       doc.readyState = 4;
-			       if (typeof doc.onreadystatechange == "function")
-				 doc.onreadystatechange();
-			     }, false);
+    doc.readyState = 1;
+    doc.addEventListener("load", function () {
+                   doc.readyState = 4;
+                   if (typeof doc.onreadystatechange == "function")
+                 doc.onreadystatechange();
+                 }, false);
       }
     } else if (window.ActiveXObject) {
       doc = new ActiveXObject(XmlDocument.getPrefix() + ".DomDocument");
@@ -193,14 +193,14 @@ if (typeof(Document) != 'undefined' && window.DOMParser) {
    * @private
    */
   Document.prototype.loadXML = function (s) {
-	
+    
     // parse the string to a new doc
     var doc2 = (new DOMParser()).parseFromString(s, "text/xml");
-	
+    
     // remove all initial children
     while (this.hasChildNodes())
       this.removeChild(this.lastChild);
-		
+        
     // insert and import nodes
     for (var i = 0; i < doc2.childNodes.length; i++) {
       this.appendChild(this.importNode(doc2.childNodes[i], true));
@@ -841,7 +841,7 @@ function binl2b64(binarray)
    UTF-8 Decoder and Encoder
    base64 Encoder and Decoder
    written by Tobias Kieslich, justdreams
-   Contact: tobias@justdreams.de				http://www.justdreams.de/
+   Contact: tobias@justdreams.de                http://www.justdreams.de/
    ############################################################################# */
 
 // returns an array of byterepresenting dezimal numbers which represent the
@@ -888,7 +888,7 @@ function utf8t2d(t)
       }
   return d;
 }
-	
+    
 // returns plaintext from an array of bytesrepresenting dezimal numbers, which
 // represent an UTF-8 encoded text; browser which does not understand unicode
 // like NN401 will show "?"-signs instead
@@ -1180,7 +1180,7 @@ JSJaCJID.prototype.clone = function() {
  */
 JSJaCJID.prototype.isEntity = function(jid) {
   if (typeof jid == 'string')
-	  jid = (new JSJaCJID(jid));
+      jid = (new JSJaCJID(jid));
   jid.removeResource();
   return (this.clone().removeResource().toString() === jid.toString());
 };
@@ -2062,7 +2062,7 @@ function JSJaCError(code,type,condition) {
  * @constructor
  * @param {Function} func The hash function to be used for creating the keys
  * @param {Debugger} oDbg Reference to debugger implementation [optional]
- */									 
+ */                                     
 function JSJaCKeys(func,oDbg) {
   var seed = Math.random();
 
@@ -2515,9 +2515,9 @@ JSJaCConnection.prototype.resumeFromData = function(data) {
       this._handleEvent('onresume');
       setTimeout(JSJaC.bind(this._resume, this),this.getPollInterval());
       this._interval = setInterval(JSJaC.bind(this._checkQueue, this),
-				   JSJAC_CHECKQUEUEINTERVAL);
+                   JSJAC_CHECKQUEUEINTERVAL);
       this._inQto = setInterval(JSJaC.bind(this._checkInQ, this),
-				JSJAC_CHECKINQUEUEINTERVAL);
+                JSJAC_CHECKINQUEUEINTERVAL);
     }
 
     return (this._connected === true);
@@ -3022,8 +3022,8 @@ JSJaCConnection.prototype._handleEvent = function(event,arg) {
         if (arg) {
           if (arg.pType) { // it's a packet
             if ((!arg.getNode().hasChildNodes() && aEvent.childName != '*') ||
-				(arg.getNode().hasChildNodes() &&
-				 !arg.getChild(aEvent.childName, aEvent.childNS)))
+                (arg.getNode().hasChildNodes() &&
+                 !arg.getChild(aEvent.childName, aEvent.childNS)))
               continue;
             if (aEvent.type != '*' &&
                 arg.getType() != aEvent.type)
@@ -3190,7 +3190,7 @@ JSJaCConnection.prototype._process = function(timerval) {
     this.oDbg.log("Slot "+slot+" is not ready");
     return;
   }
-	
+    
   if (!this.isPolling() && this._pQueue.length == 0 &&
       this._req[(slot+1)%2] && this._req[(slot+1)%2].r.readyState != 4) {
     this.oDbg.log("all slots busy, standby ...", 2);
@@ -3236,7 +3236,7 @@ JSJaCConnection.prototype._process = function(timerval) {
                    }
                    
                    this._setStatus('onerror_fallback');
-			
+            
                    // schedule next tick
                    setTimeout(JSJaC.bind(this._resume, this),this.getPollInterval());
                    return false;
@@ -3505,7 +3505,7 @@ JSJaCHttpBindingConnection.prototype._getRequestString = function(raw, last) {
           i < this._rid-this._hold)
         delete(this._last_requests[i]); // truncate
   }
-	
+    
   return reqstr;
 };
 
@@ -3690,17 +3690,17 @@ JSJaCHttpBindingConnection.prototype._parseResponse = function(req) {
     }
   } catch (e) {
     this.oDbg.log("XMLHttpRequest error: status not available", 1);
-	this._errcnt++;
-	if (this._errcnt > JSJAC_ERR_COUNT) {
-	  // abort
-	  this._abort();
-	} else {
-	  this.oDbg.log("repeating ("+this._errcnt+")",1);
+    this._errcnt++;
+    if (this._errcnt > JSJAC_ERR_COUNT) {
+      // abort
+      this._abort();
+    } else {
+      this.oDbg.log("repeating ("+this._errcnt+")",1);
      
-	  this._setStatus('proto_error_fallback');
+      this._setStatus('proto_error_fallback');
      
-	  // schedule next tick
-	  setTimeout(JSJaC.bind(this._resume, this),
+      // schedule next tick
+      setTimeout(JSJaC.bind(this._resume, this),
                      this.getPollInterval()); 
     }
     return null;
@@ -3708,7 +3708,7 @@ JSJaCHttpBindingConnection.prototype._parseResponse = function(req) {
 
   var body = r.responseXML.documentElement;
   if (!body || body.tagName != 'body' ||
-	  body.namespaceURI != 'http://jabber.org/protocol/httpbind') {
+      body.namespaceURI != 'http://jabber.org/protocol/httpbind') {
     this.oDbg.log("invalid response:\n" + r.responseText,1);
 
     clearTimeout(this._timeout); // remove timer
@@ -3721,7 +3721,7 @@ JSJaCHttpBindingConnection.prototype._parseResponse = function(req) {
 
     this._setStatus('internal_server_error');
     this._handleEvent('onerror',
-					  JSJaCError('500','wait','internal-server-error'));
+                      JSJaCError('500','wait','internal-server-error'));
 
     return null;
   }

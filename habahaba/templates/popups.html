@@ -1,628 +1,628 @@
-{% load i18n %}	
-	<!-- BEGIN VCARD POPUP -->
-	<div id="vcard" class="lock hidable">
-		<div class="popup">
-			<div class="popup-content">
-				<div class="top">
-					<p>{% trans "My profile" %}</p>
-				</div>
-				
-				<div class="tab">
-					<a class="lap1 tab-active" onclick="switchVCard(1);">{% trans "Identity" %}</a>
-					<a class="lap2" onclick="switchVCard(2);">{% trans "Avatar" %}</a>
-					<a class="lap3" onclick="switchVCard(3);">{% trans "Others" %}</a>
-				</div>
-				
-				<div class="content">
-					<div id="lap1" class="one-lap">
-						<div class="forms">
-							<fieldset>
-								<legend>{% trans "Civility" %}</legend>
-								<label for="FN">{% trans "Complete name" %}</label>
-								<input type="text" id="FN" class="resetable vcard-item" /><br />
-								<label for="NICKNAME">{% trans "Nick" %}</label>
-								<input type="text" id="NICKNAME" class="resetable vcard-item" /><br />
-								<label for="N-GIVEN">{% trans "Given name" %}</label>
-								<input type="text" id="N-GIVEN" class="resetable vcard-item" /><br />
-								<label for="N-FAMILY">{% trans "Family name" %}</label>
-								<input type="text" id="N-FAMILY" class="resetable vcard-item" /><br />
-								<label for="BDAY">{% trans "Birth" %}</label>
-								<input type="text" id="BDAY" class="resetable vcard-item" />
-							</fieldset>
-							
-							<fieldset>
-								<legend>{% trans "Contact" %}</legend>
-								<label for="EMAIL-USERID">{% trans "E-mail" %}</label>
-								<input type="text" id="EMAIL-USERID" class="resetable vcard-item" /><br />
-								<label for="TEL-NUMBER">{% trans "Phone" %}</label>
-								<input type="text" id="TEL-NUMBER" class="resetable vcard-item" /><br />
-								<label for="URL">{% trans "Website" %}</label>
-								<input type="text" id="URL" class="resetable vcard-item" />
-							</fieldset>
-						</div>
-					</div>
-					
-					<div id="lap2" class="one-lap">
-						<div class="forms">
-							<fieldset>
-								<legend>{% trans "Picture of you" %}</legend>
-								<input type="hidden" id="PHOTO-TYPE" class="resetable vcard-item" />
-								<input type="hidden" id="PHOTO-BINVAL" class="resetable vcard-item" />
-								<input style="margin-left: 15px;" type="file" name="vCardAvatar" id="vCardAvatar" class="resetable" onchange="sendThisAvatar()" />
-							</fieldset>
-							
-							<fieldset>
-								<legend>{% trans "Actual picture" %}</legend>
-								<div class="avatar-container"></div>
-								<div class="avatar-delete hidable" onclick="deleteAvatar();"><p>{% trans "Delete" %}</p></div>
-								<div class="no-avatar">
-									<p>{% trans "What a pity! You have no avatar defined in your identity card!" %}</p>
-								</div>
-							</fieldset>
-							
-							<div class="avatar-ok avatar-info removable"><p>{% trans "Here it is! A new beautiful avatar!" %}</p></div>
-							<div class="avatar-error avatar-info removable"><p>{% trans "Not supported image file or bad size." %}</p></div>
-						</div>
-					</div>
-					
-					<div id="lap3" class="one-lap">
-						<div class="forms">
-							<fieldset>
-								<legend>{% trans "Postal address" %}</legend>
-								<label for="ADR-STREET">{% trans "Street" %}</label>
-								<input type="text" id="ADR-STREET" class="resetable vcard-item" /><br />
-								<label for="ADR-LOCALITY">{% trans "City" %}</label>
-								<input type="text" id="ADR-LOCALITY" class="resetable vcard-item" /><br />
-								<label for="ADR-PCODE">{% trans "Postal code" %}</label>
-								<input type="text" id="ADR-PCODE" class="resetable vcard-item" /><br />
-								<label for="ADR-CTRY">{% trans "Country" %}</label>
-								<input type="text" id="ADR-CTRY" class="resetable vcard-item" /><br />
-							</fieldset>
-							
-							<fieldset>
-								<legend>{% trans "Biography" %}</legend>
-								<textarea id="DESC" rows="8" cols="60" class="resetable vcard-item"></textarea>
-							</fieldset>
-						</div>
-					</div>
-					
-					<div class="infos">
-						<div class="infos-content">
-							<p><b>{% trans "Important notice" %}:</b></p>
-							<p>{% trans "Be careful of the informations you write into your profile, because if you put sensitive personal data in it.. it could be accessible from everyone (even someone you don't want to)." %}</p>
-							<p>{% trans "Everything is not private on XMPP, here's one of those things, your public profile (vCard)." %}</p>
-							<p>{% trans "It's strongly recommended to send an avatar (25Kio maximum), like a picture of yourself, because that makes you easily recognizable from your friends." %}</p>
-						</div>
-					</div>
-				</div>
-				
-				<div class="bottom">
-					<div class="wait wait-small"></div>
-					<div class="finish" onclick="return sendVCard();">{% trans "Save" %}</div>
-					<div class="finish" onclick="return cancelVCard();">{% trans "Cancel" %}</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- END VCARD POPUP -->
-	
-	<!-- BEGIN OPTIONS POPUP -->
-	<div id="options" class="lock hidable">
-		<div class="popup">
-			<div class="popup-content">
-				<div class="top">
-					<p>{% trans "I edit my options" %}</p>
-				</div>
-				
-				<div class="tab">
-					<a class="conf1 tab-active" onclick="switchOptions(1);">{% trans "General" %}</a>
-					<a class="conf2" onclick="switchOptions(2);">{% trans "Channel" %}</a>
-					<a class="conf3" onclick="switchOptions(3);">{% trans "Account" %}</a>
-				</div>
-				
-				<div class="content">
-					<div id="conf1" class="one-conf">
-						<div class="forms">
-							<fieldset>
-								<legend>{% trans "Audio" %}</legend>
-								<label for="sounds">{% trans "Sounds" %}</label>
-								<select id="sounds" name="sounds" class="sounds resetable">
-									<option value="on">{% trans "Active" %}</option>
-									<option value="off">{% trans "Inactive" %}</option>
-								</select>
-							</fieldset>
-							
-							<fieldset>
-								<legend>{% trans "Geolocation" %}</legend>
-								<label for="geolocation">{% trans "Geolocation" %}</label>
-								<select id="geolocation" name="geolocation" class="geolocation resetable">
-									<option value="on">{% trans "Share" %}</option>
-									<option value="off">{% trans "Hide" %}</option>
-								</select>
-							</fieldset>
-						</div>
-					</div>
-					
-					<div id="conf2" class="one-conf">
-						<div class="forms">
-							<fieldset>
-								<legend>{% trans "Channel" %}</legend>
-								<label>{% trans "Empty" %}</label>
-								<a class="linked empty-channel">{% trans "Empty my channel" %}</a>
-								<label>{% trans "Persistent" %}</label>
-								<select id="persistent" name="persistent" class="persistent resetable">
-									<option value="1">{% trans "Active" %}</option>
-									<option value="0">{% trans "Inactive" %}</option>
-								</select>
-								<label>{% trans "Maximum notices" %}</label>
-								<select id="maxnotices" name="maxnotices" class="maxnotices resetable">
-									<option value="50">50</option>
-									<option value="100">100</option>
-									<option value="500">500</option>
-									<option value="1000">1000</option>
-									<option value="5000">5000</option>
-									<option value="10000">10000</option>
-								</select>
-							</fieldset>
-							
-							<div class="sub-ask sub-ask-empty sub-ask-element hidable">
-								<div class="sub-ask-top">
-									<div class="sub-ask-title">{% trans "Empty my channel" %}</div>
-									<a class="sub-ask-close">X</a>
-								</div>
-								
-								<div class="sub-ask-content">
-									{% trans "Password" %}: <input type="password" class="check-empty resetable" />
-								</div>
-								
-								<a class="sub-ask-bottom" onclick="deleteMyMicroblog();">{% trans "Empty" %} &raquo;</a>
-							</div>
-						</div>
-					</div>
-					
-					<div id="conf3" class="one-conf">
-						<div class="forms">
-							<fieldset>
-								<legend>{% trans "Account" %}</legend>
-								<label>{% trans "Password" %}</label>
-								<a class="linked change-password">{% trans "Change my password" %}</a>
-								<label>{% trans "Delete" %}</label>
-								<a class="linked delete-account">{% trans "Delete my account" %}</a>
-							</fieldset>
-							
-							<div class="sub-ask sub-ask-pass sub-ask-element hidable">
-								<div class="sub-ask-top">
-									<div class="sub-ask-title">{% trans "Change my password" %}</div>
-									<a class="sub-ask-close">X</a>
-								</div>
-								
-								<div class="sub-ask-content">
-									<p>{% trans "Old" %}: <input type="password" class="old resetable" />
-									{% trans "New (2 times)" %}: <input type="password" class="new1 resetable" />
-									<input type="password" class="new2 resetable" /></p>
-								</div>
-								
-								<a class="sub-ask-bottom" onclick="sendNewPassword();">{% trans "Continue" %} &raquo;</a>
-							</div>
-							
-							<div class="sub-ask sub-ask-delete sub-ask-element hidable">
-								<div class="sub-ask-top">
-									<div class="sub-ask-title">{% trans "Delete my account" %}</div>
-									<a class="sub-ask-close">X</a>
-								</div>
-								
-								<div class="sub-ask-content">
-									{% trans "Password" %}: <input type="password" class="check-password resetable" />
-								</div>
-								
-								<a class="sub-ask-bottom" onclick="deleteMyAccount();">{% trans "Delete" %} &raquo;</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="bottom">
-					<div class="finish" onclick="return saveOptions();">{% trans "Save" %}</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- END OPTIONS POPUP -->
-	
-	<!-- BEGIN FAVORITES -->
-	<div id="favorites" class="lock hidable">
-		<div class="popup">
-			<div class="popup-content">
-				<div class="top">
-					<p>{% trans "Manage my favorites rooms" %}</p>
-				</div>
-				
-				<div class="content">
-					<div class="switch-fav">
-						<div class="room-switcher room-list">
-							<div class="icon list-icon talk-images"></div>
-							{% trans "Change my favorites" %}
-						</div>
-						
-						<div class="room-switcher room-search">
-							<div class="icon search-icon talk-images"></div>
-							{% trans "Search a room" %}
-						</div>
-					</div>
-					
-					<div class="static-fav">
-						<div class="favorites-edit favorites-content">
-							<div class="head fedit-head static-fav-head">
-								<div class="head-text fedit-head-text">{% trans "Select a favorite" %}:</div>
-								<select name="fedit-head-select" class="head-select fedit-head-select resetable">
-									<option value="none" class="fedit-head-select-first-option">Sélectionnez un salon</option>
-								</select>
-							</div>
-							
-							<div class="results fedit-results static-fav-results">
-								<div class="fedit-line">
-									<div class="fedit-text">{% trans "Title" %}:</div>
-									<input class="fedit-input fedit-title fedit-required" type="text" />
-								</div>
-								
-								<div class="fedit-line">
-									<div class="fedit-text">{% trans "Name" %}:</div>
-									<input class="fedit-input fedit-nick fedit-required" type="text" />
-								</div>
-								
-								<div class="fedit-line">
-									<div class="fedit-text">{% trans "Room" %}:</div>
-									<input class="fedit-input fedit-chan fedit-required" type="text" />
-								</div>
-								
-								<div class="fedit-line">
-									<div class="fedit-text">{% trans "Server" %}:</div>
-									<input class="fedit-input fedit-server fedit-required" type="text" value="{{ settings.HOST_MUC }}" />
-								</div>
-								
-								<div class="fedit-line">
-									<div class="fedit-text">{% trans "Password" %}:</div>
-									<input class="fedit-input fedit-password" type="password" />
-								</div>
-								
-								<div class="fedit-actions">
-									<a class="fedit-terminate fedit-add" onclick="terminateThisFavorite('add');">{% trans "Add" %}</a>
-									<a class="fedit-terminate fedit-edit" onclick="terminateThisFavorite('edit');">{% trans "Edit" %}</a>
-									<a class="fedit-terminate fedit-remove" onclick="terminateThisFavorite('remove');">{% trans "Remove" %}</a>
-								</div>
-							</div>
-						</div>
-						
-						<div class="favorites-search favorites-content">
-							<div class="head fsearch-head static-fav-head">
-								<div class="head-text fsearch-head-text">{% trans "Search a room on" %}:</div>
-								<input type="text" class="head-input fsearch-head-server" value="{{ settings.HOST_MUC }}" />
-							</div>
-							
-							<div class="results fsearch-results static-fav-results">
-								<p class="fsearch-noresults">{% trans "No room found on this server." %}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="bottom">
-					<div class="wait wait-small"></div>
-					<div class="finish" onclick="return quitFavorites();">{% trans "Close" %}</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- END FAVORITES -->
-	
-	<!-- BEGIN DISCOVERY -->
-	<div id="discovery" class="lock hidable">
-		<div class="popup">
-			<div class="popup-content">
-				<div class="top">
-					<p>{% trans "Service discovery" %}</p>
-				</div>
-				
-				<div class="content">
-					<div class="discovery-head">
-						<div class="disco-server-text">{% trans "Server to query" %}</div>
-						<input name="disco-server-input" class="disco-server-input resetable" value="{{ settings.HOST_MAIN }}" />
-					</div>
-					
-					<div class="results discovery-results">
-						<p class="discovery-noresults">{% trans "Sorry, but the server didn't return any result!" %}</p>
-						
-						<div class="disco-category disco-account">
-							<p class="disco-category-title">{% trans "Accounts" %}</p>
-						</div>
-						
-						<div class="disco-category disco-auth">
-							<p class="disco-category-title">{% trans "Authentications" %}</p>
-						</div>
-						
-						<div class="disco-category disco-automation">
-							<p class="disco-category-title">{% trans "Automation" %}</p>
-						</div>
-						
-						<div class="disco-category disco-client">
-							<p class="disco-category-title">{% trans "Clients" %}</p>
-						</div>
-						
-						<div class="disco-category disco-collaboration">
-							<p class="disco-category-title">{% trans "Collaboration" %}</p>
-						</div>
-						
-						<div class="disco-category disco-component">
-							<p class="disco-category-title">{% trans "Components" %}</p>
-						</div>
-						
-						<div class="disco-category disco-conference">
-							<p class="disco-category-title">{% trans "Rooms" %}</p>
-						</div>
-						
-						<div class="disco-category disco-directory">
-							<p class="disco-category-title">{% trans "Directories" %}</p>
-						</div>
-						
-						<div class="disco-category disco-gateway">
-							<p class="disco-category-title">{% trans "Gateways" %}</p>
-						</div>
-						
-						<div class="disco-category disco-headline">
-							<p class="disco-category-title">{% trans "News" %}</p>
-						</div>
-						
-						<div class="disco-category disco-hierarchy">
-							<p class="disco-category-title">{% trans "Hierarchy" %}</p>
-						</div>
-						
-						<div class="disco-category disco-proxy">
-							<p class="disco-category-title">{% trans "Proxies" %}</p>
-						</div>
-						
-						<div class="disco-category disco-pubsub">
-							<p class="disco-category-title">{% trans "Publication/Subscription" %}</p>
-						</div>
-						
-						<div class="disco-category disco-server">
-							<p class="disco-category-title">{% trans "Server" %}</p>
-						</div>
-						
-						<div class="disco-category disco-store">
-							<p class="disco-category-title">{% trans "Storage" %}</p>
-						</div>
-						
-						<div class="disco-category disco-others">
-							<p class="disco-category-title">{% trans "Others" %}</p>
-						</div>
+{% load i18n %}    
+    <!-- BEGIN VCARD POPUP -->
+    <div id="vcard" class="lock hidable">
+        <div class="popup">
+            <div class="popup-content">
+                <div class="top">
+                    <p>{% trans "My profile" %}</p>
+                </div>
+                
+                <div class="tab">
+                    <a class="lap1 tab-active" onclick="switchVCard(1);">{% trans "Identity" %}</a>
+                    <a class="lap2" onclick="switchVCard(2);">{% trans "Avatar" %}</a>
+                    <a class="lap3" onclick="switchVCard(3);">{% trans "Others" %}</a>
+                </div>
+                
+                <div class="content">
+                    <div id="lap1" class="one-lap">
+                        <div class="forms">
+                            <fieldset>
+                                <legend>{% trans "Civility" %}</legend>
+                                <label for="FN">{% trans "Complete name" %}</label>
+                                <input type="text" id="FN" class="resetable vcard-item" /><br />
+                                <label for="NICKNAME">{% trans "Nick" %}</label>
+                                <input type="text" id="NICKNAME" class="resetable vcard-item" /><br />
+                                <label for="N-GIVEN">{% trans "Given name" %}</label>
+                                <input type="text" id="N-GIVEN" class="resetable vcard-item" /><br />
+                                <label for="N-FAMILY">{% trans "Family name" %}</label>
+                                <input type="text" id="N-FAMILY" class="resetable vcard-item" /><br />
+                                <label for="BDAY">{% trans "Birth" %}</label>
+                                <input type="text" id="BDAY" class="resetable vcard-item" />
+                            </fieldset>
+                            
+                            <fieldset>
+                                <legend>{% trans "Contact" %}</legend>
+                                <label for="EMAIL-USERID">{% trans "E-mail" %}</label>
+                                <input type="text" id="EMAIL-USERID" class="resetable vcard-item" /><br />
+                                <label for="TEL-NUMBER">{% trans "Phone" %}</label>
+                                <input type="text" id="TEL-NUMBER" class="resetable vcard-item" /><br />
+                                <label for="URL">{% trans "Website" %}</label>
+                                <input type="text" id="URL" class="resetable vcard-item" />
+                            </fieldset>
+                        </div>
+                    </div>
+                    
+                    <div id="lap2" class="one-lap">
+                        <div class="forms">
+                            <fieldset>
+                                <legend>{% trans "Picture of you" %}</legend>
+                                <input type="hidden" id="PHOTO-TYPE" class="resetable vcard-item" />
+                                <input type="hidden" id="PHOTO-BINVAL" class="resetable vcard-item" />
+                                <input style="margin-left: 15px;" type="file" name="vCardAvatar" id="vCardAvatar" class="resetable" onchange="sendThisAvatar()" />
+                            </fieldset>
+                            
+                            <fieldset>
+                                <legend>{% trans "Actual picture" %}</legend>
+                                <div class="avatar-container"></div>
+                                <div class="avatar-delete hidable" onclick="deleteAvatar();"><p>{% trans "Delete" %}</p></div>
+                                <div class="no-avatar">
+                                    <p>{% trans "What a pity! You have no avatar defined in your identity card!" %}</p>
+                                </div>
+                            </fieldset>
+                            
+                            <div class="avatar-ok avatar-info removable"><p>{% trans "Here it is! A new beautiful avatar!" %}</p></div>
+                            <div class="avatar-error avatar-info removable"><p>{% trans "Not supported image file or bad size." %}</p></div>
+                        </div>
+                    </div>
+                    
+                    <div id="lap3" class="one-lap">
+                        <div class="forms">
+                            <fieldset>
+                                <legend>{% trans "Postal address" %}</legend>
+                                <label for="ADR-STREET">{% trans "Street" %}</label>
+                                <input type="text" id="ADR-STREET" class="resetable vcard-item" /><br />
+                                <label for="ADR-LOCALITY">{% trans "City" %}</label>
+                                <input type="text" id="ADR-LOCALITY" class="resetable vcard-item" /><br />
+                                <label for="ADR-PCODE">{% trans "Postal code" %}</label>
+                                <input type="text" id="ADR-PCODE" class="resetable vcard-item" /><br />
+                                <label for="ADR-CTRY">{% trans "Country" %}</label>
+                                <input type="text" id="ADR-CTRY" class="resetable vcard-item" /><br />
+                            </fieldset>
+                            
+                            <fieldset>
+                                <legend>{% trans "Biography" %}</legend>
+                                <textarea id="DESC" rows="8" cols="60" class="resetable vcard-item"></textarea>
+                            </fieldset>
+                        </div>
+                    </div>
+                    
+                    <div class="infos">
+                        <div class="infos-content">
+                            <p><b>{% trans "Important notice" %}:</b></p>
+                            <p>{% trans "Be careful of the informations you write into your profile, because if you put sensitive personal data in it.. it could be accessible from everyone (even someone you don't want to)." %}</p>
+                            <p>{% trans "Everything is not private on XMPP, here's one of those things, your public profile (vCard)." %}</p>
+                            <p>{% trans "It's strongly recommended to send an avatar (25Kio maximum), like a picture of yourself, because that makes you easily recognizable from your friends." %}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bottom">
+                    <div class="wait wait-small"></div>
+                    <div class="finish" onclick="return sendVCard();">{% trans "Save" %}</div>
+                    <div class="finish" onclick="return cancelVCard();">{% trans "Cancel" %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END VCARD POPUP -->
+    
+    <!-- BEGIN OPTIONS POPUP -->
+    <div id="options" class="lock hidable">
+        <div class="popup">
+            <div class="popup-content">
+                <div class="top">
+                    <p>{% trans "I edit my options" %}</p>
+                </div>
+                
+                <div class="tab">
+                    <a class="conf1 tab-active" onclick="switchOptions(1);">{% trans "General" %}</a>
+                    <a class="conf2" onclick="switchOptions(2);">{% trans "Channel" %}</a>
+                    <a class="conf3" onclick="switchOptions(3);">{% trans "Account" %}</a>
+                </div>
+                
+                <div class="content">
+                    <div id="conf1" class="one-conf">
+                        <div class="forms">
+                            <fieldset>
+                                <legend>{% trans "Audio" %}</legend>
+                                <label for="sounds">{% trans "Sounds" %}</label>
+                                <select id="sounds" name="sounds" class="sounds resetable">
+                                    <option value="on">{% trans "Active" %}</option>
+                                    <option value="off">{% trans "Inactive" %}</option>
+                                </select>
+                            </fieldset>
+                            
+                            <fieldset>
+                                <legend>{% trans "Geolocation" %}</legend>
+                                <label for="geolocation">{% trans "Geolocation" %}</label>
+                                <select id="geolocation" name="geolocation" class="geolocation resetable">
+                                    <option value="on">{% trans "Share" %}</option>
+                                    <option value="off">{% trans "Hide" %}</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                    
+                    <div id="conf2" class="one-conf">
+                        <div class="forms">
+                            <fieldset>
+                                <legend>{% trans "Channel" %}</legend>
+                                <label>{% trans "Empty" %}</label>
+                                <a class="linked empty-channel">{% trans "Empty my channel" %}</a>
+                                <label>{% trans "Persistent" %}</label>
+                                <select id="persistent" name="persistent" class="persistent resetable">
+                                    <option value="1">{% trans "Active" %}</option>
+                                    <option value="0">{% trans "Inactive" %}</option>
+                                </select>
+                                <label>{% trans "Maximum notices" %}</label>
+                                <select id="maxnotices" name="maxnotices" class="maxnotices resetable">
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                    <option value="5000">5000</option>
+                                    <option value="10000">10000</option>
+                                </select>
+                            </fieldset>
+                            
+                            <div class="sub-ask sub-ask-empty sub-ask-element hidable">
+                                <div class="sub-ask-top">
+                                    <div class="sub-ask-title">{% trans "Empty my channel" %}</div>
+                                    <a class="sub-ask-close">X</a>
+                                </div>
+                                
+                                <div class="sub-ask-content">
+                                    {% trans "Password" %}: <input type="password" class="check-empty resetable" />
+                                </div>
+                                
+                                <a class="sub-ask-bottom" onclick="deleteMyMicroblog();">{% trans "Empty" %} &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="conf3" class="one-conf">
+                        <div class="forms">
+                            <fieldset>
+                                <legend>{% trans "Account" %}</legend>
+                                <label>{% trans "Password" %}</label>
+                                <a class="linked change-password">{% trans "Change my password" %}</a>
+                                <label>{% trans "Delete" %}</label>
+                                <a class="linked delete-account">{% trans "Delete my account" %}</a>
+                            </fieldset>
+                            
+                            <div class="sub-ask sub-ask-pass sub-ask-element hidable">
+                                <div class="sub-ask-top">
+                                    <div class="sub-ask-title">{% trans "Change my password" %}</div>
+                                    <a class="sub-ask-close">X</a>
+                                </div>
+                                
+                                <div class="sub-ask-content">
+                                    <p>{% trans "Old" %}: <input type="password" class="old resetable" />
+                                    {% trans "New (2 times)" %}: <input type="password" class="new1 resetable" />
+                                    <input type="password" class="new2 resetable" /></p>
+                                </div>
+                                
+                                <a class="sub-ask-bottom" onclick="sendNewPassword();">{% trans "Continue" %} &raquo;</a>
+                            </div>
+                            
+                            <div class="sub-ask sub-ask-delete sub-ask-element hidable">
+                                <div class="sub-ask-top">
+                                    <div class="sub-ask-title">{% trans "Delete my account" %}</div>
+                                    <a class="sub-ask-close">X</a>
+                                </div>
+                                
+                                <div class="sub-ask-content">
+                                    {% trans "Password" %}: <input type="password" class="check-password resetable" />
+                                </div>
+                                
+                                <a class="sub-ask-bottom" onclick="deleteMyAccount();">{% trans "Delete" %} &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bottom">
+                    <div class="finish" onclick="return saveOptions();">{% trans "Save" %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END OPTIONS POPUP -->
+    
+    <!-- BEGIN FAVORITES -->
+    <div id="favorites" class="lock hidable">
+        <div class="popup">
+            <div class="popup-content">
+                <div class="top">
+                    <p>{% trans "Manage my favorites rooms" %}</p>
+                </div>
+                
+                <div class="content">
+                    <div class="switch-fav">
+                        <div class="room-switcher room-list">
+                            <div class="icon list-icon talk-images"></div>
+                            {% trans "Change my favorites" %}
+                        </div>
+                        
+                        <div class="room-switcher room-search">
+                            <div class="icon search-icon talk-images"></div>
+                            {% trans "Search a room" %}
+                        </div>
+                    </div>
+                    
+                    <div class="static-fav">
+                        <div class="favorites-edit favorites-content">
+                            <div class="head fedit-head static-fav-head">
+                                <div class="head-text fedit-head-text">{% trans "Select a favorite" %}:</div>
+                                <select name="fedit-head-select" class="head-select fedit-head-select resetable">
+                                    <option value="none" class="fedit-head-select-first-option">Sélectionnez un salon</option>
+                                </select>
+                            </div>
+                            
+                            <div class="results fedit-results static-fav-results">
+                                <div class="fedit-line">
+                                    <div class="fedit-text">{% trans "Title" %}:</div>
+                                    <input class="fedit-input fedit-title fedit-required" type="text" />
+                                </div>
+                                
+                                <div class="fedit-line">
+                                    <div class="fedit-text">{% trans "Name" %}:</div>
+                                    <input class="fedit-input fedit-nick fedit-required" type="text" />
+                                </div>
+                                
+                                <div class="fedit-line">
+                                    <div class="fedit-text">{% trans "Room" %}:</div>
+                                    <input class="fedit-input fedit-chan fedit-required" type="text" />
+                                </div>
+                                
+                                <div class="fedit-line">
+                                    <div class="fedit-text">{% trans "Server" %}:</div>
+                                    <input class="fedit-input fedit-server fedit-required" type="text" value="{{ settings.HOST_MUC }}" />
+                                </div>
+                                
+                                <div class="fedit-line">
+                                    <div class="fedit-text">{% trans "Password" %}:</div>
+                                    <input class="fedit-input fedit-password" type="password" />
+                                </div>
+                                
+                                <div class="fedit-actions">
+                                    <a class="fedit-terminate fedit-add" onclick="terminateThisFavorite('add');">{% trans "Add" %}</a>
+                                    <a class="fedit-terminate fedit-edit" onclick="terminateThisFavorite('edit');">{% trans "Edit" %}</a>
+                                    <a class="fedit-terminate fedit-remove" onclick="terminateThisFavorite('remove');">{% trans "Remove" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="favorites-search favorites-content">
+                            <div class="head fsearch-head static-fav-head">
+                                <div class="head-text fsearch-head-text">{% trans "Search a room on" %}:</div>
+                                <input type="text" class="head-input fsearch-head-server" value="{{ settings.HOST_MUC }}" />
+                            </div>
+                            
+                            <div class="results fsearch-results static-fav-results">
+                                <p class="fsearch-noresults">{% trans "No room found on this server." %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bottom">
+                    <div class="wait wait-small"></div>
+                    <div class="finish" onclick="return quitFavorites();">{% trans "Close" %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END FAVORITES -->
+    
+    <!-- BEGIN DISCOVERY -->
+    <div id="discovery" class="lock hidable">
+        <div class="popup">
+            <div class="popup-content">
+                <div class="top">
+                    <p>{% trans "Service discovery" %}</p>
+                </div>
+                
+                <div class="content">
+                    <div class="discovery-head">
+                        <div class="disco-server-text">{% trans "Server to query" %}</div>
+                        <input name="disco-server-input" class="disco-server-input resetable" value="{{ settings.HOST_MAIN }}" />
+                    </div>
+                    
+                    <div class="results discovery-results">
+                        <p class="discovery-noresults">{% trans "Sorry, but the server didn't return any result!" %}</p>
+                        
+                        <div class="disco-category disco-account">
+                            <p class="disco-category-title">{% trans "Accounts" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-auth">
+                            <p class="disco-category-title">{% trans "Authentications" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-automation">
+                            <p class="disco-category-title">{% trans "Automation" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-client">
+                            <p class="disco-category-title">{% trans "Clients" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-collaboration">
+                            <p class="disco-category-title">{% trans "Collaboration" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-component">
+                            <p class="disco-category-title">{% trans "Components" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-conference">
+                            <p class="disco-category-title">{% trans "Rooms" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-directory">
+                            <p class="disco-category-title">{% trans "Directories" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-gateway">
+                            <p class="disco-category-title">{% trans "Gateways" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-headline">
+                            <p class="disco-category-title">{% trans "News" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-hierarchy">
+                            <p class="disco-category-title">{% trans "Hierarchy" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-proxy">
+                            <p class="disco-category-title">{% trans "Proxies" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-pubsub">
+                            <p class="disco-category-title">{% trans "Publication/Subscription" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-server">
+                            <p class="disco-category-title">{% trans "Server" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-store">
+                            <p class="disco-category-title">{% trans "Storage" %}</p>
+                        </div>
+                        
+                        <div class="disco-category disco-others">
+                            <p class="disco-category-title">{% trans "Others" %}</p>
+                        </div>
 
-						<div class="disco-category disco-wait">
-							<p class="disco-category-title">{% trans "Loading" %}</p>
-						</div>
-					</div>
-				</div>
+                        <div class="disco-category disco-wait">
+                            <p class="disco-category-title">{% trans "Loading" %}</p>
+                        </div>
+                    </div>
+                </div>
 
-				<div class="discovery-forms">
-				</div>
-				
-				<div class="bottom">
-					<div class="wait wait-small"></div>
-					<div class="finish" onclick="return quitDiscovery();">{% trans "Close" %}</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- END DISCOVERY -->
-	
-	<!-- BEGIN MESSAGES -->
-	<div id="inbox" class="lock hidable">
-		<div class="popup">
-			<div class="popup-content">
-				<div class="top">
-					<p>{% trans "My inbox" %}</p>
-				</div>
-				
-				<div class="content">
-					<div class="head messages-head">
-						<div class="head-text messages-head-text">{% trans "Available actions" %}</div>
-						<div class="head-actions messages-head-actions">
-							<a onclick="deleteAllMessages();" class="a-delete-messages">{% trans "Clean" %}</a>
-							<a onclick="newMessage();" class="a-new-message">{% trans "New" %}</a>
-							<a onclick="showMessages();" class="a-show-messages">{% trans "Received" %}</a>
-						</div>
-					</div>
-					
-					<div class="messages-results">
-						<p class="messages-noresults showable">{% trans "No message stored in your inbox." %}</p>
-						<div class="inbox"></div>
-					</div>
-					
-					<div class="messages-new">
-						<div class="messages-new-to messages-new-block">
-							<p class="messages-new-text">{% trans "To" %}</p>
-							<input name="messages-new-to-input" class="messages-new-input messages-new-to-input resetable" />
-						</div>
-						
-						<div class="messages-new-topic messages-new-block">
-							<p class="messages-new-text">{% trans "Subject" %}</p>
-							<input name="messages-new-subject-input" class="messages-new-input messages-new-subject-input resetable" />
-						</div>
-						
-						<div class="messages-new-body messages-new-block">
-							<p class="messages-new-text">{% trans "Content" %}</p>
-							<textarea class="messages-new-textarea resetable" rows="8" cols="60"></textarea>
-						</div>
-						
-						<div class="messages-new-send messages-new-block">
-							<a onclick="sendThisMessage();">{% trans "Send the message" %}</a>
-						</div>
-					</div>
-				</div>
-				
-				<div class="bottom">
-					<div class="finish" onclick="return messagesClose();">{% trans "Close" %}</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- END MESSAGES -->
-	
-	<!-- BEGIN MUC-ADMIN -->
-	<div id="muc-admin" class="lock hidable">
-		<div class="popup">
-			<div class="popup-content">
-				<div class="top">
-					<p>{% trans "MUC administration" %}</p>
-				</div>
-				
-				<div class="content">
-					<div class="head muc-admin-head">
-						<div class="head-text muc-admin-head-text">{% trans "You administrate this room" %}:</div>
-						<div class="muc-admin-head-jid"></div>
-					</div>
-					
-					<div class="muc-admin-results">
-						<div class="muc-admin-topic">
-							<fieldset>
-								<legend>{% trans "Subject" %}</legend>
-								<label for="topic-text">{% trans "Enter the new subject" %}</label>
-								<textarea id="topic-text" name="room-topic" class="resetable" rows="8" cols="60" ></textarea>
-							</fieldset>
-						</div>
-						
-						<div class="muc-admin-conf">
-							<fieldset>
-								<legend>{% trans "Configuration" %}</legend>
-								<div class="last-element"></div>
-							</fieldset>
-						</div>
-						
-						<div class="muc-admin-aut">
-							<fieldset>
-								<legend>{% trans "Authorizations" %}</legend>
-								<label>{% trans "Member list" %}</label>
-								<div class="aut-member aut-group">
-									<a class="aut-add" onclick="addInputMucAdmin('', 'member');">{% trans "Add an input" %}</a>
-								</div>
-								<label>{% trans "Owner list" %}</label>
-								<div class="aut-owner aut-group">
-									<a class="aut-add" onclick="addInputMucAdmin('', 'owner');">{% trans "Add an input" %}</a>
-								</div>
-								<label>{% trans "Administrator list" %}</label>
-								<div class="aut-admin aut-group">
-									<a class="aut-add" onclick="addInputMucAdmin('', 'admin');">{% trans "Add an input" %}</a>
-								</div>
-								<label>{% trans "Outcast list" %}</label>
-								<div class="aut-outcast aut-group">
-									<a class="aut-add" onclick="addInputMucAdmin('', 'outcast');">{% trans "Add an input" %}</a>
-								</div>
-							</fieldset>
-						</div>
-						
-						<div class="muc-admin-others">
-							<fieldset>
-								<legend>{% trans "Others" %}</legend>
-								<label>{% trans "Destroy this MUC" %}</label>
-								<a onclick="destroyMucAdmin();">{% trans "Yes, let's do it!" %}</a>
-							</fieldset>
-						</div>
-					</div>
-				</div>
-				
-				<div class="bottom">
-					<div class="wait wait-small"></div>
-					<div class="finish" onclick="return saveMucAdmin();">{% trans "Save" %}</div>
-					<div class="finish" onclick="return cancelMucAdmin();">{% trans "Cancel" %}</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- END MUC-ADMIN -->
-	
-	<!-- BEGIN INTEGRATEBOX -->
-	<div id="integratebox" class="lock hidable">
-		<div class="popup">
-			<div class="popup-content">
-				<div class="top">
-					<p>{% trans "Media viewer" %}</p>
-				</div>
-				
-				<div class="content">
-				</div>
-				
-				<div class="bottom">
-					<div class="wait wait-small"></div>
-					<div class="finish" onclick="return closeIntegrateBox();">{% trans "Close" %}</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- END INTEGRATEBOX -->
-	
-	<!-- BEGIN USERINFOS -->
-	<div id="userinfos" class="lock hidable">
-		<div class="popup">
-			<div class="popup-content">
-				<div class="top">
-					<p>{% trans "User infos" %}</p>
-				</div>
-				
-				<div class="tab">
-					<a class="tab1 tab-active" onclick="switchUInfos(1);">{% trans "General" %}</a>
-					<a class="tab2" onclick="switchUInfos(2);">{% trans "Advanced" %}</a>
-					<a class="tab3" onclick="switchUInfos(3);">{% trans "Comments" %}</a>
-				</div>
-				
-				<div class="content">
-					<div class="one-info info1" style="display: block;">
-						<div class="main-infos">
-							<div class="avatar-container"></div>
-							
-							<h1 id="BUDDY-FN" class="reset-info">{% trans "unknown" %}</h1>
-							<h2 id="BUDDY-NICKNAME" class="reset-info">{% trans "unknown" %}</h2>
-							<h3 id="BUDDY-JID" class="reset-info">{% trans "unknown" %}</h3>
-							
-							<input id="BUDDY-PHOTO-BINVAL" type="hidden" class="resetable" />
-							<input id="BUDDY-PHOTO-TYPE" type="hidden" class="resetable" />
-						</div>
-						
-						<div class="block-infos">
-							<div class="one-line"><b>{% trans "Birth" %}</b><span id="BUDDY-BDAY" class="reset-info">{% trans "unknown" %}</span></div>
-							<div class="one-line"><b>{% trans "E-mail" %}</b><span id="BUDDY-EMAIL-USERID" class="reset-info">{% trans "unknown" %}</span></div>
-							<div class="one-line"><b>{% trans "Phone" %}</b><span id="BUDDY-TEL-NUMBER" class="reset-info">{% trans "unknown" %}</span></div>
-							<div class="one-line"><b>{% trans "Website" %}</b><span id="BUDDY-URL" class="reset-info">{% trans "unknown" %}</span></div>
-						</div>
-						
-						<div class="block-infos">
-							<div class="one-line"><b>{% trans "Client" %}</b><span id="BUDDY-CLIENT" class="reset-info">{% trans "unknown" %}</span></div>
-							<div class="one-line"><b>{% trans "System" %}</b><span id="BUDDY-SYSTEM" class="reset-info">{% trans "unknown" %}</span></div>
-							<div class="one-line"><b>{% trans "Local time" %}</b><span id="BUDDY-TIME" class="reset-info">{% trans "unknown" %}</span></div>
-						</div>
-					</div>
-					
-					<div class="one-info info2">
-						<div class="block-infos">
-							<div class="one-line"><b>{% trans "Street" %}</b><span id="BUDDY-ADR-STREET" class="reset-info">{% trans "unknown" %}</span></div>
-							<div class="one-line"><b>{% trans "City" %}</b><span id="BUDDY-ADR-LOCALITY" class="reset-info">{% trans "unknown" %}</span></div>
-							<div class="one-line"><b>{% trans "Postal code" %}</b><span id="BUDDY-ADR-PCODE" class="reset-info">{% trans "unknown" %}</span></div>
-							<div class="one-line"><b>{% trans "Country" %}</b><span id="BUDDY-ADR-CTRY" class="reset-info">{% trans "unknown" %}</span></div>
-						</div>
-						
-						<div class="block-infos">
-							<div class="one-line"><b>{% trans "Biography" %}</b><span id="BUDDY-DESC" class="reset-info">{% trans "unknown" %}</span></div>
-						</div>
-					</div>
-					
-					<div class="one-info info3">
-						<textarea id="BUDDY-COMMENTS" rows="8" cols="60" class="resetable"></textarea>
-					</div>
-				</div>
-				
-				<div class="bottom">
-					<div class="wait wait-small"></div>
-					<div class="finish" onclick="return closeUserInfos();">{% trans "Close" %}</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- END USERINFOS -->
+                <div class="discovery-forms">
+                </div>
+                
+                <div class="bottom">
+                    <div class="wait wait-small"></div>
+                    <div class="finish" onclick="return quitDiscovery();">{% trans "Close" %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END DISCOVERY -->
+    
+    <!-- BEGIN MESSAGES -->
+    <div id="inbox" class="lock hidable">
+        <div class="popup">
+            <div class="popup-content">
+                <div class="top">
+                    <p>{% trans "My inbox" %}</p>
+                </div>
+                
+                <div class="content">
+                    <div class="head messages-head">
+                        <div class="head-text messages-head-text">{% trans "Available actions" %}</div>
+                        <div class="head-actions messages-head-actions">
+                            <a onclick="deleteAllMessages();" class="a-delete-messages">{% trans "Clean" %}</a>
+                            <a onclick="newMessage();" class="a-new-message">{% trans "New" %}</a>
+                            <a onclick="showMessages();" class="a-show-messages">{% trans "Received" %}</a>
+                        </div>
+                    </div>
+                    
+                    <div class="messages-results">
+                        <p class="messages-noresults showable">{% trans "No message stored in your inbox." %}</p>
+                        <div class="inbox"></div>
+                    </div>
+                    
+                    <div class="messages-new">
+                        <div class="messages-new-to messages-new-block">
+                            <p class="messages-new-text">{% trans "To" %}</p>
+                            <input name="messages-new-to-input" class="messages-new-input messages-new-to-input resetable" />
+                        </div>
+                        
+                        <div class="messages-new-topic messages-new-block">
+                            <p class="messages-new-text">{% trans "Subject" %}</p>
+                            <input name="messages-new-subject-input" class="messages-new-input messages-new-subject-input resetable" />
+                        </div>
+                        
+                        <div class="messages-new-body messages-new-block">
+                            <p class="messages-new-text">{% trans "Content" %}</p>
+                            <textarea class="messages-new-textarea resetable" rows="8" cols="60"></textarea>
+                        </div>
+                        
+                        <div class="messages-new-send messages-new-block">
+                            <a onclick="sendThisMessage();">{% trans "Send the message" %}</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bottom">
+                    <div class="finish" onclick="return messagesClose();">{% trans "Close" %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MESSAGES -->
+    
+    <!-- BEGIN MUC-ADMIN -->
+    <div id="muc-admin" class="lock hidable">
+        <div class="popup">
+            <div class="popup-content">
+                <div class="top">
+                    <p>{% trans "MUC administration" %}</p>
+                </div>
+                
+                <div class="content">
+                    <div class="head muc-admin-head">
+                        <div class="head-text muc-admin-head-text">{% trans "You administrate this room" %}:</div>
+                        <div class="muc-admin-head-jid"></div>
+                    </div>
+                    
+                    <div class="muc-admin-results">
+                        <div class="muc-admin-topic">
+                            <fieldset>
+                                <legend>{% trans "Subject" %}</legend>
+                                <label for="topic-text">{% trans "Enter the new subject" %}</label>
+                                <textarea id="topic-text" name="room-topic" class="resetable" rows="8" cols="60" ></textarea>
+                            </fieldset>
+                        </div>
+                        
+                        <div class="muc-admin-conf">
+                            <fieldset>
+                                <legend>{% trans "Configuration" %}</legend>
+                                <div class="last-element"></div>
+                            </fieldset>
+                        </div>
+                        
+                        <div class="muc-admin-aut">
+                            <fieldset>
+                                <legend>{% trans "Authorizations" %}</legend>
+                                <label>{% trans "Member list" %}</label>
+                                <div class="aut-member aut-group">
+                                    <a class="aut-add" onclick="addInputMucAdmin('', 'member');">{% trans "Add an input" %}</a>
+                                </div>
+                                <label>{% trans "Owner list" %}</label>
+                                <div class="aut-owner aut-group">
+                                    <a class="aut-add" onclick="addInputMucAdmin('', 'owner');">{% trans "Add an input" %}</a>
+                                </div>
+                                <label>{% trans "Administrator list" %}</label>
+                                <div class="aut-admin aut-group">
+                                    <a class="aut-add" onclick="addInputMucAdmin('', 'admin');">{% trans "Add an input" %}</a>
+                                </div>
+                                <label>{% trans "Outcast list" %}</label>
+                                <div class="aut-outcast aut-group">
+                                    <a class="aut-add" onclick="addInputMucAdmin('', 'outcast');">{% trans "Add an input" %}</a>
+                                </div>
+                            </fieldset>
+                        </div>
+                        
+                        <div class="muc-admin-others">
+                            <fieldset>
+                                <legend>{% trans "Others" %}</legend>
+                                <label>{% trans "Destroy this MUC" %}</label>
+                                <a onclick="destroyMucAdmin();">{% trans "Yes, let's do it!" %}</a>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bottom">
+                    <div class="wait wait-small"></div>
+                    <div class="finish" onclick="return saveMucAdmin();">{% trans "Save" %}</div>
+                    <div class="finish" onclick="return cancelMucAdmin();">{% trans "Cancel" %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MUC-ADMIN -->
+    
+    <!-- BEGIN INTEGRATEBOX -->
+    <div id="integratebox" class="lock hidable">
+        <div class="popup">
+            <div class="popup-content">
+                <div class="top">
+                    <p>{% trans "Media viewer" %}</p>
+                </div>
+                
+                <div class="content">
+                </div>
+                
+                <div class="bottom">
+                    <div class="wait wait-small"></div>
+                    <div class="finish" onclick="return closeIntegrateBox();">{% trans "Close" %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END INTEGRATEBOX -->
+    
+    <!-- BEGIN USERINFOS -->
+    <div id="userinfos" class="lock hidable">
+        <div class="popup">
+            <div class="popup-content">
+                <div class="top">
+                    <p>{% trans "User infos" %}</p>
+                </div>
+                
+                <div class="tab">
+                    <a class="tab1 tab-active" onclick="switchUInfos(1);">{% trans "General" %}</a>
+                    <a class="tab2" onclick="switchUInfos(2);">{% trans "Advanced" %}</a>
+                    <a class="tab3" onclick="switchUInfos(3);">{% trans "Comments" %}</a>
+                </div>
+                
+                <div class="content">
+                    <div class="one-info info1" style="display: block;">
+                        <div class="main-infos">
+                            <div class="avatar-container"></div>
+                            
+                            <h1 id="BUDDY-FN" class="reset-info">{% trans "unknown" %}</h1>
+                            <h2 id="BUDDY-NICKNAME" class="reset-info">{% trans "unknown" %}</h2>
+                            <h3 id="BUDDY-JID" class="reset-info">{% trans "unknown" %}</h3>
+                            
+                            <input id="BUDDY-PHOTO-BINVAL" type="hidden" class="resetable" />
+                            <input id="BUDDY-PHOTO-TYPE" type="hidden" class="resetable" />
+                        </div>
+                        
+                        <div class="block-infos">
+                            <div class="one-line"><b>{% trans "Birth" %}</b><span id="BUDDY-BDAY" class="reset-info">{% trans "unknown" %}</span></div>
+                            <div class="one-line"><b>{% trans "E-mail" %}</b><span id="BUDDY-EMAIL-USERID" class="reset-info">{% trans "unknown" %}</span></div>
+                            <div class="one-line"><b>{% trans "Phone" %}</b><span id="BUDDY-TEL-NUMBER" class="reset-info">{% trans "unknown" %}</span></div>
+                            <div class="one-line"><b>{% trans "Website" %}</b><span id="BUDDY-URL" class="reset-info">{% trans "unknown" %}</span></div>
+                        </div>
+                        
+                        <div class="block-infos">
+                            <div class="one-line"><b>{% trans "Client" %}</b><span id="BUDDY-CLIENT" class="reset-info">{% trans "unknown" %}</span></div>
+                            <div class="one-line"><b>{% trans "System" %}</b><span id="BUDDY-SYSTEM" class="reset-info">{% trans "unknown" %}</span></div>
+                            <div class="one-line"><b>{% trans "Local time" %}</b><span id="BUDDY-TIME" class="reset-info">{% trans "unknown" %}</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="one-info info2">
+                        <div class="block-infos">
+                            <div class="one-line"><b>{% trans "Street" %}</b><span id="BUDDY-ADR-STREET" class="reset-info">{% trans "unknown" %}</span></div>
+                            <div class="one-line"><b>{% trans "City" %}</b><span id="BUDDY-ADR-LOCALITY" class="reset-info">{% trans "unknown" %}</span></div>
+                            <div class="one-line"><b>{% trans "Postal code" %}</b><span id="BUDDY-ADR-PCODE" class="reset-info">{% trans "unknown" %}</span></div>
+                            <div class="one-line"><b>{% trans "Country" %}</b><span id="BUDDY-ADR-CTRY" class="reset-info">{% trans "unknown" %}</span></div>
+                        </div>
+                        
+                        <div class="block-infos">
+                            <div class="one-line"><b>{% trans "Biography" %}</b><span id="BUDDY-DESC" class="reset-info">{% trans "unknown" %}</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="one-info info3">
+                        <textarea id="BUDDY-COMMENTS" rows="8" cols="60" class="resetable"></textarea>
+                    </div>
+                </div>
+                
+                <div class="bottom">
+                    <div class="wait wait-small"></div>
+                    <div class="finish" onclick="return closeUserInfos();">{% trans "Close" %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END USERINFOS -->

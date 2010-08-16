@@ -1,0 +1,18 @@
+Metadata-Version: 1.0
+Name: django-staticmedia
+Version: 0.2.2
+Summary: Dynamically get URLs for your site-level and app-level static media.
+Home-page: http://pypi.python.org/pypi/django-staticmedia
+Author: Tamas Kemenczy
+Author-email: tamas.kemenczy@gmail.com
+License: BSD
+Description: UNKNOWN
+Keywords: django utilities templatetag static media
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python

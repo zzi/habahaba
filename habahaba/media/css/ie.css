@@ -13,11 +13,11 @@ Last revision: 16/07/10
 */
 
 .error-p {
-	background-color: #f1a0a0 !important;
+    background-color: #f1a0a0 !important;
 }
 
 .info-p {
-	background-color: #f6f4cb !important;
+    background-color: #f6f4cb !important;
 }
 
 .popup,
@@ -28,7 +28,7 @@ Last revision: 16/07/10
 #my-infos,
 #chat-engine,
 #chat-switch {
-	background-color: #141414 !important;
+    background-color: #141414 !important;
 }
 
 #home .locale li a:hover,
@@ -36,24 +36,24 @@ Last revision: 16/07/10
 .popup .finish:active,
 .notifications-content .one-notification:hover,
 .notifications-content .one-notification:active {
-	background-color: #333333 !important;
+    background-color: #333333 !important;
 }
 
 #top-content .music:active,
 #top-content .notifications:active {
-	background-color: #f1f5f6 !important;
+    background-color: #f1f5f6 !important;
 }
 
 #top-content .music:hover,
 #top-content .notifications:hover {
-	background-color: #ebf2f4 !important;
+    background-color: #ebf2f4 !important;
 }
 
 #top-content .tools,
 #top-content .actived,
 #top-content .actived:hover,
 #top-content .actived:active {
-	background-color: #e8f1f3 !important;
+    background-color: #e8f1f3 !important;
 }
 
 .tooltip-subitem,
@@ -63,17 +63,17 @@ Last revision: 16/07/10
 .my-infos-text-subitem,
 .tooltip-subitem,
 .attach-subitem {
-	background-color: #000000 !important;
+    background-color: #000000 !important;
 }
 
 .general-wait-content {
-	background-color: #ffffff !important;
+    background-color: #ffffff !important;
 }
 
 #vcard .infos {
-	background-color: #ffef68 !important;
+    background-color: #ffef68 !important;
 }
 
 #chat-engine .chatstate {
-	background-color: #eaeaea !important;
+    background-color: #eaeaea !important;
 }
