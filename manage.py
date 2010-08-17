@@ -1,5 +1,8 @@
 #!/usr/bin/python
 from django.core.management import execute_manager
+import os
+import sys
+
 try:
     import settings # Assumed to be in the same directory.
 except ImportError:
@@ -7,22 +10,22 @@ except ImportError:
     sys.stderr.write("Error: Can't find the file 'settings.py' in the directory containing %r. It appears you've customized things.\nYou'll have to run django-admin.py, passing it your settings module.\n(If the file settings.py does indeed exist, it's causing an ImportError somehow.)\n" % __file__)
     sys.exit(1)
 
-LIBS = (                                                                                                                                                                       
+LIBS = (
     # tuple for path, where each element is an element of tuple                                                                                                                
     # libs/django -> ('django',)                                                                                                                                               
     # libs/foo/bar -> ('foo', 'bar')                                                                                                                                           
-    ('django-staticmedia-0.2.2','staticmedia'),                                                                                                                                                               
-)                                                                                                                                                                              
-                                                                                                                                                                               
-                                                                                                                                                                               
-proj_root = os.path.dirname(os.path.abspath(__file__))                                                                                                                         
-                                                                                                                                                                               
+    ('django-staticmedia-0.2.2','staticmedia'),
+)
+
+
+proj_root = os.path.dirname(os.path.abspath(__file__))
+
 # add third-party libs to sys.path                                                                                                                                             
-for lib in LIBS:                                                                                                                                                               
-    libdir = os.path.join(proj_root, 'libs', *lib)                                                                                                                             
-    if os.path.isdir(libdir) and libdir not in sys.path:                                                                                                                       
-        sys.path.insert(0, libdir) 
-        
+for lib in LIBS:
+    libdir = os.path.join(proj_root, 'libs', *lib)
+    if os.path.isdir(libdir) and libdir not in sys.path:
+        sys.path.insert(0, libdir)
+
 
 if __name__ == "__main__":
     execute_manager(settings)
