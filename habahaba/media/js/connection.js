@@ -156,7 +156,6 @@ function doLogin() {
 function doAnonymousLogin() {
     try {
         // We get the values
-        isAnonymousMode = true;
         var aPath = '#home .alogin .';
         var aServer = $('.system .anonymous-server').val(); 
         var aNick = '', aPass = '';
@@ -198,6 +197,8 @@ function doAnonymousLogin() {
             
             // We connect !
             con.connect(oArgs);
+
+            isAnonymousMode = true;
         }
         
         else {
@@ -286,6 +287,7 @@ function unavailable() {
 }
 
 function logout() {
+	isAnonymousMode = false;
     // If the con has been yet aborted, end
     if(!con.connected())
         return;
